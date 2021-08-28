@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="APIUrl" representedClassName="APIUrl" syncable="YES" codeGenerationType="class">
+        <attribute name="baseUrl" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Room" representedClassName="Room" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="APIUrl" positionX="-63" positionY="-18" width="128" height="58"/>
+        <element name="Room" positionX="-54" positionY="0" width="128" height="73"/>
+    </elements>
+</model>

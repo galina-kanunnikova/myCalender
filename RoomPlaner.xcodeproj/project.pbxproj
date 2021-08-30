@@ -16,6 +16,7 @@
 		FE51B80A25A75E1100BE6FB7 /* EventsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51B80925A75E1100BE6FB7 /* EventsOverlay.swift */; };
 		FE51B80D25A75E8300BE6FB7 /* Calender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51B80C25A75E8300BE6FB7 /* Calender.swift */; };
 		FE6A583D26DD69D9001DA03E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A583C26DD69D9001DA03E /* WelcomeView.swift */; };
+		FE6A584026DD871C001DA03E /* AppContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A583F26DD871C001DA03E /* AppContentView.swift */; };
 		FE6BC0C225E674A300D9BC4A /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BC0C125E674A300D9BC4A /* MenuView.swift */; };
 		FE6BC0CD25EAD3E500D9BC4A /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BC0CC25EAD3E500D9BC4A /* APIModel.swift */; };
 		FE79710725825911001289A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79710625825911001289A5 /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 		FE51B80925A75E1100BE6FB7 /* EventsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsOverlay.swift; sourceTree = "<group>"; };
 		FE51B80C25A75E8300BE6FB7 /* Calender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calender.swift; sourceTree = "<group>"; };
 		FE6A583C26DD69D9001DA03E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		FE6A583F26DD871C001DA03E /* AppContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentView.swift; sourceTree = "<group>"; };
 		FE6BC0C125E674A300D9BC4A /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		FE6BC0CC25EAD3E500D9BC4A /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		FE79710325825911001289A5 /* RoomPlaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomPlaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +129,7 @@
 				FE95CFBE25C9A9360049D8FC /* LogInScreen.swift */,
 				FE6BC0C125E674A300D9BC4A /* MenuView.swift */,
 				FE6A583C26DD69D9001DA03E /* WelcomeView.swift */,
+				FE6A583F26DD871C001DA03E /* AppContentView.swift */,
 			);
 			path = RoomPlaner;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				FE79710B25825911001289A5 /* ContentView.swift in Sources */,
 				FE6A583D26DD69D9001DA03E /* WelcomeView.swift in Sources */,
 				FEDCB41425B8954E0034AA4E /* DatePickerModel.swift in Sources */,
+				FE6A584026DD871C001DA03E /* AppContentView.swift in Sources */,
 				FE51B7EA25A3910900BE6FB7 /* FormSheet.swift in Sources */,
 				FE95CFC225D40EEF0049D8FC /* UserModel.swift in Sources */,
 				FEDCB40325ADC9340034AA4E /* DayModel.swift in Sources */,

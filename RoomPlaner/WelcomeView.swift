@@ -14,6 +14,7 @@ struct WelcomeView: View {
     @ObservedObject var eventModel = EventModel()
     @State  var title: String = "Objekt Titel"
     @State  var objects: [String] = []
+    @Binding var signInSuccess: Bool
     
     var body: some View {
         
@@ -77,7 +78,7 @@ struct WelcomeView: View {
                 }.padding(.leading, 100).padding(.trailing, 100)
                 
                 Button("Weiter zum Kalender  >") {
-                 
+                    self.signInSuccess = true
                    
                  }
                 .padding()
@@ -88,18 +89,8 @@ struct WelcomeView: View {
                 .frame(width:300, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 
             }
-        
-    
-    
     }
    
 }
 
-struct Welcome_Previews: PreviewProvider {
-    static var previews: some View {
-       
-        WelcomeView()
-                .previewLayout(.fixed(width: 1024, height: 768))
-    }
-}
 

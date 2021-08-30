@@ -1,7 +1,4 @@
-//
-//  ContentView.swift
-//  nn
-//
+
 //  Created by Galina Kanunnikova on 10.12.20.
 //
 

@@ -66,13 +66,13 @@ extension EventModel {
     private func getEvents() {
     
     let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        if launchedBefore  {
+     /*   if launchedBefore  {
             print("Not first launch.")
             DispatchQueue.main.async {
                 self.cellsForOverlay = []
                 self.eventsAfterRooms = []
           
-                for i in 0...self.roomModel.visibleRooms.count - 1 {
+              for i in 0...self.roomModel.visibleRooms.count - 1 {
                     let room = self.roomModel.visibleRooms[i]
                     self.cellsForOverlay.append([])
                     self.eventsAfterRooms.append([])
@@ -102,7 +102,7 @@ extension EventModel {
             APIdb.setAPIUrl()
             firstLaunch()
         }
-  
+  */
    /*     */
        
         

@@ -17,7 +17,8 @@ struct calenderCell: View {
         .foregroundColor(.white)
         .font(.largeTitle)
         .frame(width: roomColumnWidth(rooms: roomModel.visibleRooms.count), height: style.rowHeight)
-        .background(Color.white)
+        //.background(Color.white)
+        .background(Color(UIColor.systemBackground))
         .border(Color.gray)
     }
     

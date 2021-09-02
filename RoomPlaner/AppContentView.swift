@@ -13,8 +13,10 @@ struct AppContentView: View {
     @State var signInSuccess = false
     
     var body: some View {
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+           // /*    if launchedBefore  {
         return Group {
-            if signInSuccess {
+            if signInSuccess || launchedBefore {
                 DayView()
             }
             else {

@@ -19,7 +19,7 @@ struct logIn: View {
     @State private var error = false
     @State var action : Action
     @State var event : EventObj?
-    
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         VStack() {
             Spacer()
@@ -29,14 +29,14 @@ struct logIn: View {
                 Spacer()
                 TextField("Email", text: self.$email)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .foregroundColor(.black)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
                     .frame(width : 400)
                 Spacer()
             }
             
             SecureField("Password", text: self.$password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .foregroundColor(.black)
+                .foregroundColor(colorScheme == .dark ? .white : .black)
                 .frame(width : 400)
             Spacer()
             if error == true {

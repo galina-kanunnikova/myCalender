@@ -66,13 +66,13 @@ extension EventModel {
     private func getEvents() {
     
     let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-     /*   if launchedBefore  {
+        /*    if launchedBefore  {
             print("Not first launch.")
             DispatchQueue.main.async {
                 self.cellsForOverlay = []
                 self.eventsAfterRooms = []
           
-              for i in 0...self.roomModel.visibleRooms.count - 1 {
+                      for i in 0...self.roomModel.visibleRooms.count - 1 {
                     let room = self.roomModel.visibleRooms[i]
                     self.cellsForOverlay.append([])
                     self.eventsAfterRooms.append([])
@@ -102,8 +102,8 @@ extension EventModel {
             APIdb.setAPIUrl()
             firstLaunch()
         }
-  */
-   /*     */
+  
+        */
        
         
       /*  let appdelegate = UIApplication.shared.delegate as! AppDelegate
@@ -140,7 +140,7 @@ extension EventModel {
                              self.cellsForOverlay.append([])
                              self.eventsAfterRooms.append([])
                              
-                             self.eventsRequest(id: room.id, completion:{
+                            self.eventsRequest(id: Int(room.id), completion:{
                                  events in
                                  DispatchQueue.main.async {
                                      
@@ -152,8 +152,8 @@ extension EventModel {
                                            eventsForADay.append(event)
                                        }
                                 }
-                                 self.eventsAfterRooms[room.id - 1].append(contentsOf: eventsForADay)
-                                 if eventsForADay.count > 0 { self.makeCellsForOverlay( roomIdx: room.id - 1, events: eventsForADay)}
+                                    self.eventsAfterRooms[Int(room.id) - 1].append(contentsOf: eventsForADay)
+                                    if eventsForADay.count > 0 { self.makeCellsForOverlay( roomIdx: Int(room.id) - 1, events: eventsForADay)}
                                  }
                              })
                              

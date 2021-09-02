@@ -12,10 +12,10 @@ import CoreData
 
 struct WelcomeView: View {
     @ObservedObject var eventModel = EventModel()
-    @State  var title: String = "Objekt Titel"
+    @State  var title: String = ""
     @State  var objects: [String] = []
     @Binding var signInSuccess: Bool
-    
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         
             VStack(spacing: 0) {
@@ -25,20 +25,16 @@ struct WelcomeView: View {
                   Text("Geben Sie die Namen für Objekte die reserviert werden (mindestens 1)")
                   Spacer()
               
-                  TextField("title", text: $title)
+                  TextField("Objekt Name", text: $title)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .foregroundColor(.black)
                         .fixedSize()
-               // .padding(.leading, 100).padding(.trailing, 100)
-                //ForEach(objects, id: \.self) { obj in
-                     
+                    
                   ForEach(0..<objects.count,id: \.self) { i in
    
                      HStack {
-                        
                         Text(objects[i])
                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                           .foregroundColor(.black)
+                           .foregroundColor(colorScheme == .dark ? .white : .black)
                            .fixedSize()
                     
                         Button("x") {
@@ -54,33 +50,30 @@ struct WelcomeView: View {
                     if objects.count < 10 {
                         Button("+") {
                           objects.append(title)
-                            title = "Objekt Titel"
-                           
+                            title = ""
                          }
                         .padding()
                         .foregroundColor(.white)
                         .background(Color.green)
-                        //.cornerRadius(25)
+                        .buttonStyle(MyButtonStyle())
                         .clipShape(Circle())
-                        
-                       /* Button("-") {
-                          objects.removeLast()
-                            
-                         }
-                        .padding()
-                        .foregroundColor(.white)
-                        .background(Color.red)
-                        //.cornerRadius(25)
-                        .clipShape(Circle())*/
+                        .disabled(title == "")
                     }
                   
                   Spacer()
                 }.padding(.leading, 100).padding(.trailing, 100)
-                
+               
                 Button("Weiter zum Kalender  >") {
                     self.signInSuccess = true
+                    for i in 0 ..< objects.count{
+                        let newObj = RoomObj(id: Int16(i), name: objects[i])
+                        eventModel.roomModel.saveRoomToLocalStorage(room: newObj)
+                        UserDefaults.standard.set(true, forKey: "launchedBefore")
+                    }
                    
                  }
+                .buttonStyle(MyButtonStyle())
+                .disabled(objects.count == 0)
                 .padding()
                 .foregroundColor(.white)
                 .background(style.lightRed)

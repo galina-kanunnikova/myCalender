@@ -17,6 +17,8 @@
 		FE51B80D25A75E8300BE6FB7 /* Calender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51B80C25A75E8300BE6FB7 /* Calender.swift */; };
 		FE6A583D26DD69D9001DA03E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A583C26DD69D9001DA03E /* WelcomeView.swift */; };
 		FE6A584026DD871C001DA03E /* AppContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A583F26DD871C001DA03E /* AppContentView.swift */; };
+		FE6A584926E112FE001DA03E /* icons8-event-100.png in Resources */ = {isa = PBXBuildFile; fileRef = FE6A584826E112FD001DA03E /* icons8-event-100.png */; };
+		FE6A584E26E121C9001DA03E /* YearPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A584D26E121C8001DA03E /* YearPicker.swift */; };
 		FE6BC0C225E674A300D9BC4A /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BC0C125E674A300D9BC4A /* MenuView.swift */; };
 		FE6BC0CD25EAD3E500D9BC4A /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6BC0CC25EAD3E500D9BC4A /* APIModel.swift */; };
 		FE79710725825911001289A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79710625825911001289A5 /* AppDelegate.swift */; };
@@ -50,6 +52,8 @@
 		FE51B80C25A75E8300BE6FB7 /* Calender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calender.swift; sourceTree = "<group>"; };
 		FE6A583C26DD69D9001DA03E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		FE6A583F26DD871C001DA03E /* AppContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentView.swift; sourceTree = "<group>"; };
+		FE6A584826E112FD001DA03E /* icons8-event-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-event-100.png"; sourceTree = "<group>"; };
+		FE6A584D26E121C8001DA03E /* YearPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearPicker.swift; sourceTree = "<group>"; };
 		FE6BC0C125E674A300D9BC4A /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		FE6BC0CC25EAD3E500D9BC4A /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		FE79710325825911001289A5 /* RoomPlaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomPlaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +115,7 @@
 				FE79710825825911001289A5 /* SceneDelegate.swift */,
 				FE79710A25825911001289A5 /* ContentView.swift */,
 				FE79710F25825914001289A5 /* Assets.xcassets */,
+				FE6A584826E112FD001DA03E /* icons8-event-100.png */,
 				FE79711425825914001289A5 /* LaunchScreen.storyboard */,
 				FE79711725825914001289A5 /* Info.plist */,
 				FE79710C25825911001289A5 /* RoomPlaner.xcdatamodeld */,
@@ -130,6 +135,7 @@
 				FE6BC0C125E674A300D9BC4A /* MenuView.swift */,
 				FE6A583C26DD69D9001DA03E /* WelcomeView.swift */,
 				FE6A583F26DD871C001DA03E /* AppContentView.swift */,
+				FE6A584D26E121C8001DA03E /* YearPicker.swift */,
 			);
 			path = RoomPlaner;
 			sourceTree = "<group>";
@@ -220,6 +226,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE6A584926E112FE001DA03E /* icons8-event-100.png in Resources */,
 				FE79711625825914001289A5 /* LaunchScreen.storyboard in Resources */,
 				FE79711325825914001289A5 /* Preview Assets.xcassets in Resources */,
 				FE79711025825914001289A5 /* Assets.xcassets in Resources */,
@@ -251,6 +258,7 @@
 				FE51B80125A5FEFA00BE6FB7 /* CalenderCell.swift in Sources */,
 				FEDCB40A25AE30F40034AA4E /* DetailedView.swift in Sources */,
 				FEDCB41125B8940C0034AA4E /* myDatePicker.swift in Sources */,
+				FE6A584E26E121C9001DA03E /* YearPicker.swift in Sources */,
 				FEDCB40725AE2A110034AA4E /* RedLine.swift in Sources */,
 				FE51B80A25A75E1100BE6FB7 /* EventsOverlay.swift in Sources */,
 				FE51B7ED25A4BD8B00BE6FB7 /* KeyboardGuardian.swift in Sources */,
@@ -328,7 +336,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -383,7 +391,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -400,17 +408,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"RoomPlaner/Preview Content\"";
-				DEVELOPMENT_TEAM = J2P6AYK2QF;
+				DEVELOPMENT_TEAM = 4VRGJG45ZQ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RoomPlaner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tag24.roomplaner;
+				PRODUCT_BUNDLE_IDENTIFIER = reservationPlaner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -421,17 +429,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"RoomPlaner/Preview Content\"";
-				DEVELOPMENT_TEAM = J2P6AYK2QF;
+				DEVELOPMENT_TEAM = 4VRGJG45ZQ;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RoomPlaner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tag24.roomplaner;
+				PRODUCT_BUNDLE_IDENTIFIER = reservationPlaner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

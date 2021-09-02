@@ -18,11 +18,11 @@ struct datePickerFrom: View {
     @ObservedObject var dpModel : DatePickerModel
     @State private var start = Date()
     var toUpdateStartTime : Date?
-    
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         
         HStack{
-            Text("Von").foregroundColor(.black)
+            Text("Von").foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
                 myDatePickerFrom ( dpModel: dpModel, eventModel: eventModel ,from:  start, to: dpModel.dateVon.dateTo30)
         }
@@ -47,12 +47,13 @@ struct datePickerFrom: View {
 struct datePickerTill: View {
     @ObservedObject  var eventModel : EventModel
     @ObservedObject var dpModel : DatePickerModel
+    @Environment(\.colorScheme) var colorScheme
     var bis : Date
     var toUpdateStartTime : Date?
     
     var body: some View {
         HStack{
-            Text("Bis") .foregroundColor(.black)
+            Text("Bis") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
             myDatePickerTill( dpModel: dpModel, eventModel: eventModel ,from:  dpModel.dateVon, to:dpModel.dateVon.dayEnd)
             
@@ -88,7 +89,7 @@ struct popUp: View {
     var bis : Date
     @State  var toEditEventId : Int?
     @State  var showMenu  = false
-    
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         ZStack {
             VStack {
@@ -102,7 +103,7 @@ struct popUp: View {
                     .foregroundColor(.red)
                     
                     Spacer()
-                    Text("Ereignis") .frame(alignment: .center).foregroundColor(.black)
+                    Text("Ereignis") .frame(alignment: .center).foregroundColor(colorScheme == .dark ? .white : .black)
                     Spacer()
                     
                     if eventModel.isAdmin == true {
@@ -151,11 +152,11 @@ struct popUp: View {
                 Spacer()
                 TextField("title", text: $title)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .foregroundColor(.black)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
                             
                 Spacer()
                 HStack{
-                    Text("Räume") .foregroundColor(.black)
+                    Text("Räume") .foregroundColor(colorScheme == .dark ? .white : .black)
                     Spacer()
                     VStack{
                         ForEach(0..<roomModel.visibleRooms.count,id: \.self) { i in
@@ -163,7 +164,7 @@ struct popUp: View {
                                 Toggle(isOn: $selectedRooms[i]) {
                                             }.padding()
                                 
-                                Text(roomModel.visibleRooms[i].name) .foregroundColor(.black)
+                                Text(roomModel.visibleRooms[i].name) .foregroundColor(colorScheme == .dark ? .white : .black)
                                     .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                             }
@@ -358,7 +359,7 @@ struct popUp: View {
         for room in eventModel.roomModel.visibleRooms {
             
             //events for a room
-            for event in eventModel.eventsAfterRooms[room.id - 1] {
+            for event in eventModel.eventsAfterRooms[Int(room.id) - 1] {
              
                 let start_date =  event.date_start.date.stringToDate
                
@@ -457,7 +458,7 @@ struct popUp: View {
     private func hasSameRooms(event: EventObj, selectedRoomsIdx: [Int]) -> Bool{
         var reservedRooms : [Int] = []
         for room in event.rooms {
-            reservedRooms.append(room.id)
+            reservedRooms.append(Int(room.id))
         }
         if reservedRooms.containsSameElements(as: selectedRoomsIdx) {
             return true

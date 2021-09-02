@@ -14,9 +14,12 @@ public struct Style {
   
     public let rowHeight : CGFloat = 100
     public let headerHeight : CGFloat = 50
-    public let timeColumnWidth : CGFloat = UIScreen.screenWidth/15
+   // public let timeColumnWidth : CGFloat = UIScreen.screenWidth/15
+    public let timeColumnWidth : CGFloat = 50
+    public let screenWidth : CGFloat = UIScreen.main.bounds.width
     public var timeSystem: TimeHourSystem = .twentyFour
     public let lightRed: Color = Color(red: 232 / 255, green: 93 / 255, blue: 97 / 255)
+    public let months = ["Janur","Februar","März","April","Mai","Juni","Juli","August","Septemper","Oktober","November","Dezember"]
     public init() {}
 }
 
@@ -191,5 +194,19 @@ public extension Date {
         components.second = Int(value)
         let date = Calendar.current.date(byAdding: components, to: self)
         return date ?? self
+    }
+}
+
+struct MyButtonStyle: ButtonStyle {
+    func makeBody(configuration: ButtonStyle.Configuration) -> some View {
+        MyButton(configuration: configuration)
+    }
+
+    struct MyButton: View {
+        let configuration: ButtonStyle.Configuration
+        @Environment(\.isEnabled) private var isEnabled: Bool
+        var body: some View {
+            configuration.label.foregroundColor(isEnabled ? Color.white : Color.gray)
+        }
     }
 }

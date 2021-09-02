@@ -26,25 +26,26 @@ struct currentTimeView: View {
 
 
 struct TimeColumn: View {
-    
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         VStack(spacing: 0) {
             ForEach(0..<hours.count-1 ,id: \.self) { idx in
                     HStack() {
                             Text("\(hours[idx])")
                                 .font(.system(size: 12))
-                                .foregroundColor(.black)
-                            
+                               // .foregroundColor(colorScheme == .dark ? .white : .black)
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
                     }
                     .foregroundColor(.white)
                     .font(.largeTitle)
                     .frame(width: style.timeColumnWidth, height: style.rowHeight - 2, alignment: .top)
-                    .background(Color.white)
+                   // .background(Color.white)
+                    .background(Color(UIColor.systemBackground))
                     .offset(x: 0, y: 0)
                     
-                Text("")
+                    Text("")
                     .frame(width: style.timeColumnWidth, height: 2)
-                    .background(Color.white)
+                    .background(Color(UIColor.systemBackground))
             }
         }
     }
@@ -54,23 +55,35 @@ struct TimeColumn: View {
 
 struct Header: View {
     @ObservedObject var roomModel : RoomModel
-   
+    @Environment(\.colorScheme) var colorScheme
+    @State private var showPopUp = false
     var body: some View {
         HStack(spacing: 2) {
+            Button(action: {
+                showPopUp = true 
+            }) {
+                Image("calender-50")
+            }
+            .frame(width: style.timeColumnWidth, height: style.headerHeight)
+            .sheet(isPresented: $showPopUp){
+                yearPicker()
+                    }
+           
             
-            Text("")
-                .foregroundColor(.black)
+          /*  Text("")
+                .foregroundColor(colorScheme == .dark ? .white : .black)
                 .font(.largeTitle)
                 .frame(width: style.timeColumnWidth, height: style.headerHeight)
                 .background(Color.white)
                
-            
+            */
             ForEach(roomModel.visibleRooms, id: \.self) { room in
                 Text("\(room.name)")
-                    .foregroundColor(.black)
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
                     .font(.largeTitle)
-                    .frame(width: roomColumnWidth(rooms: roomModel.visibleRooms.count) , height: style.headerHeight)
-                    .background(Color.white)
+                    .frame(width: roomColumnWidth(rooms: roomModel.visibleRooms.count)-1 , height: style.headerHeight)
+                   // .background(Color.white)
+                    .background(Color(UIColor.systemBackground))
                     .border(Color.gray, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                     .gesture(
                         TapGesture()
@@ -80,7 +93,7 @@ struct Header: View {
                     )
             }
             
-        }.frame(width: roomColumnWidth(rooms: roomModel.visibleRooms.count), height: 80)
+        }.frame(width: style.screenWidth, height: 80)
     }
     
 }
@@ -88,6 +101,7 @@ struct Header: View {
 struct daysView: View {
     @ObservedObject var dayModel : DayModel
     @ObservedObject var eventModel : EventModel
+    @Environment(\.colorScheme) var colorScheme
    
     var body: some View {
        
@@ -96,8 +110,8 @@ struct daysView: View {
                 Text( dayModel.day.shortDate)
                      .frame(alignment: .leading)
                      .font(.system(size: 20))
-                    .font(.largeTitle)
-                     .foregroundColor(.black)
+                     .font(.largeTitle)
+                     .foregroundColor(colorScheme == .dark ? .white : .black)
                      .padding(.leading, 20)
                     
                 Spacer()

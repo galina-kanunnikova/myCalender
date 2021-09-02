@@ -16,7 +16,7 @@ struct menu: View {
     @State private var url: String = ""
     @State private var disabled = true
     @State private var showSaveBtn = true
-    
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
     ZStack{
         VStack {
@@ -37,10 +37,10 @@ struct menu: View {
         Group {
             HStack{
                 Spacer()
-                Text("base Url") .foregroundColor(.black)
+                Text("base Url") .foregroundColor(colorScheme == .dark ? .white : .black)
                 Spacer()
-                TextField("url", text: $url).foregroundColor(.black).disabled(disabled)
-               // Text("\((apiModel.api?.baseUrl)!)") .foregroundColor(.black)
+                TextField("url", text: $url).foregroundColor(colorScheme == .dark ? .white : .black).disabled(disabled)
+               // Text("\((apiModel.api?.baseUrl)!)") .foregroundColor(colorScheme == .dark ? .white : .black)
                     .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                     .onAppear{
@@ -67,9 +67,9 @@ struct menu: View {
             
             HStack{
                 Spacer()
-                Text("available Rooms") .foregroundColor(.black)
+                Text("available Rooms") .foregroundColor(colorScheme == .dark ? .white : .black)
                 Spacer()
-                Text("\(APIPath.availableRooms.rawValue)") .foregroundColor(.black)
+                Text("\(APIPath.availableRooms.rawValue)") .foregroundColor(colorScheme == .dark ? .white : .black)
                     .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                 Button(action: {
@@ -83,9 +83,9 @@ struct menu: View {
             Spacer()
             HStack{
                 Spacer()
-                Text("appointments for room") .foregroundColor(.black)
+                Text("appointments for room") .foregroundColor(colorScheme == .dark ? .white : .black)
                 Spacer()
-                Text("\(APIPath.appointmentsForRoom.rawValue)") .foregroundColor(.black)
+                Text("\(APIPath.appointmentsForRoom.rawValue)") .foregroundColor(colorScheme == .dark ? .white : .black)
                     .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                 Button(action: {
@@ -99,9 +99,9 @@ struct menu: View {
             Spacer()
             HStack{
                 Spacer()
-                Text("details for room") .foregroundColor(.black)
+                Text("details for room") .foregroundColor(colorScheme == .dark ? .white : .black)
                 Spacer()
-                Text("\(APIPath.detailsForRoom.rawValue)") .foregroundColor(.black)
+                Text("\(APIPath.detailsForRoom.rawValue)") .foregroundColor(colorScheme == .dark ? .white : .black)
                     .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                 Button(action: {
@@ -118,9 +118,9 @@ struct menu: View {
         Group {
             HStack{
                 Spacer()
-                Text("delete appointment") .foregroundColor(.black)
+                Text("delete appointment") .foregroundColor(colorScheme == .dark ? .white : .black)
                 Spacer()
-                Text("\(APIPath.deleteAppointment.rawValue)") .foregroundColor(.black)
+                Text("\(APIPath.deleteAppointment.rawValue)") .foregroundColor(colorScheme == .dark ? .white : .black)
                     .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                 Button(action: {
@@ -134,9 +134,9 @@ struct menu: View {
             Spacer()
             HStack{
                 Spacer()
-                Text("authentication") .foregroundColor(.black)
+                Text("authentication") .foregroundColor(colorScheme == .dark ? .white : .black)
                 Spacer()
-                Text("\(APIPath.auth.rawValue)") .foregroundColor(.black)
+                Text("\(APIPath.auth.rawValue)") .foregroundColor(colorScheme == .dark ? .white : .black)
                     .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                 Button(action: {
@@ -150,9 +150,9 @@ struct menu: View {
             Spacer()
             HStack{
                 Spacer()
-                Text("update appointment") .foregroundColor(.black)
+                Text("update appointment") .foregroundColor(colorScheme == .dark ? .white : .black)
                 Spacer()
-                Text("\(APIPathPOST.updateAppointment.rawValue)") .foregroundColor(.black)
+                Text("\(APIPathPOST.updateAppointment.rawValue)") .foregroundColor(colorScheme == .dark ? .white : .black)
                     .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                 Button(action: {
@@ -166,9 +166,9 @@ struct menu: View {
             Spacer()
             HStack{
                 Spacer()
-                Text("create appointment") .foregroundColor(.black)
+                Text("create appointment") .foregroundColor(colorScheme == .dark ? .white : .black)
                 Spacer()
-                Text("\(APIPathPOST.createAppointment.rawValue)") .foregroundColor(.black)
+                Text("\(APIPathPOST.createAppointment.rawValue)") .foregroundColor(colorScheme == .dark ? .white : .black)
                     .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                 Button(action: {
@@ -213,10 +213,11 @@ struct toShowRooms: View {
     @ObservedObject  var eventModel : EventModel
     @State  var isOn : [Bool]
     @State  var selectedRooms : [RoomObj?]
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
        
     HStack{
-        Text("Räume") .foregroundColor(.black)
+        Text("Räume") .foregroundColor(colorScheme == .dark ? .white : .black)
         Spacer()
         VStack{
             ForEach(0..<roomModel.rooms.count,id: \.self) { i in
@@ -231,7 +232,7 @@ struct toShowRooms: View {
                            
                            }
                         
-                    Text(roomModel.rooms[i].name) .foregroundColor(.black)
+                    Text(roomModel.rooms[i].name) .foregroundColor(colorScheme == .dark ? .white : .black)
                         .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                 }

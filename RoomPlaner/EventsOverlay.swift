@@ -22,7 +22,7 @@ struct cellEvent: View {
     @ObservedObject var eventModel : EventModel
     @State var showTrash = false
     @State var cell : cellForOverlay
-    
+    @Environment(\.colorScheme) var colorScheme
     var body: some View {
         //let durationInMin = eventModel.eventDuration(event:  cell.event!)
         let from =  cell.event!.date_start.date.stringToDate.hhMM
@@ -49,7 +49,7 @@ struct cellEvent: View {
             Text(from + " - " + till)
         }.frame(width: roomColumnWidth(rooms: roomModel.visibleRooms.count), height: cell.height)
            .background(color)
-        .foregroundColor(.black)
+        .foregroundColor(colorScheme == .dark ? .white : .black)
         .gesture(
             TapGesture()
                 .onEnded { _ in

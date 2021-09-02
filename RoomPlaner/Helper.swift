@@ -18,7 +18,7 @@ var calendar : Calendar {
 }
 
 func roomColumnWidth(rooms: Int) -> CGFloat{
-    return  UIScreen.screenWidth/CGFloat(rooms) - style.timeColumnWidth/2.5
+    return  (style.screenWidth - 5 - style.timeColumnWidth)/CGFloat(rooms) //- style.timeColumnWidth/2.5
 }
 
 

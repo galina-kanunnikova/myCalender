@@ -78,7 +78,7 @@ struct detailedView: View {
 struct dV : View{
     @ObservedObject var eventModel : EventModel
     var event : EventObj
-    
+    @Environment(\.colorScheme) var colorScheme
  var body: some View {
     VStack {
     Group{
@@ -96,7 +96,7 @@ struct dV : View{
             Text((event.title))
                 .frame(alignment: .center)
                 .font(.title)
-                .foregroundColor(.black)
+                .foregroundColor(colorScheme == .dark ? .white : .black)
             
             Spacer()
             
@@ -109,12 +109,12 @@ struct dV : View{
         Text( eventModel.dayModel.day.ddMMyy)
             .frame(alignment: .center)
             .font(.title)
-            .foregroundColor(.black)
+            .foregroundColor(colorScheme == .dark ? .white : .black)
         Spacer()
     }
         Group {
         HStack{
-            Text("Räume") .foregroundColor(.black)
+            Text("Räume") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
             VStack{
                 let srooms = event.rooms
@@ -123,7 +123,7 @@ struct dV : View{
                     
                     ForEach(rooms, id: \.self) { room in
                         if room.id == sroom.id {
-                            Text(room.name) .foregroundColor(.black)
+                            Text(room.name) .foregroundColor(colorScheme == .dark ? .white : .black)
                                     .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                                     .padding(.bottom,1)
@@ -137,18 +137,18 @@ struct dV : View{
         }
         Spacer()
         HStack{
-            Text("Von") .foregroundColor(.black)
+            Text("Von") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
-            Text(event.date_start.date.stringToDate.toString) .foregroundColor(.black)
+            Text(event.date_start.date.stringToDate.toString) .foregroundColor(colorScheme == .dark ? .white : .black)
                 .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
            
         }.frame( height: 40)
         Spacer()
         HStack{
-            Text("Bis") .foregroundColor(.black)
+            Text("Bis") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
-            Text((event.date_end.date.stringToDate.toString)) .foregroundColor(.black)
+            Text((event.date_end.date.stringToDate.toString)) .foregroundColor(colorScheme == .dark ? .white : .black)
                 .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
              
@@ -156,9 +156,9 @@ struct dV : View{
         }.frame( height: 40)
         Spacer()
         HStack{
-            Text("gebucht von") .foregroundColor(.black)
+            Text("gebucht von") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
-            Text("\(event.user_id)") .foregroundColor(.black)
+            Text("\(event.user_id)") .foregroundColor(colorScheme == .dark ? .white : .black)
                 .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
            

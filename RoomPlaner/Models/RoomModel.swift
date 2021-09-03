@@ -25,11 +25,11 @@ struct RoomObj: Codable,Hashable {
 
 class RoomModel: ObservableObject {
     @Published var rooms: [RoomObj] = []
-    @Published var visibleRooms: [RoomObj] = []
+ //   @Published var visibleRooms: [RoomObj] = []
     var cancellationToken: AnyCancellable?
     init(){
-        getRooms()
-        getVisibleRooms()
+        getRoomsFromLokalStorage()
+       // getVisibleRooms()
     }
     
 }
@@ -37,7 +37,7 @@ class RoomModel: ObservableObject {
 extension RoomModel {
     
     // Subscriber implementation
-    func getRooms() {
+  /*  func getVisibleRooms() {
         
         cancellationToken = APIdb.requestRooms(.availableRooms)
             .mapError({ (error) -> Error in
@@ -50,25 +50,7 @@ extension RoomModel {
                   
         })
         
-    }
-    
-    func getVisibleRooms(){
-        
-        let appdelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appdelegate.persistentContainer.viewContext
-        visibleRooms = []
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Room")
-         do {
-          let res = try context.fetch(fetchRequest) as! [Room]
-            for room in res {
-                visibleRooms.append(RoomObj(id: room.id, name: room.name!))
-            }
-             
-          } catch {
-                    fatalError("Failed to fetch categories: \(error)")
-         }
-        
-    }
+    }*/
     
     func getRoomsFromLokalStorage(){
         
@@ -103,6 +85,25 @@ extension RoomModel {
          }
     }
     
+    func deleteRoom(id: Int){
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appdelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Room")
+         do {
+          let res = try context.fetch(fetchRequest) as! [Room]
+            for room in res {
+                if room.id == id {
+                    context.delete(room)
+                    rooms.remove(at: id)
+                }
+            }
+             
+          } catch {
+                    fatalError("Failed to fetch categories: \(error)")
+         }
+      
+    }
+    
     func saveRooms(rooms: [RoomObj]){
         deleteRooms()
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
@@ -119,7 +120,7 @@ extension RoomModel {
                            print(error.localizedDescription)
                     }
            }
-        getVisibleRooms()
+        getRoomsFromLokalStorage()
     }
     
     func saveRoomsToLocalStorage(rooms: [RoomObj]){

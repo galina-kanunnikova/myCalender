@@ -197,8 +197,8 @@ struct menu: View {
     private func selected () -> [Bool]{
         var ar :[Bool] = []
         for i in 0...roomModel.rooms.count - 1 {
-            if i <= roomModel.visibleRooms.count - 1 {
-            if roomModel.rooms[i].id == roomModel.visibleRooms[i].id{
+            if i <= roomModel.rooms.count - 1 {
+            if roomModel.rooms[i].id == roomModel.rooms[i].id{
                 ar.append(true)
             }else{ar.append(false)}
             }else {ar.append(false)}

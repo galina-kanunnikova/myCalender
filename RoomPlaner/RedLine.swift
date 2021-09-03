@@ -25,7 +25,7 @@ struct redLine: View {
                 .frame(width: style.timeColumnWidth, height: 2)
               
             line()
-                .frame(width: roomColumnWidth(rooms: roomModel.visibleRooms.count)*CGFloat(roomModel.visibleRooms.count), height: 2)
+                .frame(width: roomColumnWidth(rooms: roomModel.rooms.count)*CGFloat(roomModel.rooms.count), height: 2)
                 .background(Color.red)
                       
           }

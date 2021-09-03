@@ -47,7 +47,7 @@ struct cellEvent: View {
            }
             
             Text(from + " - " + till)
-        }.frame(width: roomColumnWidth(rooms: roomModel.visibleRooms.count), height: cell.height)
+        }.frame(width: roomColumnWidth(rooms: roomModel.rooms.count), height: cell.height)
            .background(color)
         .foregroundColor(colorScheme == .dark ? .white : .black)
         .gesture(
@@ -76,7 +76,7 @@ struct eventsOverlay: View {
     var body: some View {
        
        return  HStack(spacing: 2) {
-        ForEach(roomModel.visibleRooms.indices, id: \.self) { idx in
+        ForEach(roomModel.rooms.indices, id: \.self) { idx in
             if eventModel.eventsAfterRooms.count != 0 {
                  let events = eventModel.eventsAfterRooms[idx]
                  VStack() { // Column
@@ -88,7 +88,7 @@ struct eventsOverlay: View {
                                         cellEvent(roomModel: roomModel, eventModel: eventModel, cell: cell)
                                     }else{ //gap
                                        
-                                        Text("").frame(width: roomColumnWidth(rooms: roomModel.visibleRooms.count), height: cell.height)
+                                        Text("").frame(width: roomColumnWidth(rooms: roomModel.rooms.count), height: cell.height)
                                             .font(.title)
                                        
                                         }

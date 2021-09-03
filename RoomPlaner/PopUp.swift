@@ -159,12 +159,12 @@ struct popUp: View {
                     Text("Räume") .foregroundColor(colorScheme == .dark ? .white : .black)
                     Spacer()
                     VStack{
-                        ForEach(0..<roomModel.visibleRooms.count,id: \.self) { i in
+                        ForEach(0..<roomModel.rooms.count,id: \.self) { i in
                             HStack{
                                 Toggle(isOn: $selectedRooms[i]) {
                                             }.padding()
                                 
-                                Text(roomModel.visibleRooms[i].name) .foregroundColor(colorScheme == .dark ? .white : .black)
+                                Text(roomModel.rooms[i].name) .foregroundColor(colorScheme == .dark ? .white : .black)
                                     .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                             }
@@ -207,7 +207,7 @@ struct popUp: View {
        
         for i in 0..<selectedRooms.count {
             if selectedRooms[i] == true {
-                selectedRoomsIds.append(Int(eventModel.roomModel.visibleRooms[i].id))
+                selectedRoomsIds.append(Int(eventModel.roomModel.rooms[i].id))
             }
         }
         
@@ -356,7 +356,7 @@ struct popUp: View {
     private func makeFetchRequest(rooms: [Int],id: Int?)  -> Int  {
         
        
-        for room in eventModel.roomModel.visibleRooms {
+        for room in eventModel.roomModel.rooms {
             
             //events for a room
             for event in eventModel.eventsAfterRooms[Int(room.id) - 1] {

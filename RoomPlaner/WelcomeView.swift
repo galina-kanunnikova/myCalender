@@ -38,7 +38,7 @@ struct WelcomeView: View {
                            .fixedSize()
                     
                         Button("x") {
-                            objects.remove(at: 0)
+                            objects.remove(at: i)
                         }
                           .padding()
                           .foregroundColor(.red)

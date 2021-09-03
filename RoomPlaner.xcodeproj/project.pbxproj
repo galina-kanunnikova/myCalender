@@ -31,6 +31,8 @@
 		FE79711F25829541001289A5 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79711E25829541001289A5 /* Style.swift */; };
 		FE95CFBF25C9A9370049D8FC /* LogInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE95CFBE25C9A9360049D8FC /* LogInScreen.swift */; };
 		FE95CFC225D40EEF0049D8FC /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE95CFC125D40EEF0049D8FC /* UserModel.swift */; };
+		FED6110D26E2994600DCBD70 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED6110C26E2994600DCBD70 /* Buttons.swift */; };
+		FED6111026E2A01400DCBD70 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED6110F26E2A01400DCBD70 /* EditView.swift */; };
 		FEDCB3EF25AC9E780034AA4E /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCB3EE25AC9E780034AA4E /* RoomModel.swift */; };
 		FEDCB3F625ACA0460034AA4E /* RoomDBAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCB3F525ACA0460034AA4E /* RoomDBAPI.swift */; };
 		FEDCB3FE25ACB94F0034AA4E /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCB3FD25ACB94F0034AA4E /* EventModel.swift */; };
@@ -68,6 +70,8 @@
 		FE79711E25829541001289A5 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		FE95CFBE25C9A9360049D8FC /* LogInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInScreen.swift; sourceTree = "<group>"; };
 		FE95CFC125D40EEF0049D8FC /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		FED6110C26E2994600DCBD70 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		FED6110F26E2A01400DCBD70 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		FEDCB3EE25AC9E780034AA4E /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
 		FEDCB3F525ACA0460034AA4E /* RoomDBAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDBAPI.swift; sourceTree = "<group>"; };
 		FEDCB3FD25ACB94F0034AA4E /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 				FE6A583C26DD69D9001DA03E /* WelcomeView.swift */,
 				FE6A583F26DD871C001DA03E /* AppContentView.swift */,
 				FE6A584D26E121C8001DA03E /* YearPicker.swift */,
+				FED6110C26E2994600DCBD70 /* Buttons.swift */,
+				FED6110F26E2A01400DCBD70 /* EditView.swift */,
 			);
 			path = RoomPlaner;
 			sourceTree = "<group>";
@@ -265,6 +271,8 @@
 				FEDCB3EF25AC9E780034AA4E /* RoomModel.swift in Sources */,
 				FE79711F25829541001289A5 /* Style.swift in Sources */,
 				FE95CFBF25C9A9370049D8FC /* LogInScreen.swift in Sources */,
+				FED6110D26E2994600DCBD70 /* Buttons.swift in Sources */,
+				FED6111026E2A01400DCBD70 /* EditView.swift in Sources */,
 				FEDCB3F625ACA0460034AA4E /* RoomDBAPI.swift in Sources */,
 				FE51B80725A661CA00BE6FB7 /* Helper.swift in Sources */,
 				FE6BC0CD25EAD3E500D9BC4A /* APIModel.swift in Sources */,

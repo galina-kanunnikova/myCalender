@@ -57,6 +57,7 @@ struct Header: View {
     @ObservedObject var roomModel : RoomModel
     @Environment(\.colorScheme) var colorScheme
     @State private var showPopUp = false
+    @ObservedObject var dayModel : DayModel
     var body: some View {
         HStack(spacing: 2) {
             Button(action: {
@@ -66,7 +67,7 @@ struct Header: View {
             }
             .frame(width: style.timeColumnWidth, height: style.headerHeight)
             .sheet(isPresented: $showPopUp){
-                yearPicker()
+                yearPicker(dayModel: dayModel)
                     }
            
             
@@ -77,11 +78,11 @@ struct Header: View {
                 .background(Color.white)
                
             */
-            ForEach(roomModel.visibleRooms, id: \.self) { room in
+            ForEach(roomModel.rooms, id: \.self) { room in
                 Text("\(room.name)")
                     .foregroundColor(colorScheme == .dark ? .white : .black)
                     .font(.largeTitle)
-                    .frame(width: roomColumnWidth(rooms: roomModel.visibleRooms.count)-1 , height: style.headerHeight)
+                    .frame(width: roomColumnWidth(rooms: roomModel.rooms.count)-1 , height: style.headerHeight)
                    // .background(Color.white)
                     .background(Color(UIColor.systemBackground))
                     .border(Color.gray, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
@@ -107,7 +108,7 @@ struct daysView: View {
        
         VStack{
             HStack{
-                Text( dayModel.day.shortDate)
+                Text( dayModel.selectedDay.shortDate)
                      .frame(alignment: .leading)
                      .font(.system(size: 20))
                      .font(.largeTitle)
@@ -119,11 +120,11 @@ struct daysView: View {
             
             ScrollView(.horizontal,showsIndicators: false) {
                 HStack(spacing: 20) {
-                    let ar = calculateDayArray(start: Date())
+                    let ar = calculateDayArray(start: dayModel.startDay )//Date())
                     ForEach(ar, id: \.self) { day in
                        
                         Button(action: {
-                            dayModel.day = day
+                            dayModel.selectedDay = day
                             eventModel.updateEvents()
                         }){
                             Text(day.ddMM)
@@ -131,7 +132,7 @@ struct daysView: View {
                                 .foregroundColor(.black)
                                 .frame(width: 50, height: 50)
                               //  .background(Color.white)
-                        .background(day.ddMM == dayModel.day.ddMM ? Color.red : Color.white)
+                        .background(day.ddMM == dayModel.selectedDay.ddMM ? Color.red : Color.white)
                                 .cornerRadius(23)
                                 .font(.system(size: 15))
                      
@@ -158,37 +159,21 @@ private func calculateDayArray(start: Date) -> [Date]{
 
 let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
 
-struct newEventBtn: View {
-    @State private var showPopUp = false
-    @ObservedObject var eventModel : EventModel
-    var body: some View {
-        Button(action: {
-            showPopUp.toggle()
-                    }) {
-                        Text("Raum reservieren")
-                    }
-        .sheet(isPresented: $showPopUp){
-            popUp(selectedRooms: [false,false,false], title: "", eventModel: eventModel,roomModel: eventModel.roomModel,toUpdateStartTime: nil ,bis:Date())
-                }
-        .foregroundColor(.white)
-        .frame(width: 300, height: 40)
-        .background(Color.green)
-        .cornerRadius(10)
-    }
-}
-
-
 struct DayView: View {
     @ObservedObject var eventModel = EventModel()
    
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                Header(roomModel: eventModel.roomModel)
+                Header(roomModel: eventModel.roomModel, dayModel: eventModel.dayModel)
                 daysView(dayModel: eventModel.dayModel, eventModel: eventModel)
                 scrollView(roomModel: eventModel.roomModel, eventModel: eventModel)
                 Spacer()
-                newEventBtn(eventModel: eventModel)
+                HStack{
+                    editObjectsButton(eventModel: eventModel)
+                    newEventBtn(eventModel: eventModel)
+                  //  editObjectsButton(eventModel: eventModel)
+                }
                 Spacer()
             }
            
@@ -208,11 +193,5 @@ struct DayView_Previews: PreviewProvider {
             DayView()
                 .previewLayout(.fixed(width: 1024, height: 768))
     }
-}
-
-extension UIScreen{
-   static let screenWidth = UIScreen.main.bounds.size.width
-   static let screenHeight = UIScreen.main.bounds.size.height
-   static let screenSize = UIScreen.main.bounds.size
 }
 

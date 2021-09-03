@@ -62,10 +62,10 @@ struct detailedView: View {
         
     private func selectedRooms(r: [RoomObj]) -> [Bool] {
         var array : [Bool] = []
-        for i in 0...eventModel.roomModel.visibleRooms.count - 1{
+        for i in 0...eventModel.roomModel.rooms.count - 1{
             array.append(false)
             for x in 0...r.count - 1{
-                if eventModel.roomModel.visibleRooms[i].id == r[x].id {
+                if eventModel.roomModel.rooms[i].id == r[x].id {
                     array[i] = true
                 }
             }
@@ -106,7 +106,7 @@ struct dV : View{
         
         Spacer()
         
-        Text( eventModel.dayModel.day.ddMMyy)
+        Text( eventModel.dayModel.startDay.ddMMyy)
             .frame(alignment: .center)
             .font(.title)
             .foregroundColor(colorScheme == .dark ? .white : .black)
@@ -118,7 +118,7 @@ struct dV : View{
             Spacer()
             VStack{
                 let srooms = event.rooms
-                let rooms = eventModel.roomModel.visibleRooms
+                let rooms = eventModel.roomModel.rooms
                 ForEach(srooms, id: \.self) { sroom in
                     
                     ForEach(rooms, id: \.self) { room in

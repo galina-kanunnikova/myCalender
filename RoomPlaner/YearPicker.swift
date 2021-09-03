@@ -16,13 +16,14 @@ class PassYear: ObservableObject {
 struct yearPicker: View {
     @StateObject var passYear = PassYear()
     @EnvironmentObject var passyear :  PassYear
+    @ObservedObject var dayModel : DayModel
     var body: some View {
         ScrollView(.horizontal,showsIndicators: false) {
                 HStack(spacing: 20){
                     if !passYear.passed {
                         year_view(passyear: passYear)
                     }else {
-                        months_view(passyear: passYear)
+                        months_view(passyear: passYear, dayModel: dayModel)
                     }
                 }
         }
@@ -47,7 +48,7 @@ struct year_view: View {
            Button(action: {
             passyear.passed = true
             passyear.year = year
-            // dayModel.day = day
+            // dayModel.startDay = day
            //  eventModel.updateEvents()
            }){
              Text(String(year)).foregroundColor(.white)
@@ -75,12 +76,15 @@ struct year_view: View {
 
 struct months_view: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.presentationMode) var presentationMode
     @StateObject var passyear: PassYear
+    @ObservedObject var dayModel : DayModel
     var body: some View {
         
       VStack(spacing: 50){
         
         HStack{
+            Spacer()
             Button(action: {
              passyear.passed = false
              
@@ -93,7 +97,7 @@ struct months_view: View {
             Text("Wähle einen Monat ")
              .font(Font.headline.weight(.light))
              .foregroundColor(colorScheme == .dark ? .white : .black)
-                
+            Spacer()
             
         }
         HStack(spacing: 20) {
@@ -103,7 +107,11 @@ struct months_view: View {
              ForEach(0..<3, id: \.self) { column in
         
                 Button(action: {
-            // dayModel.day = day
+                    let month = row + column*4 + 1
+                    dayModel.startDay = Date.from(year: passyear.year, month: month, day: 1)
+                    dayModel.selectedDay = dayModel.startDay
+                    self.presentationMode.wrappedValue.dismiss()
+        
            //  eventModel.updateEvents()
                 }){
                   Text(style.months[row + column*4])

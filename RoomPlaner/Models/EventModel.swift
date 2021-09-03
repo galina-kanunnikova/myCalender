@@ -72,8 +72,8 @@ extension EventModel {
                 self.cellsForOverlay = []
                 self.eventsAfterRooms = []
           
-                      for i in 0...self.roomModel.visibleRooms.count - 1 {
-                    let room = self.roomModel.visibleRooms[i]
+                      for i in 0...self.roomModel.rooms.count - 1 {
+                    let room = self.roomModel.rooms[i]
                     self.cellsForOverlay.append([])
                     self.eventsAfterRooms.append([])
                     
@@ -85,7 +85,7 @@ extension EventModel {
                          var eventsForADay : [EventObj] = []
                        for event in eventsByStartDate {
                         
-                          if event.date_start.date.stringToDate >= self.dayModel.day.dayStart &&  event.date_start.date.stringToDate < self.dayModel.day.dateTo {
+                          if event.date_start.date.stringToDate >= self.dayModel.startDay.dayStart &&  event.date_start.date.stringToDate < self.dayModel.startDay.dateTo {
                                   eventsForADay.append(event)
                               }
                        }
@@ -148,7 +148,7 @@ extension EventModel {
                                   var eventsForADay : [EventObj] = []
                                 for event in eventsByStartDate {
                                  
-                                   if event.date_start.date.stringToDate >= self.dayModel.day.dayStart &&  event.date_start.date.stringToDate < self.dayModel.day.dateTo {
+                                   if event.date_start.date.stringToDate >= self.dayModel.startDay.dayStart &&  event.date_start.date.stringToDate < self.dayModel.startDay.dateTo {
                                            eventsForADay.append(event)
                                        }
                                 }
@@ -214,7 +214,7 @@ extension EventModel {
     
    /* func divideAfterRooms() {
         cellsForOverlay = []
-        let day = dayModel.day
+        let day = dayModel.startDay
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appdelegate.persistentContainer.viewContext
         for roomIdx in 0..<roomModel.rooms.count {

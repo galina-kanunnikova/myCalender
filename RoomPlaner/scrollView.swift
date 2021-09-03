@@ -38,13 +38,13 @@ struct scrollView: View {
                     .onEnded { value in
                     
                         if value.translation.width < 0 && value.translation.height > -30 && value.translation.height < 30 {
-                            eventModel.dayModel.day = eventModel.dayModel.day.nextDay
+                            eventModel.dayModel.startDay = eventModel.dayModel.startDay.nextDay
                             eventModel.updateEvents()
                         }
                         else if value.translation.width > 0 && value.translation.height > -30 && value.translation.height < 30 {
                             
-                            if  eventModel.dayModel.day.dayStart.lastDay >=  Date().dayStart{
-                                eventModel.dayModel.day =  eventModel.dayModel.day.lastDay
+                            if  eventModel.dayModel.startDay.dayStart.lastDay >=  Date().dayStart{
+                                eventModel.dayModel.startDay =  eventModel.dayModel.startDay.lastDay
                                 eventModel.updateEvents()
                             }
                         }

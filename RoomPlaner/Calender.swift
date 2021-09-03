@@ -18,7 +18,7 @@ struct calender: View{
            TimeColumn()
             ZStack{
                 HStack() {
-                    ForEach(0..<roomModel.visibleRooms.count,id: \.self) {roomIdx in
+                    ForEach(0..<roomModel.rooms.count,id: \.self) {roomIdx in
                     
                     VStack() {
                         ForEach(0..<hours.count-1) {hour in

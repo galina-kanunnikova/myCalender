@@ -12,7 +12,8 @@ import UIKit
 
 
 class DayModel: ObservableObject {
-    @Published var day : Date = Date()
+    @Published var selectedDay : Date = Date()
+    @Published var startDay : Date = Date()
     var cancellationToken: AnyCancellable?
     
     init() {
@@ -25,7 +26,8 @@ extension DayModel {
     
     // Subscriber implementation
     func getDate() {
-        self.day = Date()
+        self.startDay = Date()
+        self.selectedDay = Date()
     }
     
 }

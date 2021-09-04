@@ -25,23 +25,23 @@ struct cellEvent: View {
     @Environment(\.colorScheme) var colorScheme
     var body: some View {
         //let durationInMin = eventModel.eventDuration(event:  cell.event!)
-        let from =  cell.event!.date_start.date.stringToDate.hhMM
-        let till = cell.event!.date_end.date.stringToDate.hhMM
+        let from =  cell.event!.date_start!.hhMM
+        let till = cell.event!.date_end!.hhMM
         VStack{
                 HStack{
                     if showTrash == true {
                     Button(action: {
-                        eventModel.deleteEvent(event: cell.event!)
+                        eventModel.deleteEvent_local(event: cell.event!)
                     }){
                         Image("garbage")
                     }
                     Spacer()
                    
-                        Text(cell.event!.title)
+                        Text(cell.event!.title!)
                        .font(.title)
                         Spacer()
                     }else {
-                        Text(cell.event!.title)
+                        Text(cell.event!.title!)
                            .font(.title)
                     }
            }

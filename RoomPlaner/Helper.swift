@@ -26,6 +26,12 @@ func fullDate(date: Date,min :Int ) -> Date{
     return calendar.date(bySettingHour: date.hour, minute: min, second: 0, of: date)!
 }
 
+func dateToYear(add_years : Int , start_date : Date) -> Date {
+    let calendar = Calendar.current
+    let date = calendar.date(byAdding: .year, value: add_years, to: start_date)
+    return date!
+}
+
 
 extension String {
     var stringToDate: Date{
@@ -67,7 +73,6 @@ extension Date {
         let date = calendar.date(byAdding: .hour, value: 1, to: self)
         return date!
     }
-    
     var dateTo30: Date {
         let calendar = Calendar.current
         let date = calendar.date(byAdding: .day, value: 30, to: dayStart)

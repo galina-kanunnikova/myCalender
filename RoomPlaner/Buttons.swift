@@ -18,7 +18,7 @@ struct newEventBtn: View {
                         Text("reservieren")
                     }
         .sheet(isPresented: $showPopUp){
-            popUp(selectedRooms: [false,false,false], title: "", eventModel: eventModel,roomModel: eventModel.roomModel,toUpdateStartTime: nil ,bis:Date())
+            popUp(selectedRooms: [false,false,false], title: "", description: "", eventModel: eventModel,roomModel: eventModel.roomModel,toUpdateStartTime: nil ,bis:Date())
                 }
         .foregroundColor(.white)
         .frame(width: style.screenWidth/3, height: 40)
@@ -34,10 +34,10 @@ struct editObjectsButton: View {
         Button(action: {
             showPopUp.toggle()
                     }) {
-                        Text("Ansicht bearbeiten")
+                        Text(" Ansicht bearbeiten ")
                     }
         .sheet(isPresented: $showPopUp){
-            editView_view(eventModel: eventModel)
+            editView_view(eventModel: eventModel, new_objects: eventModel.roomModel.rooms)
                 }
         .foregroundColor(.white)
        // .frame(width: style.screenWidth/3, height: 40)

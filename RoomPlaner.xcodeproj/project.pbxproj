@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE1DA1D826E39C9700751318 /* PopUp_Helper_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1DA1D726E39C9700751318 /* PopUp_Helper_Functions.swift */; };
+		FE1DA1DC26E39CF000751318 /* DatePickerFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1DA1DB26E39CF000751318 /* DatePickerFrom.swift */; };
+		FE1DA1DE26E39D1800751318 /* DatePickerTill.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1DA1DD26E39D1800751318 /* DatePickerTill.swift */; };
+		FE1DA1E126E3AA8600751318 /* DatePicker_year.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1DA1E026E3AA8600751318 /* DatePicker_year.swift */; };
 		FE51B7EA25A3910900BE6FB7 /* FormSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51B7E925A3910900BE6FB7 /* FormSheet.swift */; };
 		FE51B7ED25A4BD8B00BE6FB7 /* KeyboardGuardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51B7EC25A4BD8B00BE6FB7 /* KeyboardGuardian.swift */; };
 		FE51B7FA25A4DC4600BE6FB7 /* PopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51B7F925A4DC4600BE6FB7 /* PopUp.swift */; };
@@ -44,6 +48,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FE1DA1D726E39C9700751318 /* PopUp_Helper_Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp_Helper_Functions.swift; sourceTree = "<group>"; };
+		FE1DA1DB26E39CF000751318 /* DatePickerFrom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerFrom.swift; sourceTree = "<group>"; };
+		FE1DA1DD26E39D1800751318 /* DatePickerTill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTill.swift; sourceTree = "<group>"; };
+		FE1DA1E026E3AA8600751318 /* DatePicker_year.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePicker_year.swift; sourceTree = "<group>"; };
 		FE51B7E925A3910900BE6FB7 /* FormSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormSheet.swift; sourceTree = "<group>"; };
 		FE51B7EC25A4BD8B00BE6FB7 /* KeyboardGuardian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardGuardian.swift; sourceTree = "<group>"; };
 		FE51B7F925A4DC4600BE6FB7 /* PopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUp.swift; sourceTree = "<group>"; };
@@ -93,6 +101,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE1DA1D626E39C6400751318 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				FE51B7F925A4DC4600BE6FB7 /* PopUp.swift */,
+				FE1DA1D726E39C9700751318 /* PopUp_Helper_Functions.swift */,
+			);
+			path = PopUp;
+			sourceTree = "<group>";
+		};
+		FE1DA1DF26E3AA3500751318 /* DatePickers */ = {
+			isa = PBXGroup;
+			children = (
+				FE1DA1DB26E39CF000751318 /* DatePickerFrom.swift */,
+				FEDCB41025B8940C0034AA4E /* myDatePicker.swift */,
+				FE1DA1DD26E39D1800751318 /* DatePickerTill.swift */,
+				FE1DA1E026E3AA8600751318 /* DatePicker_year.swift */,
+			);
+			path = DatePickers;
+			sourceTree = "<group>";
+		};
 		FE7970FA25825910001289A5 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +140,8 @@
 		FE79710525825911001289A5 /* RoomPlaner */ = {
 			isa = PBXGroup;
 			children = (
+				FE1DA1DF26E3AA3500751318 /* DatePickers */,
+				FE1DA1D626E39C6400751318 /* PopUp */,
 				FEDCB40625AE2A110034AA4E /* RedLine.swift */,
 				FEDCB3FC25ACB8FD0034AA4E /* Models */,
 				FEDCB3F825ACA04B0034AA4E /* Api */,
@@ -127,14 +157,12 @@
 				FE79711E25829541001289A5 /* Style.swift */,
 				FE51B7E925A3910900BE6FB7 /* FormSheet.swift */,
 				FE51B7EC25A4BD8B00BE6FB7 /* KeyboardGuardian.swift */,
-				FE51B7F925A4DC4600BE6FB7 /* PopUp.swift */,
 				FE51B7FD25A5FE8600BE6FB7 /* scrollView.swift */,
 				FE51B80025A5FEFA00BE6FB7 /* CalenderCell.swift */,
 				FE51B80625A661CA00BE6FB7 /* Helper.swift */,
 				FE51B80925A75E1100BE6FB7 /* EventsOverlay.swift */,
 				FE51B80C25A75E8300BE6FB7 /* Calender.swift */,
 				FEDCB40925AE30F40034AA4E /* DetailedView.swift */,
-				FEDCB41025B8940C0034AA4E /* myDatePicker.swift */,
 				FE95CFBE25C9A9360049D8FC /* LogInScreen.swift */,
 				FE6BC0C125E674A300D9BC4A /* MenuView.swift */,
 				FE6A583C26DD69D9001DA03E /* WelcomeView.swift */,
@@ -250,6 +278,7 @@
 				FE6BC0C225E674A300D9BC4A /* MenuView.swift in Sources */,
 				FE51B80D25A75E8300BE6FB7 /* Calender.swift in Sources */,
 				FE79710925825911001289A5 /* SceneDelegate.swift in Sources */,
+				FE1DA1DE26E39D1800751318 /* DatePickerTill.swift in Sources */,
 				FE51B7FA25A4DC4600BE6FB7 /* PopUp.swift in Sources */,
 				FE51B7FE25A5FE8600BE6FB7 /* scrollView.swift in Sources */,
 				FE79710B25825911001289A5 /* ContentView.swift in Sources */,
@@ -257,10 +286,12 @@
 				FEDCB41425B8954E0034AA4E /* DatePickerModel.swift in Sources */,
 				FE6A584026DD871C001DA03E /* AppContentView.swift in Sources */,
 				FE51B7EA25A3910900BE6FB7 /* FormSheet.swift in Sources */,
+				FE1DA1E126E3AA8600751318 /* DatePicker_year.swift in Sources */,
 				FE95CFC225D40EEF0049D8FC /* UserModel.swift in Sources */,
 				FEDCB40325ADC9340034AA4E /* DayModel.swift in Sources */,
 				FE79710E25825911001289A5 /* RoomPlaner.xcdatamodeld in Sources */,
 				FEDCB3FE25ACB94F0034AA4E /* EventModel.swift in Sources */,
+				FE1DA1D826E39C9700751318 /* PopUp_Helper_Functions.swift in Sources */,
 				FE51B80125A5FEFA00BE6FB7 /* CalenderCell.swift in Sources */,
 				FEDCB40A25AE30F40034AA4E /* DetailedView.swift in Sources */,
 				FEDCB41125B8940C0034AA4E /* myDatePicker.swift in Sources */,
@@ -276,6 +307,7 @@
 				FEDCB3F625ACA0460034AA4E /* RoomDBAPI.swift in Sources */,
 				FE51B80725A661CA00BE6FB7 /* Helper.swift in Sources */,
 				FE6BC0CD25EAD3E500D9BC4A /* APIModel.swift in Sources */,
+				FE1DA1DC26E39CF000751318 /* DatePickerFrom.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

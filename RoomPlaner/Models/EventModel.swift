@@ -13,7 +13,8 @@ import SwiftUI
 
 class EventModel: ObservableObject {
     @Published var displayDetailView = view(event: nil, display: false)
-    @Published var eventsAfterRooms: [[EventObj]] = []
+    @Published var eventsAfterRooms: [[Event]] = []
+    @Published var events: [Event] = []
     @Published var cellsForOverlay: [[cellForOverlay]] = []
     @Published var showLogIn = true
     @Published var isAdmin = false
@@ -36,9 +37,9 @@ struct DateObj: Codable,Hashable {
 }
 
 struct EventObj: Codable,Hashable {
-    let id : Int
+    let id : Int16
     let title: String
-    let user_id : Int
+    let user_id : Int16
     let date_start: DateObj
     let date_end: DateObj
     let created_at : DateObj?
@@ -49,12 +50,12 @@ struct EventObj: Codable,Hashable {
 }
 
 struct cellForOverlay: Hashable {
-    let event : EventObj?
+    let event : Event?
     let height: CGFloat
 }
 
 struct view: Hashable {
-    var event : EventObj?
+    var event : Event?
     var display: Bool
 }
 
@@ -64,25 +65,40 @@ extension EventModel {
     
     // Subscriber implementation
     private func getEvents() {
-    
+        
     let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        /*    if launchedBefore  {
+        if launchedBefore  {
             print("Not first launch.")
             DispatchQueue.main.async {
-                self.cellsForOverlay = []
+              //  self.cellsForOverlay = []
+              //  self.eventsAfterRooms = []
+                
+                let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                let context = appdelegate.persistentContainer.viewContext
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
+                do {
+                 let events = try context.fetch(fetchRequest) as! [Event]
+                    self.events =  events
+                
+                 } catch {
+                           fatalError("Failed to fetch categories: \(error)")
+                }
                 self.eventsAfterRooms = []
+                self.divideAfterRooms()
           
-                      for i in 0...self.roomModel.rooms.count - 1 {
+                /*     for i in 0...self.roomModel.rooms.count - 1 {
                     let room = self.roomModel.rooms[i]
                     self.cellsForOverlay.append([])
                     self.eventsAfterRooms.append([])
                     
-                    self.eventsRequest(id: room.id, completion:{
+                     
+                    
+                   self.eventsRequest(id: room.id, completion:{
                         events in
                         DispatchQueue.main.async {
                             
                        let eventsByStartDate =  events.sorted(by: {$0.date_start.date.stringToDate < $1.date_start.date.stringToDate})
-                         var eventsForADay : [EventObj] = []
+                         var eventsForADay : [Event] = []
                        for event in eventsByStartDate {
                         
                           if event.date_start.date.stringToDate >= self.dayModel.startDay.dayStart &&  event.date_start.date.stringToDate < self.dayModel.startDay.dateTo {
@@ -93,33 +109,18 @@ extension EventModel {
                             if eventsForADay.count > 0 { self.makeCellsForOverlay( roomIdx: i, events: eventsForADay)}
                         }
                     })
-                }
+                }*/
               
             }
         } else {
             print("First launch, setting UserDefault.")
             UserDefaults.standard.set(true, forKey: "launchedBefore")
-            APIdb.setAPIUrl()
-            firstLaunch()
+           // APIdb.setAPIUrl()
+          //  firstLaunch()
         }
   
-        */
-       
-        
-      /*  let appdelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appdelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
-        do {
-         let events = try context.fetch(fetchRequest) as! [Event]
-            self.events =  events
-        
-         } catch {
-                   fatalError("Failed to fetch categories: \(error)")
-        }
-        eventsAfterRooms = []
-        divideAfterRooms()*/
     }
-    
+   /*
     func firstLaunch () {
         
         self.roomModel.cancellationToken = APIdb.requestRooms(.availableRooms)
@@ -145,7 +146,7 @@ extension EventModel {
                                  DispatchQueue.main.async {
                                      
                                 let eventsByStartDate =  events.sorted(by: {$0.date_start.date.stringToDate < $1.date_start.date.stringToDate})
-                                  var eventsForADay : [EventObj] = []
+                                  var eventsForADay : [Event] = []
                                 for event in eventsByStartDate {
                                  
                                    if event.date_start.date.stringToDate >= self.dayModel.startDay.dayStart &&  event.date_start.date.stringToDate < self.dayModel.startDay.dateTo {
@@ -160,7 +161,7 @@ extension EventModel {
                          }
                         
              })
-    }
+    }*/
     
     func updateEvents() {
         getEvents()
@@ -181,7 +182,7 @@ extension EventModel {
 
     func deleteEvent(event : EventObj) {
         showLogIn = false
-        if userModel.user?.data.id == event.user_id {
+        if (userModel.user?.data.id)! == event.user_id {
         self.cancellationToken =  try? APIdb.deleteEvent(cito_user_id:(userModel.user?.data.id)!, event: event)
             .mapError({ (error) -> Error in
                 print(error)
@@ -212,19 +213,36 @@ extension EventModel {
        */
     }
     
-   /* func divideAfterRooms() {
-        cellsForOverlay = []
+    func deleteEvent_local(event : Event) {
+       
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appdelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
+        do {
+         let events = try context.fetch(fetchRequest) as! [Event]
+            for ev in events {
+                if event.id == ev.id {context.delete(event)
+                    getEvents()
+                }
+            }
+         } catch {
+                   fatalError("Failed to fetch categories: \(error)")
+        }
+    }
+    
+func divideAfterRooms( ) {
+        self.cellsForOverlay = []
         let day = dayModel.startDay
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appdelegate.persistentContainer.viewContext
         for roomIdx in 0..<roomModel.rooms.count {
-            var eventsForRoom : [EventObj] = []
+            var eventsForRoom : [Event] = []
             
             
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
-            let fromPredicate = NSPredicate(format: "startDate >= %@", day.dayStart as CVarArg )
-            let toPredicate = NSPredicate(format: "startDate < %@",  day.dateTo as CVarArg)
-            let sort = NSSortDescriptor(key: "startDate", ascending: true)
+            let fromPredicate = NSPredicate(format: "date_start >= %@", day.dayStart as CVarArg )
+            let toPredicate = NSPredicate(format: "date_start < %@",  day.dateTo as CVarArg)
+            let sort = NSSortDescriptor(key: "date_start", ascending: true)
             let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
             fetchRequest.predicate = datePredicate
             fetchRequest.sortDescriptors = [sort]
@@ -248,9 +266,9 @@ extension EventModel {
             cellsForOverlay.append([])
             if eventsForRoom.count > 0 { makeCellsForOverlay( roomIdx: roomIdx, events: eventsAfterRooms[roomIdx])}
         }
-    }*/
+    }
     
-    func makeCellsForOverlay(roomIdx: Int,events: [EventObj] ){
+    func makeCellsForOverlay(roomIdx: Int,events: [Event] ){
         let count = events.count + (events.count - 1 ) + 2
             for i in 0..<count{
     
@@ -285,29 +303,29 @@ extension EventModel {
         
         return 0
     }
-    func eventDuration( event: EventObj) -> Int{
-        return  Int((event.date_end.date.stringToDate.timeIntervalSince(event.date_start.date.stringToDate))*0.016666666666667)
+    func eventDuration( event: Event) -> Int{
+        return  Int((event.date_end!.timeIntervalSince(event.date_start!))*0.016666666666667)
     }
     
-    private func gapHeight(i: Int, events: [EventObj],countCells: Int  ) -> CGFloat {
+    private func gapHeight(i: Int, events: [Event],countCells: Int  ) -> CGFloat {
         var height: CGFloat = 0
         if i == 0 {
-            let start = events[i].date_start.date.stringToDate.dayStart
-            let gapMin = CGFloat((events[i].date_start.date.stringToDate.timeIntervalSince(start))*0.016666666666667)
+            let start = events[i].date_start!.dayStart
+            let gapMin = CGFloat((events[i].date_start!.timeIntervalSince(start))*0.016666666666667)
             height = gapMin*oneMinHeight 
             
         }else if i == countCells - 1{ //last gap
             let fakeEventIdx = i-1
             let eventIdx = realEventIdx(fakeIdx: fakeEventIdx)
-            let start =   events[eventIdx].date_end.date.stringToDate
-            let end =   events[eventIdx].date_start.date.stringToDate.dayEnd
+            let start =   events[eventIdx].date_end!
+            let end =   events[eventIdx].date_start!.dayEnd
             let gapMin = CGFloat(((end.timeIntervalSince(start))*0.016666666666667))
             height = gapMin*oneMinHeight
         }else {
             let fakeEventIdx = i-1
             let eventIdx = realEventIdx(fakeIdx: fakeEventIdx)
-            let start =  events[eventIdx].date_end.date.stringToDate
-            let end = events[eventIdx+1].date_start.date.stringToDate
+            let start =  events[eventIdx].date_end!
+            let end = events[eventIdx+1].date_start!
             let gapMin = CGFloat(((end.timeIntervalSince(start))*0.016666666666667))
             height = gapMin*oneMinHeight
         }

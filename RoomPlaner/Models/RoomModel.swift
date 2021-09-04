@@ -53,7 +53,6 @@ extension RoomModel {
     }*/
     
     func getRoomsFromLokalStorage(){
-        
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appdelegate.persistentContainer.viewContext
         rooms = []

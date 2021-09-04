@@ -9,14 +9,15 @@ import Foundation
 import SwiftUI
 
 struct editView_view: View {
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var eventModel = EventModel()
     @Environment(\.colorScheme) var colorScheme
     @State  var title: String = ""
-    @State  var new_objects: [String] = []
+    @State  var dissabled = true
+    @State  var new_objects: [RoomObj]
     var body: some View {
-       
+        
         VStack(spacing: 0) {
-            
             VStack(spacing: 0) {
               Spacer()
               Text("Neues Objekt erstellen").font(.system(size: 20))
@@ -27,16 +28,16 @@ struct editView_view: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .fixedSize()
                 
-                ForEach(0..<eventModel.roomModel.rooms.count,id: \.self) { i in
-
+                ForEach(0..<new_objects.count,id: \.self) { i in
                  HStack {
-                    Text(eventModel.roomModel.rooms[i].name)
+                    Text(new_objects[i].name)
                        .textFieldStyle(RoundedBorderTextFieldStyle())
                        .foregroundColor(colorScheme == .dark ? .white : .black)
                        .fixedSize()
                 
                     Button("x") {
-                        eventModel.roomModel.deleteRoom(id: i)
+                        new_objects.remove(at: i)
+                        if new_objects.count > 0 {dissabled = false}
                     }
                       .padding()
                       .foregroundColor(.red)
@@ -47,8 +48,9 @@ struct editView_view: View {
              }
                 if eventModel.roomModel.rooms.count < 10 {
                     Button("+") {
-                        new_objects.append(title)
+                        new_objects.append(RoomObj(id: Int16(new_objects.count), name: title))
                         title = ""
+                        dissabled = false
                      }
                     .padding()
                     .foregroundColor(.white)
@@ -62,24 +64,22 @@ struct editView_view: View {
             }.padding(.leading, 100).padding(.trailing, 100)
            
             Button("Speichern") {
-                var start_idx = eventModel.roomModel.rooms.count - 2
-                for i in 0 ..< new_objects.count{
-                    start_idx = start_idx + 1
-                    let newObj = RoomObj(id: Int16(start_idx), name: new_objects[i])
-                    eventModel.roomModel.saveRoomToLocalStorage(room: newObj)
-                  
+                eventModel.roomModel.deleteRooms()
+                for obj in  new_objects{
+                   eventModel.roomModel.saveRoomToLocalStorage(room: obj)
                 }
+                self.presentationMode.wrappedValue.dismiss()
                
              }
             .buttonStyle(MyButtonStyle())
-            .disabled(eventModel.roomModel.rooms.count == 0)
+            .disabled(dissabled)
             .padding()
             .foregroundColor(.white)
             .background(style.lightRed)
             .cornerRadius(25)
             .font(.system(size: 20))
             .frame(width:300, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            
+            .onAppear{dissabled = true }
         }
 
         

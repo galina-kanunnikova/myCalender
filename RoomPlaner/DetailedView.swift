@@ -9,7 +9,7 @@ import SwiftUI
 
 struct detailedView: View {
     @ObservedObject var eventModel : EventModel
-    var event : EventObj
+    var event : Event?
     @State private var showPopUp = false
     @State private var action : Action = .delete
     
@@ -40,17 +40,17 @@ struct detailedView: View {
                 .background(Color.green)
                 .cornerRadius(10)
                 .sheet(isPresented: $showPopUp){
-                    popUp(selectedRooms: selectedRooms(r: event!.rooms ), title: event!.title, eventModel: eventModel ,roomModel: eventModel.roomModel, toUpdateStartTime:  event!.date_start.date.stringToDate ,bis: event!.date_end.date.stringToDate, toEditEventId: event!.id)
+                    popUp(selectedRooms: selectedRooms(r: event?.rooms as! [RoomObj] ), title: event!.title!, description: "", eventModel: eventModel ,roomModel: eventModel.roomModel, toUpdateStartTime:  event!.date_start ,bis: event!.date_end!, toEditEventId: Int(event!.id))
                         }
                 
             }
             Spacer()
         }
-            if eventModel.showLogIn  {
-                if action  == .delete {  logIn(eventModel: eventModel, action: .delete, event: event!)}
-                if action == .update { logIn(eventModel: eventModel, action: .update, event: event!)}
+          /*  if eventModel.showLogIn  {
+                if action  == .delete {  logIn(eventModel: eventModel, action: .delete, event: event)}
+                if action == .update { logIn(eventModel: eventModel, action: .update, event: event)}
                
-            }
+            }*/
             
         }
         .background(Color.white)
@@ -77,7 +77,7 @@ struct detailedView: View {
 
 struct dV : View{
     @ObservedObject var eventModel : EventModel
-    var event : EventObj
+    var event : Event
     @Environment(\.colorScheme) var colorScheme
  var body: some View {
     VStack {
@@ -93,7 +93,7 @@ struct dV : View{
             
             Spacer()
             
-            Text((event.title))
+            Text(event.title!)
                 .frame(alignment: .center)
                 .font(.title)
                 .foregroundColor(colorScheme == .dark ? .white : .black)
@@ -117,10 +117,10 @@ struct dV : View{
             Text("Räume") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
             VStack{
-                let srooms = event.rooms
+                let srooms = event.rooms as! [RoomObj]
                 let rooms = eventModel.roomModel.rooms
-                ForEach(srooms, id: \.self) { sroom in
-                    
+                ForEach(srooms, id : \.self) { sroom in
+                 
                     ForEach(rooms, id: \.self) { room in
                         if room.id == sroom.id {
                             Text(room.name) .foregroundColor(colorScheme == .dark ? .white : .black)
@@ -129,17 +129,14 @@ struct dV : View{
                                     .padding(.bottom,1)
                         }
                     }
-                   
                 }
-            
             }.font(.system(size: 23))
-          
         }
         Spacer()
         HStack{
             Text("Von") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
-            Text(event.date_start.date.stringToDate.toString) .foregroundColor(colorScheme == .dark ? .white : .black)
+            Text(event.date_start!.toString) .foregroundColor(colorScheme == .dark ? .white : .black)
                 .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
            
@@ -148,7 +145,7 @@ struct dV : View{
         HStack{
             Text("Bis") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
-            Text((event.date_end.date.stringToDate.toString)) .foregroundColor(colorScheme == .dark ? .white : .black)
+            Text((event.date_end!.toString)) .foregroundColor(colorScheme == .dark ? .white : .black)
                 .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
              

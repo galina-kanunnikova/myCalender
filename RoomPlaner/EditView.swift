@@ -10,11 +10,11 @@ import SwiftUI
 
 struct editView_view: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var eventModel = EventModel()
+    @ObservedObject var eventModel: EventModel
     @Environment(\.colorScheme) var colorScheme
     @State  var title: String = ""
     @State  var dissabled = true
-    @State  var new_objects: [RoomObj]
+    @State  var new_objects: [String]
     var body: some View {
         
         VStack(spacing: 0) {
@@ -30,14 +30,14 @@ struct editView_view: View {
                 
                 ForEach(0..<new_objects.count,id: \.self) { i in
                  HStack {
-                    Text(new_objects[i].name)
+                     Text(new_objects[i])
                        .textFieldStyle(RoundedBorderTextFieldStyle())
                        .foregroundColor(colorScheme == .dark ? .white : .black)
                        .fixedSize()
                 
                     Button("x") {
                         new_objects.remove(at: i)
-                        if new_objects.count > 0 {dissabled = false}
+                        dissabled = (new_objects.count > 0) ?  false  : true
                     }
                       .padding()
                       .foregroundColor(.red)
@@ -48,7 +48,7 @@ struct editView_view: View {
              }
                 if eventModel.roomModel.rooms.count < 10 {
                     Button("+") {
-                        new_objects.append(RoomObj(id: Int16(new_objects.count), name: title))
+                        new_objects.append(title)
                         title = ""
                         dissabled = false
                      }
@@ -65,9 +65,12 @@ struct editView_view: View {
            
             Button("Speichern") {
                 eventModel.roomModel.deleteRooms()
-                for obj in  new_objects{
-                   eventModel.roomModel.saveRoomToLocalStorage(room: obj)
+                var idx = -1
+                for name in  new_objects{
+                    idx = idx + 1
+                    eventModel.roomModel.saveRoomToLocalStorage(title: name, id: idx)
                 }
+                eventModel.updateEvents()
                 self.presentationMode.wrappedValue.dismiss()
                
              }

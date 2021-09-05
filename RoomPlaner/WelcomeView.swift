@@ -11,7 +11,7 @@ import CoreData
 
 
 struct WelcomeView: View {
-    @ObservedObject var eventModel = EventModel()
+    @ObservedObject var eventModel: EventModel
     @State  var title: String = ""
     @State  var objects: [String] = []
     @Binding var signInSuccess: Bool
@@ -66,9 +66,9 @@ struct WelcomeView: View {
                 Button("Weiter zum Kalender  >") {
                     self.signInSuccess = true
                     for i in 0 ..< objects.count{
-                        let newObj = RoomObj(id: Int16(i), name: objects[i])
-                        eventModel.roomModel.saveRoomToLocalStorage(room: newObj)
+                        eventModel.roomModel.saveRoomToLocalStorage(title: objects[i], id: i)
                         UserDefaults.standard.set(true, forKey: "launchedBefore")
+                        eventModel.updateEvents()
                     }
                    
                  }

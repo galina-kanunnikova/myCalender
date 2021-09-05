@@ -79,7 +79,7 @@ struct Header: View {
                
             */
             ForEach(roomModel.rooms, id: \.self) { room in
-                Text("\(room.name)")
+                Text(room.name!)
                     .foregroundColor(colorScheme == .dark ? .white : .black)
                     .font(.largeTitle)
                     .frame(width: roomColumnWidth(rooms: roomModel.rooms.count)-1 , height: style.headerHeight)
@@ -160,7 +160,7 @@ private func calculateDayArray(start: Date) -> [Date]{
 let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
 
 struct DayView: View {
-    @ObservedObject var eventModel = EventModel()
+    @ObservedObject var eventModel : EventModel
    
     var body: some View {
         ZStack {
@@ -187,11 +187,4 @@ struct DayView: View {
    
 }
 
-struct DayView_Previews: PreviewProvider {
-    static var previews: some View {
-       
-            DayView()
-                .previewLayout(.fixed(width: 1024, height: 768))
-    }
-}
 

@@ -61,7 +61,7 @@ struct logIn: View {
                           
                             switch action {
                             case .delete :  eventModel.deleteEvent(event: event!)
-                                eventModel.displayDetailView.display.toggle() ;
+                                eventModel.displayDetailView.display.toggle() 
                             case .update : break
                             case .login: break
                             }

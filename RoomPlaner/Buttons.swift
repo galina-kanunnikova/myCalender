@@ -37,12 +37,20 @@ struct editObjectsButton: View {
                         Text(" Ansicht bearbeiten ")
                     }
         .sheet(isPresented: $showPopUp){
-            editView_view(eventModel: eventModel, new_objects: eventModel.roomModel.rooms)
+            editView_view(eventModel: eventModel, new_objects: roomNames(rooms: eventModel.roomModel.rooms))
                 }
         .foregroundColor(.white)
        // .frame(width: style.screenWidth/3, height: 40)
         .frame( height: 40)
         .background(Color.green)
         .cornerRadius(10)
+    }
+    
+    private func roomNames(rooms: [Room]) -> [String]{
+        var names: [String] = []
+        for room in rooms {
+            names.append(room.name!)
+        }
+        return names
     }
 }

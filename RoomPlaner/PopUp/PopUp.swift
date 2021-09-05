@@ -56,7 +56,7 @@ struct popUp: View {
                   if toEditEventId == nil {
                         
                     Button(action: {
-                        checkRools(id: nil)
+                        checkRools(idToEdit: nil)
                         
                     }, label: {
                         Text("Reservieren")
@@ -70,7 +70,7 @@ struct popUp: View {
                         
                   }else {
                     Button(action: {
-                        checkRools(id: toEditEventId)
+                        checkRools(idToEdit: toEditEventId)
                     }, label: {
                         Text("Änderungen speichern")
                     })
@@ -109,7 +109,7 @@ struct popUp: View {
                                 Toggle(isOn: $selectedRooms[i]) {
                                             }.padding()
                                 
-                                Text(roomModel.rooms[i].name) .foregroundColor(colorScheme == .dark ? .white : .black)
+                                Text(roomModel.rooms[i].name!) .foregroundColor(colorScheme == .dark ? .white : .black)
                                    // .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                             }
@@ -121,9 +121,9 @@ struct popUp: View {
                 }
                 Spacer()
                // datePickerFrom(eventModel: eventModel, dpModel: dpModel)
-                datePicker_year_from(dpModel: dpModel, eventModel: eventModel)
+                (toEditEventId == nil) ?  datePicker_year_from(dpModel: dpModel, eventModel: eventModel, start: Date()) :  datePicker_year_from(dpModel: dpModel, eventModel: eventModel,start: start() )
                 Spacer()
-                datePicker_year_till(eventModel: eventModel, dpModel: dpModel)
+                (toEditEventId == nil) ?  datePicker_year_till(eventModel: eventModel, dpModel: dpModel, to: dpModel.dateVon) :  datePicker_year_till(eventModel: eventModel, dpModel: dpModel,to: to() )
                // datePickerTill(eventModel: eventModel, dpModel: dpModel, bis: bis)
                 Spacer()
                 
@@ -132,9 +132,9 @@ struct popUp: View {
          /*   if eventModel.showLogIn == true {
                 logIn(eventModel: eventModel , action: .login )
             }*/
-            if showMenu == true {
-                menu(roomModel: roomModel, eventModel: eventModel)
-            }
+          /*  if showMenu == true {
+                admin_menu(roomModel: roomModel, eventModel: eventModel)
+            }*/
             
         }
         .cornerRadius(20).shadow(radius: 20)
@@ -151,7 +151,23 @@ struct popUp: View {
         
     }
    
+    private func start() -> Date{
+        for event in eventModel.events {
+            if event.id == toEditEventId! {
+                return  event.date_start!
+            }
+        }
+     return Date()
+    }
     
+    private func to() -> Date{
+        for event in eventModel.events {
+            if event.id == toEditEventId! {
+                return  event.date_end!
+            }
+        }
+     return Date()
+    }
 
 }
 

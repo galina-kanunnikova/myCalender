@@ -7,8 +7,8 @@
 
 import SwiftUI
 import CoreData
-
-struct menu: View {
+/*
+struct admin_menu: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject  var roomModel : RoomModel
     @ObservedObject  var eventModel : EventModel
@@ -222,7 +222,7 @@ struct toShowRooms: View {
         VStack{
             ForEach(0..<roomModel.rooms.count,id: \.self) { i in
                 HStack{
-                    Toggle(roomModel.rooms[i].name,isOn: $isOn[i]).padding()
+                    Toggle(roomModel.rooms[i].name!,isOn: $isOn[i]).padding()
                         .onReceive([self.isOn[i]].publisher.first()) { (value) in
                             if value == true {
                                 selectedRooms[i] = roomModel.rooms[i]
@@ -232,7 +232,7 @@ struct toShowRooms: View {
                            
                            }
                         
-                    Text(roomModel.rooms[i].name) .foregroundColor(colorScheme == .dark ? .white : .black)
+                    Text(roomModel.rooms[i].name!) .foregroundColor(colorScheme == .dark ? .white : .black)
                         .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                         .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                 }
@@ -243,7 +243,7 @@ struct toShowRooms: View {
         
      }
     .onDisappear{
-        var rooms:[RoomObj] = []
+        var rooms:[Room] = []
         for room in selectedRooms {
             if room != nil {
                 rooms.append(room!)
@@ -256,3 +256,4 @@ struct toShowRooms: View {
   }
     
 }
+*/

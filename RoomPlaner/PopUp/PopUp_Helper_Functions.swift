@@ -16,7 +16,7 @@ enum ActiveAlert {
 
 extension popUp{
     
-     func checkRools(id: Int?){
+     func checkRools(idToEdit: Int?){
         var selectedRoomsIds : [Int] = []
        
         for i in 0..<selectedRooms.count {
@@ -33,14 +33,14 @@ extension popUp{
             showingAlert.toggle()
             activeAlert = .second
         }else{//(x < y) ? func() : anotherFunc()
-            if makeFetchRequest(rooms: selectedRoomsIds, id: (id != nil) ? id : nil) != 0 {
+            if makeFetchRequest(roomsIds: selectedRoomsIds, idToEdit: (idToEdit != nil) ? idToEdit : nil) != 0 {
                 showingAlert.toggle()
                 activeAlert = .third
                }
             else{
                 eventModel.showLogIn.toggle()
-                (id == nil) ? saveEvent_local(rooms: selectedRoomsIds)
-                   : updateEventInLocalStorage(id: id!, rooms: selectedRoomsIds)
+                (idToEdit == nil) ? saveEvent_local(roomsIds: selectedRoomsIds) : updateEventInLocalStorage(id: idToEdit!, roomsIds: selectedRoomsIds)
+                
                    // (id == nil) ? saveEvent(rooms: selectedRoomsIds) : updateEvent(id: id!, rooms: selectedRoomsIds)
                }
         }
@@ -112,21 +112,18 @@ extension popUp{
              }*/
     }
     
-    private func saveEvent_local (rooms: [Int]){
+    private func saveEvent_local (roomsIds: [Int]){
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appdelegate.persistentContainer.viewContext
-     if fullDate(date: dpModel.dateVon.zeroSeconds, min:dpModel.startMinute) >= fullDate(date: dpModel.dateBis.zeroSeconds, min:dpModel.endMinute) {
-         
-     }
-    
      let formatter = DateFormatter()
          formatter.timeStyle = .short
          
          let newEvent = Event(context: context)
-         newEvent.date_start = fullDate(date: dpModel.dateVon.zeroSeconds, min:dpModel.startMinute )
-         newEvent.date_end = fullDate(date: dpModel.dateBis.zeroSeconds, min:dpModel.endMinute )
-   
-         newEvent.rooms = rooms as NSObject
+       //  newEvent.date_start = fullDate(date: dpModel.dateVon.zeroSeconds, min:dpModel.startMinute )
+         newEvent.date_start = dpModel.dateVon
+         newEvent.date_end = dpModel.dateBis
+       // newEvent.date_end = fullDate(date: dpModel.dateBis.zeroSeconds, min:dpModel.endMinute )
+         newEvent.rooms = roomsIds
          newEvent.id = Int16(Int(UInt.random(in: 0 ... 1000)))
          newEvent.title = title
        //  newEvent.cito_user_id = Int64(Int(UInt.random(in: 0 ... 1000)))
@@ -134,6 +131,7 @@ extension popUp{
          do {
                      try context.save()
                      print("Event saved.")
+                     eventModel.updateEvents()
                      presentationMode.wrappedValue.dismiss()
                  } catch {
                      print(error.localizedDescription)
@@ -196,13 +194,9 @@ extension popUp{
         
      }
     
-    private func updateEventInLocalStorage (id: Int, rooms: [Int]){
+    private func updateEventInLocalStorage (id: Int, roomsIds: [Int]){
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appdelegate.persistentContainer.viewContext
-        if fullDate(date: dpModel.dateVon.zeroSeconds, min:dpModel.startMinute) >= fullDate(date: dpModel.dateBis.zeroSeconds, min:dpModel.endMinute) {
-            
-        }
-        
         let formatter = DateFormatter()
          formatter.timeStyle = .short
          let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
@@ -211,11 +205,15 @@ extension popUp{
          let result = try moc.fetch(fetchRequest) as! [Event]
          let event = result.first
             event?.title = title
-            event?.date_start = fullDate(date: dpModel.dateVon.zeroSeconds, min: dpModel.startMinute)
-            event?.date_end = fullDate(date: dpModel.dateBis.zeroSeconds, min: dpModel.endMinute)
+          //  event?.date_start = fullDate(date: dpModel.dateVon.zeroSeconds, min: dpModel.startMinute)
+             event?.date_start = dpModel.dateVon
+          //  event?.date_end = fullDate(date: dpModel.dateBis.zeroSeconds, min: dpModel.endMinute)
+            event?.date_end = dpModel.dateBis
            
-            event?.rooms = rooms as NSObject
+            event?.rooms = roomsIds
             try context.save()
+            eventModel.updateEvents()
+            eventModel.showLogIn = false
             presentationMode.wrappedValue.dismiss()
             
         } catch {
@@ -224,11 +222,19 @@ extension popUp{
         
      }
     
+    private func collectRooms(idx: [Int]) -> [Room]{
+        var rooms : [Room] = []
+        for room in roomModel.rooms{
+            for id in idx {
+                if room.id == id {rooms.append(room)}
+            }
+        }
+        return rooms
+    }
+    
     ///if return 0 --> the rooms are free for a selected period
     /// return > 0 --> reserved
-    private func makeFetchRequest(rooms: [Int],id: Int?)  -> Int  {
-        
-       
+    private func makeFetchRequest(roomsIds: [Int],idToEdit: Int?)  -> Int  {
         for room in eventModel.roomModel.rooms {
             
             //events for a room
@@ -240,21 +246,20 @@ extension popUp{
                 if (start_date! >= dpModel.dateVon.dayStart) && (start_date! < dpModel.dateVon.dateTo) {
                    
                     // check  rooms
-                    if hasSameRooms(event: event, selectedRoomsIdx: rooms) {
+                    if hasSameRooms(event: event, selectedRoomsIdx: roomsIds) {
                         
                        //check if already reserved
-                        let start = fullDate(date: dpModel.dateVon, min: dpModel.startMinute)
-                        let end = fullDate(date: dpModel.dateBis, min: dpModel.endMinute)
+                     //   let start = fullDate(date: dpModel.dateVon, min: dpModel.startMinute)
+                    //    let end = fullDate(date: dpModel.dateBis, min: dpModel.endMinute)
+                        let start = dpModel.dateVon
+                        let end = dpModel.dateBis
                         let startDate = event.date_start!//.date.stringToDate
                         let endDate = event.date_end!//.date.stringToDate
-                        print(start)
-                        print(end)
-                        print(startDate)
-                        print(endDate)
+                       
                         if (start < endDate ) && ((end > startDate)){
                             //already reserved
-                            if id != nil {
-                                if (id! != event.id)
+                            if idToEdit != nil {
+                                if (idToEdit! != event.id)
                                 {
                                    
                                     return  1
@@ -330,8 +335,8 @@ extension popUp{
     
     private func hasSameRooms(event: Event, selectedRoomsIdx: [Int]) -> Bool{
         var reservedRooms : [Int] = []
-        for room in event.rooms as! [RoomObj] {
-            reservedRooms.append(Int(room.id))
+        for room in event.rooms! {
+            reservedRooms.append(room)
         }
         if reservedRooms.containsSameElements(as: selectedRoomsIdx) {
             return true

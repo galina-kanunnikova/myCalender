@@ -24,8 +24,8 @@ struct RoomObj: Codable,Hashable {
 
 
 class RoomModel: ObservableObject {
-    @Published var rooms: [RoomObj] = []
- //   @Published var visibleRooms: [RoomObj] = []
+    @Published var rooms: [Room] = []
+ //   @Published var visibleRooms: [Room] = []
     var cancellationToken: AnyCancellable?
     init(){
         getRoomsFromLokalStorage()
@@ -59,10 +59,8 @@ extension RoomModel {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Room")
          do {
           let res = try context.fetch(fetchRequest) as! [Room]
-            for room in res {
-                rooms.append(RoomObj(id: room.id, name: room.name!))
-            }
-             
+             print(res)
+          rooms = res
           } catch {
                     fatalError("Failed to fetch categories: \(error)")
          }
@@ -78,7 +76,6 @@ extension RoomModel {
             for room in res {
                 context.delete(room)
             }
-             
           } catch {
                     fatalError("Failed to fetch categories: \(error)")
          }
@@ -103,14 +100,12 @@ extension RoomModel {
       
     }
     
-    func saveRooms(rooms: [RoomObj]){
+    func saveRooms(rooms: [Room]){
         deleteRooms()
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appdelegate.persistentContainer.viewContext
         for room in rooms {
-               var r = Room(context: context)
-               r.name = room.name
-               r.id = Int16(room.id)
+            let r = create_Room_core_data(title : room.name! , id :Int(room.id))
                do {
                            try context.save()
                            print("Room saved.")
@@ -122,13 +117,20 @@ extension RoomModel {
         getRoomsFromLokalStorage()
     }
     
-    func saveRoomsToLocalStorage(rooms: [RoomObj]){
+    func create_Room_core_data(title : String , id : Int) -> Room{
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appdelegate.persistentContainer.viewContext
+        let new_obj = Room(context: context)
+        new_obj.name = title
+        new_obj.id = Int16(id)
+        return new_obj
+    }
+    
+    func saveRoomsToLocalStorage(rooms: [Room]){
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appdelegate.persistentContainer.viewContext
         for room in rooms {
-               var objToSave = Room(context: context)
-               objToSave.name = room.name
-               objToSave.id = room.id
+            let objToSave = create_Room_core_data(title : room.name! , id :Int(room.id))
                do {
                            try context.save()
                            print("Objekt with the name \(objToSave.name) saved.")
@@ -140,15 +142,13 @@ extension RoomModel {
         getRoomsFromLokalStorage()
     }
     
-    func saveRoomToLocalStorage(room: RoomObj){
+    func saveRoomToLocalStorage(title : String , id : Int ){
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appdelegate.persistentContainer.viewContext
-        var objToSave = Room(context: context)
-        objToSave.name = room.name
-        objToSave.id = room.id
+        let objToSave = create_Room_core_data(title : title , id : id)
         do {
                     try context.save()
-                    print("Objekt with the name \(objToSave.name) saved.")
+                    print("Objekt with the name \(title) saved.")
                   
                 } catch {
                     print(error.localizedDescription)

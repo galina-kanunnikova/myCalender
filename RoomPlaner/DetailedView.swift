@@ -16,19 +16,22 @@ struct detailedView: View {
     var body: some View {
         let event =  eventModel.displayDetailView.event
         ZStack {
-        
+    
         VStack{
             dV(eventModel: eventModel, event: event!)
             HStack {
                 Button(action: {
                     eventModel.showLogIn = true
-                    action = .delete
+                   // action = .delete
+                   
                             }) {
                                 Text("Löschen")
                 } .foregroundColor(.white)
-                .frame(width: 230, height: 40)
+               // .frame(width: 230, height: 40)
+                .frame(width: UIScreen.screenWidth/2.5, height: 40)
                 .background(Color.red)
                 .cornerRadius(10)
+                
                 
                 Button(action: {
                      showPopUp.toggle()
@@ -36,36 +39,37 @@ struct detailedView: View {
                             }) {
                                 Text("Bearbeiten")
                 } .foregroundColor(.white)
-                .frame(width: 230, height: 40)
+               // .frame(width: 230, height: 40)
+                .frame(width: UIScreen.screenWidth/2.5, height: 40)
                 .background(Color.green)
                 .cornerRadius(10)
                 .sheet(isPresented: $showPopUp){
-                    popUp(selectedRooms: selectedRooms(r: event?.rooms as! [RoomObj] ), title: event!.title!, description: "", eventModel: eventModel ,roomModel: eventModel.roomModel, toUpdateStartTime:  event!.date_start ,bis: event!.date_end!, toEditEventId: Int(event!.id))
+                    popUp(selectedRooms: selectedRooms(r:event!.rooms!), title: event!.title!, description: "", eventModel: eventModel ,roomModel: eventModel.roomModel, toUpdateStartTime:  event!.date_start ,bis: event!.date_end!, toEditEventId: Int(event!.id))
                         }
                 
             }
             Spacer()
         }
-          /*  if eventModel.showLogIn  {
-                if action  == .delete {  logIn(eventModel: eventModel, action: .delete, event: event)}
-                if action == .update { logIn(eventModel: eventModel, action: .update, event: event)}
-               
-            }*/
-            
+            if eventModel.showLogIn  {
+             //   if action  == .delete {  logIn(eventModel: eventModel, action: .delete, event: event)}
+             //   if action == .update { logIn(eventModel: eventModel, action: .update, event: event)}
+                custom_alert(eventModel: eventModel, event: event!)
+            }
         }
-        .background(Color.white)
-        .frame(width: 500, height: 700,alignment: .center)
+        //.background(Color.white)
+        .background(Color(UIColor.systemBackground))
+      //  .frame(width: 500, height: 700,alignment: .center)
+        .frame(alignment: .center)
         .cornerRadius(20)
         .shadow(radius: 20)
-        
     }
         
-    private func selectedRooms(r: [RoomObj]) -> [Bool] {
+    private func selectedRooms(r: [Int]) -> [Bool] {
         var array : [Bool] = []
         for i in 0...eventModel.roomModel.rooms.count - 1{
             array.append(false)
             for x in 0...r.count - 1{
-                if eventModel.roomModel.rooms[i].id == r[x].id {
+                if eventModel.roomModel.rooms[i].id == eventModel.roomModel.rooms[r[x]].id {
                     array[i] = true
                 }
             }
@@ -106,25 +110,26 @@ struct dV : View{
         
         Spacer()
         
-        Text( eventModel.dayModel.startDay.ddMMyy)
+     /*   Text( eventModel.dayModel.startDay.ddMMyy)
             .frame(alignment: .center)
             .font(.title)
             .foregroundColor(colorScheme == .dark ? .white : .black)
-        Spacer()
+        Spacer()*/
     }
         Group {
         HStack{
             Text("Räume") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
             VStack{
-                let srooms = event.rooms as! [RoomObj]
+                let sroomsID = event.rooms
                 let rooms = eventModel.roomModel.rooms
-                ForEach(srooms, id : \.self) { sroom in
+                ForEach(sroomsID!, id : \.self) { sroomID in
                  
                     ForEach(rooms, id: \.self) { room in
-                        if room.id == sroom.id {
-                            Text(room.name) .foregroundColor(colorScheme == .dark ? .white : .black)
-                                    .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        if room.id == sroomID{
+                            Text(room.name!) .foregroundColor(colorScheme == .dark ? .white : .black)
+                                   // .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                                     .padding(.bottom,1)
                         }
@@ -137,7 +142,8 @@ struct dV : View{
             Text("Von") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
             Text(event.date_start!.toString) .foregroundColor(colorScheme == .dark ? .white : .black)
-                .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                //.frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
            
         }.frame( height: 40)
@@ -146,17 +152,19 @@ struct dV : View{
             Text("Bis") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
             Text((event.date_end!.toString)) .foregroundColor(colorScheme == .dark ? .white : .black)
-                .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+               // .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
              
             
         }.frame( height: 40)
         Spacer()
         HStack{
-            Text("gebucht von") .foregroundColor(colorScheme == .dark ? .white : .black)
+            Text("Beschreibung") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
-            Text("\(event.user_id)") .foregroundColor(colorScheme == .dark ? .white : .black)
-                .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            Text("\(event.description)") .foregroundColor(colorScheme == .dark ? .white : .black)
+              //  .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
            
         }.frame( height: 40)

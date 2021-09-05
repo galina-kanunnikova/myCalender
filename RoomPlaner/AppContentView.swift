@@ -11,16 +11,16 @@ import SwiftUI
 struct AppContentView: View {
     
     @State var signInSuccess = false
-    
+    @ObservedObject var eventModel = EventModel()
     var body: some View {
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
            // /*    if launchedBefore  {
         return Group {
             if signInSuccess || launchedBefore {
-                DayView()
+                DayView(eventModel: eventModel)
             }
             else {
-                WelcomeView(signInSuccess: $signInSuccess)
+                WelcomeView(eventModel: eventModel, signInSuccess: $signInSuccess)
             }
         }
     }

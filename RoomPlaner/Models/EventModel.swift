@@ -113,8 +113,8 @@ extension EventModel {
               
             }
         } else {
-            print("First launch, setting UserDefault.")
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            print("First launch.")
+          
            // APIdb.setAPIUrl()
           //  firstLaunch()
         }
@@ -222,7 +222,7 @@ extension EventModel {
          let events = try context.fetch(fetchRequest) as! [Event]
             for ev in events {
                 if event.id == ev.id {context.delete(event)
-                    getEvents()
+                    updateEvents()
                 }
             }
          } catch {
@@ -232,7 +232,7 @@ extension EventModel {
     
 func divideAfterRooms( ) {
         self.cellsForOverlay = []
-        let day = dayModel.startDay
+        let day = dayModel.selectedDay
         let appdelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appdelegate.persistentContainer.viewContext
         for roomIdx in 0..<roomModel.rooms.count {

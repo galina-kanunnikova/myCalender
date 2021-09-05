@@ -57,6 +57,7 @@ extension RoomModel {
         let context = appdelegate.persistentContainer.viewContext
         rooms = []
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Room")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
          do {
           let res = try context.fetch(fetchRequest) as! [Room]
              print(res)

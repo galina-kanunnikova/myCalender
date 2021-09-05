@@ -14,7 +14,9 @@ struct editView_view: View {
     @Environment(\.colorScheme) var colorScheme
     @State  var title: String = ""
     @State  var dissabled = true
-    @State  var new_objects: [String]
+    @State var new_objects: [Room]
+    @State private var deleted_objects: [Int16] = []
+    
     var body: some View {
         
         VStack(spacing: 0) {
@@ -30,12 +32,18 @@ struct editView_view: View {
                 
                 ForEach(0..<new_objects.count,id: \.self) { i in
                  HStack {
-                     Text(new_objects[i])
+                     Text(new_objects[i].name ?? "" )
                        .textFieldStyle(RoundedBorderTextFieldStyle())
                        .foregroundColor(colorScheme == .dark ? .white : .black)
                        .fixedSize()
                 
                     Button("x") {
+                       
+                        for room in eventModel.roomModel.rooms {
+                            if room == new_objects[i] {
+                                deleted_objects.append(room.id)
+                            }
+                        }
                         new_objects.remove(at: i)
                         dissabled = (new_objects.count > 0) ?  false  : true
                     }
@@ -48,7 +56,8 @@ struct editView_view: View {
              }
                 if eventModel.roomModel.rooms.count < 10 {
                     Button("+") {
-                        new_objects.append(title)
+                        let new_obj = eventModel.roomModel.create_Room_core_data(title: title, id: new_objects.count)
+                        new_objects.append(new_obj)
                         title = ""
                         dissabled = false
                      }
@@ -64,11 +73,22 @@ struct editView_view: View {
             }.padding(.leading, 100).padding(.trailing, 100)
            
             Button("Speichern") {
-                eventModel.roomModel.deleteRooms()
                 var idx = -1
-                for name in  new_objects{
+                print(deleted_objects)
+                for idx in deleted_objects {
+                    print(idx)
+                    eventModel.deleteEvents_for_room(index : Int(idx) )
+                }
+                var names :[String] = []
+                for obj in new_objects {
+                    names.append(obj.name ?? "")
+                }
+                eventModel.roomModel.deleteRooms()
+                for name in  names{
+                    print(new_objects)
                     idx = idx + 1
                     eventModel.roomModel.saveRoomToLocalStorage(title: name, id: idx)
+                    print(names)
                 }
                 eventModel.updateEvents()
                 self.presentationMode.wrappedValue.dismiss()

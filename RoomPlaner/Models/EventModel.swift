@@ -229,6 +229,29 @@ extension EventModel {
                    fatalError("Failed to fetch categories: \(error)")
         }
     }
+    func deleteEvents_for_room(index : Int) {
+           
+            let appdelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appdelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
+            do {
+             let events = try context.fetch(fetchRequest) as! [Event]
+                for ev in events {
+                    if ev.rooms?.contains(index) == true{
+                        if ev.rooms!.count > 1 {
+                            let i = ev.rooms!.firstIndex(where: { $0 == index })
+                            ev.rooms?.remove(at: i!)
+                            try context.save()
+                        }else {
+                            context.delete(ev)
+                        }
+                    }
+                }
+                updateEvents()
+             } catch {
+                       fatalError("Failed to fetch categories: \(error)")
+            }
+    }
     
 func divideAfterRooms( ) {
         self.cellsForOverlay = []

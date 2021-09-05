@@ -129,10 +129,33 @@
 		FE5D23FF26E54E7B00A47557 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				FED6110C26E2994600DCBD70 /* Buttons.swift */,
+				FE79711E25829541001289A5 /* Style.swift */,
+				FE51B7EC25A4BD8B00BE6FB7 /* KeyboardGuardian.swift */,
 				FE51B80625A661CA00BE6FB7 /* Helper.swift */,
 				FE5D240026E54E9500A47557 /* GestureRecognizer.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		FE5D240226E550D400A47557 /* AppDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				FE79710625825911001289A5 /* AppDelegate.swift */,
+				FE79710825825911001289A5 /* SceneDelegate.swift */,
+			);
+			path = AppDelegates;
+			sourceTree = "<group>";
+		};
+		FE5D240526E5510300A47557 /* CalenderUI */ = {
+			isa = PBXGroup;
+			children = (
+				FEDCB40625AE2A110034AA4E /* RedLine.swift */,
+				FE51B7FD25A5FE8600BE6FB7 /* scrollView.swift */,
+				FE51B80C25A75E8300BE6FB7 /* Calender.swift */,
+				FE51B80025A5FEFA00BE6FB7 /* CalenderCell.swift */,
+			);
+			path = CalenderUI;
 			sourceTree = "<group>";
 		};
 		FE7970FA25825910001289A5 = {
@@ -154,14 +177,13 @@
 		FE79710525825911001289A5 /* RoomPlaner */ = {
 			isa = PBXGroup;
 			children = (
+				FE5D240526E5510300A47557 /* CalenderUI */,
+				FE5D240226E550D400A47557 /* AppDelegates */,
 				FE5D23FF26E54E7B00A47557 /* Helper */,
 				FE1DA1DF26E3AA3500751318 /* DatePickers */,
 				FE1DA1D626E39C6400751318 /* PopUp */,
-				FEDCB40625AE2A110034AA4E /* RedLine.swift */,
 				FEDCB3FC25ACB8FD0034AA4E /* Models */,
 				FEDCB3F825ACA04B0034AA4E /* Api */,
-				FE79710625825911001289A5 /* AppDelegate.swift */,
-				FE79710825825911001289A5 /* SceneDelegate.swift */,
 				FE79710A25825911001289A5 /* ContentView.swift */,
 				FE79710F25825914001289A5 /* Assets.xcassets */,
 				FE6A584826E112FD001DA03E /* icons8-event-100.png */,
@@ -169,20 +191,14 @@
 				FE79711725825914001289A5 /* Info.plist */,
 				FE79710C25825911001289A5 /* RoomPlaner.xcdatamodeld */,
 				FE79711125825914001289A5 /* Preview Content */,
-				FE79711E25829541001289A5 /* Style.swift */,
 				FE51B7E925A3910900BE6FB7 /* FormSheet.swift */,
-				FE51B7EC25A4BD8B00BE6FB7 /* KeyboardGuardian.swift */,
-				FE51B7FD25A5FE8600BE6FB7 /* scrollView.swift */,
-				FE51B80025A5FEFA00BE6FB7 /* CalenderCell.swift */,
 				FE2A43E326E3E2460065A062 /* Admin_Menu.swift */,
 				FE51B80925A75E1100BE6FB7 /* EventsOverlay.swift */,
-				FE51B80C25A75E8300BE6FB7 /* Calender.swift */,
 				FEDCB40925AE30F40034AA4E /* DetailedView.swift */,
 				FE95CFBE25C9A9360049D8FC /* LogInScreen.swift */,
 				FE6A583C26DD69D9001DA03E /* WelcomeView.swift */,
 				FE6A583F26DD871C001DA03E /* AppContentView.swift */,
 				FE6A584D26E121C8001DA03E /* YearPicker.swift */,
-				FED6110C26E2994600DCBD70 /* Buttons.swift */,
 				FED6110F26E2A01400DCBD70 /* EditView.swift */,
 			);
 			path = RoomPlaner;

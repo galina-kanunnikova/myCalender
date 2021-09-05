@@ -25,8 +25,8 @@ struct cellEvent: View {
     @Environment(\.colorScheme) var colorScheme
     var body: some View {
         //let durationInMin = eventModel.eventDuration(event:  cell.event!)
-        let from =  cell.event!.date_start!.hhMM
-        let till = cell.event!.date_end!.hhMM
+        let from =  cell.event?.date_start?.hhMM
+        let till = cell.event?.date_end?.hhMM
         VStack{
                 HStack{
                     if showTrash == true {
@@ -41,12 +41,12 @@ struct cellEvent: View {
                        .font(.title)
                         Spacer()
                     }else {
-                        Text(cell.event!.title!)
+                        Text(cell.event!.title ?? "")
                            .font(.title)
                     }
            }
             
-            Text(from + " - " + till)
+            Text((from ?? "") + " - " + (till ??  ""))
         }.frame(width: roomColumnWidth(rooms: roomModel.rooms.count), height: cell.height)
            .background(color)
         .foregroundColor(colorScheme == .dark ? .white : .black)

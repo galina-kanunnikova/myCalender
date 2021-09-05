@@ -17,7 +17,7 @@ struct datePicker_year_from: View{
         DatePicker(
             "Start Date",
             selection: $dpModel.dateVon,
-            in: start...dateToYear(add_years: 3, start_date: dpModel.dateVon),
+            in: Date()...dateToYear(add_years: 3, start_date: dpModel.dateVon),
             displayedComponents: [.date,.hourAndMinute]
         )//.environment(\.locale, Locale.init(identifier: "de"))
             .onAppear{
@@ -34,7 +34,7 @@ struct datePicker_year_till: View{
         DatePicker(
             "End Date",
             selection: $dpModel.dateBis,
-            in : to...dateToYear(add_years: 3, start_date: dpModel.dateVon),
+            in : Date()...dateToYear(add_years: 3, start_date: dpModel.dateVon),
             displayedComponents: [.date,.hourAndMinute]
         ).onAppear{
             dpModel.dateBis = to

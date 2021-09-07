@@ -56,7 +56,7 @@ func createFlyer() -> Data {
     let pageRect = CGRect(x: 0, y: 0, width: pageWidth, height: pageHeight)
     let renderer = UIGraphicsPDFRenderer(bounds: pageRect, format: UIGraphicsPDFRendererFormat())
     let tableDataHeaderTitles =  header(eventModel: eventModel)
-    let tableDataItems = events_for_rooms()
+    let tableDataItems = table_matrix()
     let numberOfElementsPerPage = calculateNumberOfElementsPerPage(with: pageRect)
     let tableDataChunked: [[[Any?]]] = tableDataItems.chunkedElements(into: numberOfElementsPerPage)
     let data = renderer.pdfData { context in
@@ -82,7 +82,7 @@ func createFlyer() -> Data {
 }
 
 extension Array {
-    func chunkedElements(into size: Int) -> [[Element]] {
+    func chunkedElements(into size: Int) -> [[Element]]{
         return stride(from: 0, to: count, by: size).map {
             Array(self[$0 ..< Swift.min($0 + size, count)])
         }
@@ -98,87 +98,91 @@ extension PDFCreator {
         }
         return names
     }
-    func events_for_rooms() -> [[Any?]]{
-        var events_for_table : [[Any?]] = []
-        var events : [[Event]] = []
+    func events_for_rooms() -> [[Event]]{
+        var events_for_rooms : [[Event]] = []
         var idx = -1
         for room in eventModel.roomModel.rooms{
           idx = idx + 1
-            events.append([])
+            events_for_rooms.append([])
             for event in eventModel.events_pdf(){
                 if event.rooms?.contains(Int(room.id)) == true {
-                    events[idx].append(event)
+                    events_for_rooms[idx].append(event)
                 }
             }
         }
-        for day in 0..<31{
-            
-            var event : Event? = nil
-            for room_idx in 0..<events.count   { // obj index
-                for event_idx in 0..<events[room_idx].count{   // events for obj
-                    let ev = events[room_idx][event_idx]
-                    var dd_int = 0
-                    var string = ev.date_start!.dd
-                    string.removeFirst()
-                    if string.first == "0" {
-                        string.removeFirst()
-                    }
-                    dd_int = Int(string)!
-                    if dd_int == day + 1 && room_idx == 0{
-                        event = ev
-                        events_for_table.append([])
-                        events_for_table[events_for_table.count - 1].append(day + 1)
-                        for room in eventModel.roomModel.rooms{
-                            events_for_table[events_for_table.count - 1].append(nil)
-                        }
-                        events_for_table[events_for_table.count - 1][room_idx + 1] = ev
-                        
-                    }
-                    if dd_int == day + 1 && room_idx > 0{
-                        var i = 1
-                        for event_pre in events[room_idx - 1] {
-                            i = i + 1
-                            if  ev.date_start!.hour == event_pre.date_start!.hour
-                            {
-                                events_for_table[events_for_table.count - i][room_idx + 1] = ev
-                                break
-                            }
-                            
-                        }
-                    /*    if  ev.date_start!.hour != events[room_idx - 1][event_idx].date_start!.hour
-                        {
-                            events_for_table.append([])
-                        }else {
-                            print(room_idx - 1)
-                            print(ev.date_start!.hour)
-                            print(events[room_idx - 1][event_idx].date_start!.hour)
-                            
-                        }*/
-                        event = ev
-                       /* events_for_table[events_for_table.count - 1].append(day + 1)
-                        for room in eventModel.roomModel.rooms{
-                            events_for_table[events_for_table.count - 1].append(nil)
-                        }
-                        events_for_table[events_for_table.count - 1][room_idx + 1] = ev*/
-                        
-                    }
-                    
-                    
-                }
-            }
-              //  _ = (event != nil) ? events_for_table[day].append(event) : events_for_table[day].append(nil)
-                if event == nil {
-                    events_for_table.append([])
-                    events_for_table[events_for_table.count - 1].append(day + 1)
-                    for room in eventModel.roomModel.rooms{
-                        events_for_table[events_for_table.count - 1].append(nil)
-                    }
-                }
-        }
-        
-        
-        return events_for_table
+        return events_for_rooms
     }
+    
+    func table_matrix() -> [[Any?]] {
+        var matrix : [[Any?]] = []
+        let rooms = eventModel.roomModel.rooms
+        // empty matrix
+        for day in 0..<31{
+            matrix.append([]) // new line
+            for room in rooms {
+                matrix[day].append(day+1)
+                matrix[day].append(nil)
+            }
+        }
+        
+         var last_edited_idx = 0
+        // fill matrix
+        for day in 0..<31{
+            // devide events after day
+            var i = (matrix.count - 31 )-1
+            for event in eventModel.events_pdf(){
+                print(event.title)
+                var event_day = 0
+                var string = event.date_start!.dd
+                if string.first == "0" {
+                    string.removeFirst()
+                }
+                event_day = Int(string)!
+                if event_day == day + 1{
+                    i = i + 1
+                  //  if i > -1 {
+                        
+                  //  }
+                    for room_idx in 0..<rooms.count {
+                        if event.rooms?.contains(room_idx) == true {
+                            matrix[day + i][0] = day + 1
+                            matrix[day + i][room_idx + 1] = event
+                            last_edited_idx = day + 1
+                            matrix.append([])
+                            for room in rooms {
+                                matrix[matrix.count - 1].append(31)
+                                matrix[matrix.count - 1].append(nil)
+                            }
+                        }
+                    }
+                }
+          }
+      }
+      
+        var sorted_matrix = matrix.sorted{ ($0[0] as! Int) < ($1[0] as! Int) }
+        var matrix_idx = 0
+        for i in 0..<sorted_matrix.count{
+            if sorted_matrix[i][0] as! Int == last_edited_idx {
+                matrix_idx = i
+            }
+        }
+   
+        // update day number
+        for i in matrix_idx + 1..<sorted_matrix.count{
+            sorted_matrix[i][0] =  sorted_matrix[i - 1][0] as! Int + 1
+            if sorted_matrix[i][0] as! Int > 31 {
+                last_edited_idx = i
+                break
+            }
+        }
+        
+        for i in last_edited_idx..<sorted_matrix.count{
+            sorted_matrix.removeLast()
+        }
+        
+        return sorted_matrix
+    }
+   
     func drawTableHeaderRect(drawContext: CGContext, pageRect: CGRect) {
         drawContext.saveGState()
         drawContext.setLineWidth(3.0)
@@ -237,9 +241,9 @@ extension PDFCreator {
 
         let defaultStartY = defaultOffset * CGFloat(eventModel.roomModel.rooms.count)
         
-        for elementIndex in 0..<tableDataItems.count {
-            let yPosition = CGFloat(elementIndex) * defaultStartY + defaultStartY
-
+        for day in 0..<tableDataItems.count {
+            let yPosition = CGFloat(day) * defaultStartY + defaultStartY
+print(tableDataItems[day])
             // Draw content's elements texts
             let textFont = UIFont.systemFont(ofSize: 13.0, weight: .regular)
             let paragraphStyle = NSMutableParagraphStyle()
@@ -251,16 +255,15 @@ extension PDFCreator {
             ]
             let tabWidth = (pageRect.width - defaultOffset * 2) / CGFloat(eventModel.roomModel.rooms.count + 1)
             var attributedText = NSAttributedString(string: "", attributes: textAttributes)
-            for objIndex in 0..<tableDataItems[elementIndex].count {
-                print(tableDataItems[elementIndex])
+            for objIndex in 0..<tableDataItems[day].count {
                 if objIndex == 0 { // Month Day
-                    attributedText = NSAttributedString(string:  String(tableDataItems[elementIndex][objIndex] as! Int),
+                    attributedText = NSAttributedString(string:  String(((tableDataItems[day][objIndex] as? Int) ?? 0)),
                                                         attributes: textAttributes)
                 }else {
                     let text = """
-                        \((tableDataItems[elementIndex][objIndex] as? Event)?.title ?? "none")
-                        \((tableDataItems[elementIndex][objIndex] as? Event)?.date_start!.hhMM ?? "")  - \((tableDataItems[elementIndex][objIndex] as? Event)?.date_end!.hhMM ?? "")
-                        \((tableDataItems[elementIndex][objIndex] as? Event)?.description ?? "")
+                        \((tableDataItems[day][objIndex] as? Event)?.title ?? "none")
+                        \((tableDataItems[day][objIndex] as? Event)?.date_start!.hhMM ?? "")  - \((tableDataItems[day][objIndex] as? Event)?.date_end!.hhMM ?? "")
+                        \((tableDataItems[day][objIndex] as? Event)?.description ?? "")
                         """
                     attributedText = NSAttributedString(string: text, attributes: textAttributes)
                    

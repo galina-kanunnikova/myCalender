@@ -75,9 +75,7 @@ struct editView_view: View {
            
             Button("Speichern") {
                 var idx = -1
-                print(deleted_objects)
                 for idx in deleted_objects {
-                    print(idx)
                     eventModel.deleteEvents_for_room(index : Int(idx) )
                 }
                 var names :[String] = []
@@ -86,10 +84,8 @@ struct editView_view: View {
                 }
                 eventModel.roomModel.deleteRooms()
                 for name in  names{
-                    print(new_objects)
                     idx = idx + 1
                     eventModel.roomModel.saveRoomToLocalStorage(title: name, id: idx)
-                    print(names)
                 }
                 eventModel.updateEvents()
                 self.presentationMode.wrappedValue.dismiss()

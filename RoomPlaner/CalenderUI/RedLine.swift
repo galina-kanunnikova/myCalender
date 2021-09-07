@@ -48,8 +48,6 @@ struct redLine: View {
           .onReceive(timer) { input in
                   self.currentTime = input
                   self.offset =  self.offset + oneMinHeight
-                  print(self.currentTime)
-                  print(self.offset)
                   
           }
     }

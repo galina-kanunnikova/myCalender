@@ -16,9 +16,6 @@ class PDFCreator{
     }
     
     let defaultOffset: CGFloat = 20
-   //   let tableDataHeaderTitles: [String]
-  //    let tableDataItems: [TableDataItem]
-    
     func addTitle(pageRect: CGRect) -> CGFloat {
      
       let titleFont = UIFont.systemFont(ofSize: 18.0, weight: .bold)
@@ -131,7 +128,6 @@ extension PDFCreator {
             // devide events after day
             var i = (matrix.count - 31 )-1
             for event in eventModel.events_pdf(){
-                print(event.title)
                 var event_day = 0
                 var string = event.date_start!.dd
                 if string.first == "0" {
@@ -140,9 +136,6 @@ extension PDFCreator {
                 event_day = Int(string)!
                 if event_day == day + 1{
                     i = i + 1
-                  //  if i > -1 {
-                        
-                  //  }
                     for room_idx in 0..<rooms.count {
                         if event.rooms?.contains(room_idx) == true {
                             matrix[day + i][0] = day + 1
@@ -243,7 +236,6 @@ extension PDFCreator {
         
         for day in 0..<tableDataItems.count {
             let yPosition = CGFloat(day) * defaultStartY + defaultStartY
-print(tableDataItems[day])
             // Draw content's elements texts
             let textFont = UIFont.systemFont(ofSize: 13.0, weight: .regular)
             let paragraphStyle = NSMutableParagraphStyle()

@@ -36,6 +36,7 @@ struct editView_view: View {
                        .textFieldStyle(RoundedBorderTextFieldStyle())
                        .foregroundColor(colorScheme == .dark ? .white : .black)
                        .fixedSize()
+                       .frame(width: 150, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 
                     Button("x") {
                        

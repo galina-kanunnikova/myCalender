@@ -41,7 +41,7 @@ struct redLine: View {
                         if hour >= 12 {
                             self.offset = (CGFloat(hour-12)*style.rowHeight ) + minHeight
                         }else{
-                            self.offset = -(CGFloat(12 - hour)*style.rowHeight ) + minHeight
+                            self.offset = -(CGFloat(12 - hour)*style.rowHeight ) + minHeight// - 9
                         }
                       }
                 }

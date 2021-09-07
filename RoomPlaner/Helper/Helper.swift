@@ -73,6 +73,12 @@ extension Date {
         let date = calendar.date(byAdding: .hour, value: 1, to: self)
         return date!
     }
+    var plus5Min: Date {
+        let calendar = Calendar.current
+        let date = calendar.date(byAdding: .minute, value: 5, to: self)
+        return date!
+    }
+    
     var dateTo30: Date {
         let calendar = Calendar.current
         let date = calendar.date(byAdding: .day, value: 30, to: dayStart)
@@ -110,6 +116,12 @@ extension Date {
         formatter.dateFormat = "dd.MM.yyyy"
         return formatter.string(from: self)
     }
+    
+    var mmYY: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM yyyy"
+        return formatter.string(from: self)
+    }
 
     var shortDate: String {
         
@@ -126,6 +138,15 @@ extension Date {
         let someDateTime = formatter.string(from: self)
         return someDateTime
     }
+    
+    var dd: String {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd"
+        let someDateTime = formatter.string(from: self)
+        return someDateTime
+    }
+    
 
     var nextDay: Date {
         let calendar = Calendar.current

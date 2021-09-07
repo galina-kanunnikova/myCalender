@@ -33,18 +33,16 @@ struct TimeColumn: View {
                     HStack() {
                             Text("\(hours[idx])")
                                 .font(.system(size: 12))
-                               // .foregroundColor(colorScheme == .dark ? .white : .black)
                                 .foregroundColor(colorScheme == .dark ? .white : .black)
                     }
                     .foregroundColor(.white)
                     .font(.largeTitle)
-                    .frame(width: style.timeColumnWidth, height: style.rowHeight - 2, alignment: .top)
-                   // .background(Color.white)
+                    .frame(width: style.timeColumnWidth, height: style.rowHeight /*- 2*/, alignment: .top)
                     .background(Color(UIColor.systemBackground))
                     .offset(x: 0, y: 0)
                     
                     Text("")
-                    .frame(width: style.timeColumnWidth, height: 2)
+                    .frame(width: style.timeColumnWidth, height: 1/*2*/)
                     .background(Color(UIColor.systemBackground))
             }
         }
@@ -54,10 +52,9 @@ struct TimeColumn: View {
 
 
 struct Header: View {
-    @ObservedObject var roomModel : RoomModel
     @Environment(\.colorScheme) var colorScheme
     @State private var showPopUp = false
-    @ObservedObject var dayModel : DayModel
+    @ObservedObject var eventModel : EventModel
     var body: some View {
         HStack(spacing: 2) {
             Button(action: {
@@ -67,7 +64,7 @@ struct Header: View {
             }
             .frame(width: style.timeColumnWidth, height: style.headerHeight)
             .sheet(isPresented: $showPopUp){
-                yearPicker(dayModel: dayModel)
+                yearPicker(eventModel: eventModel, toPDF: false)
                     }
            
             
@@ -78,12 +75,11 @@ struct Header: View {
                 .background(Color.white)
                
             */
-            ForEach(roomModel.rooms, id: \.self) { room in
+            ForEach(eventModel.roomModel.rooms, id: \.self) { room in
                 Text(room.name!)
                     .foregroundColor(colorScheme == .dark ? .white : .black)
-                    .font(.largeTitle)
-                    .frame(width: roomColumnWidth(rooms: roomModel.rooms.count)-1 , height: style.headerHeight)
-                   // .background(Color.white)
+                    .font(.title)
+                    .frame(width: roomColumnWidth(rooms: eventModel.roomModel.rooms.count)-1 , height: style.headerHeight)
                     .background(Color(UIColor.systemBackground))
                     .border(Color.gray, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                     .gesture(
@@ -165,13 +161,14 @@ struct DayView: View {
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                Header(roomModel: eventModel.roomModel, dayModel: eventModel.dayModel)
+                Header(eventModel: eventModel)
                 daysView(dayModel: eventModel.dayModel, eventModel: eventModel)
                 scrollView(roomModel: eventModel.roomModel, eventModel: eventModel)
                 Spacer()
                 HStack{
                     editObjectsButton(eventModel: eventModel)
                     newEventBtn(eventModel: eventModel)
+                    pdfButton(eventModel: eventModel)
                   //  editObjectsButton(eventModel: eventModel)
                 }
                 Spacer()

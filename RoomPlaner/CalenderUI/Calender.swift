@@ -13,27 +13,24 @@ struct calender: View{
     @ObservedObject var eventModel : EventModel
     
     var body: some View {
-        HStack(spacing: 2) {
+        HStack(spacing: 1) {
             
            TimeColumn()
             ZStack{
                 HStack() {
                     ForEach(0..<roomModel.rooms.count,id: \.self) {roomIdx in
                     
-                    VStack() {
-                        ForEach(0..<hours.count-1) {hour in
+                    VStack(spacing: 1) {
+                        ForEach(0..<hours.count-1 ) {hour in
                             
                             calenderCell(roomModel: roomModel)
                         }
                     }
                 }
-                }
+              }
                 eventsOverlay(roomModel: roomModel, eventModel: eventModel)
-                
-            }
-            
-            
-        } .frame(width: UIScreen.screenWidth )
-    }
+         }
+      } .frame(width: UIScreen.screenWidth )
+   }
     
 }

@@ -24,6 +24,10 @@ public struct Style {
 }
 
 extension UIScreen{
+ /*  @State static var screenWidth = UIScreen.main.bounds.size.width
+   @State static var screenHeight = UIScreen.main.bounds.size.height
+   @State static var screenSize = UIScreen.main.bounds.size*/
+    
    static let screenWidth = UIScreen.main.bounds.size.width
    static let screenHeight = UIScreen.main.bounds.size.height
    static let screenSize = UIScreen.main.bounds.size

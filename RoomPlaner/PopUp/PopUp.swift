@@ -111,6 +111,9 @@ struct popUp: View {
                                 
                                 Text(roomModel.rooms[i].name!) .foregroundColor(colorScheme == .dark ? .white : .black)
                                    // .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .frame(width: 150,alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                    .lineLimit(2)
+                                    .allowsTightening(true)
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                             }
                             

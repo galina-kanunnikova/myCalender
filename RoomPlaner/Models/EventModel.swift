@@ -252,6 +252,26 @@ extension EventModel {
                        fatalError("Failed to fetch categories: \(error)")
             }
     }
+  
+    func events_pdf( ) -> [Event]{
+        let day = dayModel.pdfDate
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appdelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
+        let fromPredicate = NSPredicate(format: "date_start >= %@", day.dayStart as CVarArg )
+        let toPredicate = NSPredicate(format: "date_start < %@",  day.dateTo30 as CVarArg)
+        let sort = NSSortDescriptor(key: "date_start", ascending: true)
+        let datePredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [fromPredicate, toPredicate])
+        fetchRequest.predicate = datePredicate
+        fetchRequest.sortDescriptors = [sort]
+        do {
+            let fetchResult = try context.fetch(fetchRequest) as! [Event]
+            return fetchResult
+        } catch {
+           fatalError("Failed to fetch categories: \(error)")
+        }
+        
+    }
     
 func divideAfterRooms( ) {
         self.cellsForOverlay = []
@@ -333,24 +353,23 @@ func divideAfterRooms( ) {
     private func gapHeight(i: Int, events: [Event],countCells: Int  ) -> CGFloat {
         var height: CGFloat = 0
         if i == 0 {
-            let start = events[i].date_start!.dayStart
-            let gapMin = CGFloat((events[i].date_start!.timeIntervalSince(start))*0.016666666666667)
-            height = gapMin*oneMinHeight 
-            
+            let start = events[i].date_start!.dayStart.zeroSeconds
+            let gap_in_min = CGFloat((events[i].date_start!.zeroSeconds.timeIntervalSince(start))*0.016666666666667)
+            height = gap_in_min*oneMinHeight + gap_in_min/60
         }else if i == countCells - 1{ //last gap
             let fakeEventIdx = i-1
             let eventIdx = realEventIdx(fakeIdx: fakeEventIdx)
             let start =   events[eventIdx].date_end!
             let end =   events[eventIdx].date_start!.dayEnd
-            let gapMin = CGFloat(((end.timeIntervalSince(start))*0.016666666666667))
-            height = gapMin*oneMinHeight
+            let gap_in_min = CGFloat(((end.timeIntervalSince(start))*0.016666666666667))
+            height = gap_in_min*oneMinHeight + gap_in_min/60
         }else {
             let fakeEventIdx = i-1
             let eventIdx = realEventIdx(fakeIdx: fakeEventIdx)
             let start =  events[eventIdx].date_end!
             let end = events[eventIdx+1].date_start!
-            let gapMin = CGFloat(((end.timeIntervalSince(start))*0.016666666666667))
-            height = gapMin*oneMinHeight
+            let gap_in_min = CGFloat(((end.timeIntervalSince(start))*0.016666666666667))
+            height = gap_in_min*oneMinHeight + gap_in_min/60 + 1
         }
         
         return height

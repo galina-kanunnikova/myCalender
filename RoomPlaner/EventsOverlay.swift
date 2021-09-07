@@ -10,12 +10,10 @@ import SwiftUI
 import CoreData
 import Combine
 
-
-
 struct cellEvent: View {
     
     @Environment(\.managedObjectContext) var moc
-    @State private var paddingBottom: CGFloat = 0
+  //  @State private var paddingBottom: CGFloat = 0
     @State private var paddingTop: CGFloat = 0
     @State private var color: Color =  style.lightRed
     @ObservedObject var roomModel : RoomModel
@@ -39,6 +37,8 @@ struct cellEvent: View {
                    
                         Text(cell.event!.title!)
                        .font(.title)
+                       .lineLimit(3)
+                       .allowsTightening(true)
                         Spacer()
                     }else {
                         Text(cell.event!.title ?? "")
@@ -48,7 +48,8 @@ struct cellEvent: View {
             
             Text((from ?? "") + " - " + (till ??  ""))
         }.frame(width: roomColumnWidth(rooms: roomModel.rooms.count), height: cell.height)
-           .background(color)
+        .background(style.lightRed)
+        .border(Color.gray, width: 3)
         .foregroundColor(colorScheme == .dark ? .white : .black)
         .gesture(
             TapGesture()
@@ -75,11 +76,11 @@ struct eventsOverlay: View {
     
     var body: some View {
        
-       return  HStack(spacing: 2) {
+       return  HStack(spacing: 1) {
         ForEach(roomModel.rooms.indices, id: \.self) { idx in
             if eventModel.eventsAfterRooms.count != 0 {
                  let events = eventModel.eventsAfterRooms[idx]
-                 VStack() { // Column
+                VStack() { // Column
                      
                             if events.count > 0{
                                   ForEach(eventModel.cellsForOverlay[idx],id: \.self) {cell in
@@ -90,7 +91,6 @@ struct eventsOverlay: View {
                                        
                                         Text("").frame(width: roomColumnWidth(rooms: roomModel.rooms.count), height: cell.height)
                                             .font(.title)
-                                       
                                         }
                                 }
                             

@@ -16,14 +16,15 @@ class PassYear: ObservableObject {
 struct yearPicker: View {
     @StateObject var passYear = PassYear()
     @EnvironmentObject var passyear :  PassYear
-    @ObservedObject var dayModel : DayModel
+    @ObservedObject var eventModel : EventModel
+    var toPDF : Bool
     var body: some View {
         ScrollView(.horizontal,showsIndicators: false) {
                 HStack(spacing: 20){
                     if !passYear.passed {
-                        year_view(passyear: passYear)
+                        year_view(passyear: passYear, toPDF: toPDF)
                     }else {
-                        months_view(passyear: passYear, dayModel: dayModel)
+                        months_view(passyear: passYear, eventModel: eventModel, toPDF: toPDF)
                     }
                 }
         }
@@ -34,6 +35,7 @@ struct yearPicker: View {
 struct year_view: View {
     @Environment(\.colorScheme) var colorScheme
     @StateObject var passyear: PassYear
+    var toPDF : Bool
     var body: some View {
         
       VStack(spacing: 20) {
@@ -78,7 +80,9 @@ struct months_view: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.presentationMode) var presentationMode
     @StateObject var passyear: PassYear
-    @ObservedObject var dayModel : DayModel
+    @ObservedObject var eventModel : EventModel
+    var toPDF : Bool
+    @State var show_pdf_preview : Bool = false
     var body: some View {
         
       VStack(spacing: 50){
@@ -94,7 +98,7 @@ struct months_view: View {
                   .foregroundColor(.black)
                   .frame(width: 50, height: 50)
             Spacer()
-            Text("Wähle einen Monat ")
+            Text("Wähle einen Monat aus")
              .font(Font.headline.weight(.light))
              .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
@@ -108,11 +112,16 @@ struct months_view: View {
         
                 Button(action: {
                     let month = row + column*4 + 1
-                    dayModel.startDay = Date.from(year: passyear.year, month: month, day: 1)
-                    dayModel.selectedDay = dayModel.startDay
-                    self.presentationMode.wrappedValue.dismiss()
-        
-           //  eventModel.updateEvents()
+                    if !toPDF {
+                       eventModel.dayModel.startDay = Date.from(year: passyear.year, month: month, day: 1)
+                       eventModel.dayModel.selectedDay = eventModel.dayModel.startDay
+                       self.presentationMode.wrappedValue.dismiss()
+                        
+                        // TO DO update events
+                   }else {
+                       eventModel.dayModel.pdfDate =  Date.from(year: passyear.year, month: month, day: 1)
+                    show_pdf_preview = true
+                   }
                 }){
                   Text(style.months[row + column*4])
                     .foregroundColor(.white)
@@ -122,6 +131,9 @@ struct months_view: View {
                  .background(Color.blue)
                  .cornerRadius(23)
                  .font(.system(size: 15))
+                 .sheet(isPresented: $show_pdf_preview) {
+                   pdf_view(eventModel: eventModel)
+                 }
              }
            }
           }

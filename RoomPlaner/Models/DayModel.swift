@@ -14,6 +14,7 @@ import UIKit
 class DayModel: ObservableObject {
     @Published var selectedDay : Date = Date()
     @Published var startDay : Date = Date()
+    @Published var pdfDate : Date = Date()
     var cancellationToken: AnyCancellable?
     
     init() {

@@ -20,6 +20,8 @@
 		FE51B80725A661CA00BE6FB7 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51B80625A661CA00BE6FB7 /* Helper.swift */; };
 		FE51B80A25A75E1100BE6FB7 /* EventsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51B80925A75E1100BE6FB7 /* EventsOverlay.swift */; };
 		FE51B80D25A75E8300BE6FB7 /* Calender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE51B80C25A75E8300BE6FB7 /* Calender.swift */; };
+		FE55723F26E638CF008167F7 /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE55723E26E638CF008167F7 /* PDFView.swift */; };
+		FE55724226E63AC1008167F7 /* PDF_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE55724126E63AC1008167F7 /* PDF_View.swift */; };
 		FE5D23FE26E5397B00A47557 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5D23FD26E5397B00A47557 /* CustomAlert.swift */; };
 		FE5D240126E54E9500A47557 /* GestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5D240026E54E9500A47557 /* GestureRecognizer.swift */; };
 		FE6A583D26DD69D9001DA03E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6A583C26DD69D9001DA03E /* WelcomeView.swift */; };
@@ -35,6 +37,7 @@
 		FE79711325825914001289A5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE79711225825914001289A5 /* Preview Assets.xcassets */; };
 		FE79711625825914001289A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE79711425825914001289A5 /* LaunchScreen.storyboard */; };
 		FE79711F25829541001289A5 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE79711E25829541001289A5 /* Style.swift */; };
+		FE7FE40A26E692CF00139F91 /* PDFCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7FE40926E692CF00139F91 /* PDFCreator.swift */; };
 		FE95CFBF25C9A9370049D8FC /* LogInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE95CFBE25C9A9360049D8FC /* LogInScreen.swift */; };
 		FE95CFC225D40EEF0049D8FC /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE95CFC125D40EEF0049D8FC /* UserModel.swift */; };
 		FED6110D26E2994600DCBD70 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED6110C26E2994600DCBD70 /* Buttons.swift */; };
@@ -63,6 +66,8 @@
 		FE51B80625A661CA00BE6FB7 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		FE51B80925A75E1100BE6FB7 /* EventsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsOverlay.swift; sourceTree = "<group>"; };
 		FE51B80C25A75E8300BE6FB7 /* Calender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calender.swift; sourceTree = "<group>"; };
+		FE55723E26E638CF008167F7 /* PDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFView.swift; sourceTree = "<group>"; };
+		FE55724126E63AC1008167F7 /* PDF_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDF_View.swift; sourceTree = "<group>"; };
 		FE5D23FD26E5397B00A47557 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		FE5D240026E54E9500A47557 /* GestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureRecognizer.swift; sourceTree = "<group>"; };
 		FE6A583C26DD69D9001DA03E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -80,6 +85,7 @@
 		FE79711525825914001289A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE79711725825914001289A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE79711E25829541001289A5 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		FE7FE40926E692CF00139F91 /* PDFCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFCreator.swift; sourceTree = "<group>"; };
 		FE95CFBE25C9A9360049D8FC /* LogInScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInScreen.swift; sourceTree = "<group>"; };
 		FE95CFC125D40EEF0049D8FC /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		FED6110C26E2994600DCBD70 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
@@ -124,6 +130,16 @@
 				FE1DA1E026E3AA8600751318 /* DatePicker_year.swift */,
 			);
 			path = DatePickers;
+			sourceTree = "<group>";
+		};
+		FE55723926E637BB008167F7 /* PDFCreator */ = {
+			isa = PBXGroup;
+			children = (
+				FE55723E26E638CF008167F7 /* PDFView.swift */,
+				FE55724126E63AC1008167F7 /* PDF_View.swift */,
+				FE7FE40926E692CF00139F91 /* PDFCreator.swift */,
+			);
+			path = PDFCreator;
 			sourceTree = "<group>";
 		};
 		FE5D23FF26E54E7B00A47557 /* Helper */ = {
@@ -177,6 +193,7 @@
 		FE79710525825911001289A5 /* RoomPlaner */ = {
 			isa = PBXGroup;
 			children = (
+				FE55723926E637BB008167F7 /* PDFCreator */,
 				FE5D240526E5510300A47557 /* CalenderUI */,
 				FE5D240226E550D400A47557 /* AppDelegates */,
 				FE5D23FF26E54E7B00A47557 /* Helper */,
@@ -321,6 +338,7 @@
 				FEDCB40325ADC9340034AA4E /* DayModel.swift in Sources */,
 				FE79710E25825911001289A5 /* RoomPlaner.xcdatamodeld in Sources */,
 				FEDCB3FE25ACB94F0034AA4E /* EventModel.swift in Sources */,
+				FE55723F26E638CF008167F7 /* PDFView.swift in Sources */,
 				FE1DA1D826E39C9700751318 /* PopUp_Helper_Functions.swift in Sources */,
 				FE51B80125A5FEFA00BE6FB7 /* CalenderCell.swift in Sources */,
 				FEDCB40A25AE30F40034AA4E /* DetailedView.swift in Sources */,
@@ -331,7 +349,9 @@
 				FE51B7ED25A4BD8B00BE6FB7 /* KeyboardGuardian.swift in Sources */,
 				FEDCB3EF25AC9E780034AA4E /* RoomModel.swift in Sources */,
 				FE79711F25829541001289A5 /* Style.swift in Sources */,
+				FE7FE40A26E692CF00139F91 /* PDFCreator.swift in Sources */,
 				FE95CFBF25C9A9370049D8FC /* LogInScreen.swift in Sources */,
+				FE55724226E63AC1008167F7 /* PDF_View.swift in Sources */,
 				FED6110D26E2994600DCBD70 /* Buttons.swift in Sources */,
 				FED6111026E2A01400DCBD70 /* EditView.swift in Sources */,
 				FEDCB3F625ACA0460034AA4E /* RoomDBAPI.swift in Sources */,

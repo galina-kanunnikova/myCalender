@@ -79,8 +79,9 @@ struct Header: View {
                 Text(room.name!)
                     .foregroundColor(colorScheme == .dark ? .white : .black)
                     .font(.title)
-                    .frame(width: roomColumnWidth(rooms: eventModel.roomModel.rooms.count)-1 , height: style.headerHeight)
+                    .frame(width: roomColumnWidth(rooms: eventModel.roomModel.rooms.count) - 1, height: style.headerHeight)
                     .background(Color(UIColor.systemBackground))
+                    .padding(.trailing,-1)
                     .border(Color.gray, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                     .gesture(
                         TapGesture()

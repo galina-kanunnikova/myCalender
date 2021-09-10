@@ -36,13 +36,11 @@ struct cellEvent: View {
                     Spacer()
                    
                         Text(cell.event!.title!)
-                       .font(.title)
                        .lineLimit(3)
                        .allowsTightening(true)
                         Spacer()
                     }else {
-                        Text(cell.event!.title ?? "")
-                           .font(.title)
+                        Text(cell.event!.title ?? "").padding([.leading, .trailing], 2)
                     }
            }
             
@@ -51,6 +49,7 @@ struct cellEvent: View {
         .background(style.lightRed)
         .border(Color.gray, width: 3)
         .foregroundColor(colorScheme == .dark ? .white : .black)
+        .font(.system(size: 13))
         .gesture(
             TapGesture()
                 .onEnded { _ in
@@ -90,7 +89,6 @@ struct eventsOverlay: View {
                                     }else{ //gap
                                        
                                         Text("").frame(width: roomColumnWidth(rooms: roomModel.rooms.count), height: cell.height)
-                                            .font(.title)
                                         }
                                 }
                             
@@ -99,7 +97,7 @@ struct eventsOverlay: View {
                                 calenderCell(roomModel: roomModel).frame(height: 0)
                              }
                    
-                    }.padding(.bottom, paddingBottom)
+                    }.padding(.bottom, paddingBottom) .font(.system(size: 13))
             }
              }
              

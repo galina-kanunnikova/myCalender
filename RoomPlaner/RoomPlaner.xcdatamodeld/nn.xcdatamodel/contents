@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19197" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="APIUrl" representedClassName="APIUrl" syncable="YES" codeGenerationType="class">
         <attribute name="baseUrl" optional="YES" attributeType="String"/>
     </entity>
@@ -7,6 +7,7 @@
         <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="date_end" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="date_start" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="is_admin" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="rooms" attributeType="Transformable" customClassName="[Int]"/>
@@ -21,7 +22,7 @@
     </entity>
     <elements>
         <element name="APIUrl" positionX="-63" positionY="-18" width="128" height="58"/>
-        <element name="Event" positionX="-54" positionY="9" width="128" height="179"/>
+        <element name="Event" positionX="-54" positionY="9" width="128" height="194"/>
         <element name="Room" positionX="-54" positionY="0" width="128" height="59"/>
     </elements>
 </model>

@@ -44,7 +44,7 @@ struct detailedView: View {
                 .background(Color.green)
                 .cornerRadius(10)
                 .sheet(isPresented: $showPopUp){
-                    popUp(selectedRooms: selectedRooms(r:event!.rooms!), title: event!.title!, description: "", eventModel: eventModel ,roomModel: eventModel.roomModel, toUpdateStartTime:  event!.date_start ,bis: event!.date_end!, toEditEventId: Int(event!.id))
+                    popUp(selectedRooms: selectedRooms(r:event!.rooms!), title: event!.title!, description: event!.desc ?? "", eventModel: eventModel ,roomModel: eventModel.roomModel, toUpdateStartTime:  event!.date_start ,bis: event!.date_end!, toEditEventId: Int(event!.id))
                         }
                 
             }
@@ -151,7 +151,7 @@ struct dV : View{
         HStack{
             Text("Bis") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
-            Text((event.date_end!.toString)) .foregroundColor(colorScheme == .dark ? .white : .black)
+            Text(event.date_end!.toString) .foregroundColor(colorScheme == .dark ? .white : .black)
                // .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
@@ -160,11 +160,11 @@ struct dV : View{
         }.frame( height: 40)
         Spacer()
         HStack{
-            Text("Beschreibung") .foregroundColor(colorScheme == .dark ? .white : .black)
+            Text("Notiz:") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
-            Text("\(event.description)") .foregroundColor(colorScheme == .dark ? .white : .black)
+            Text(event.desc ?? "").foregroundColor(colorScheme == .dark ? .white : .black)
               //  .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .frame(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(height:150, alignment:.center)
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
            
         }.frame( height: 40)

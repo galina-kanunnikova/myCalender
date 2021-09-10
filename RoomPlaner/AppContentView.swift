@@ -14,7 +14,6 @@ struct AppContentView: View {
     @ObservedObject var eventModel = EventModel()
     var body: some View {
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-           // /*    if launchedBefore  {
         return Group {
             if signInSuccess || launchedBefore {
                 DayView(eventModel: eventModel)

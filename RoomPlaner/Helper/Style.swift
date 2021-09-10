@@ -17,9 +17,10 @@ public struct Style {
    // public let timeColumnWidth : CGFloat = UIScreen.screenWidth/15
     public let timeColumnWidth : CGFloat = 50
     public let screenWidth : CGFloat = UIScreen.main.bounds.width
+    public let screenHeight : CGFloat = UIScreen.main.bounds.height
     public var timeSystem: TimeHourSystem = .twentyFour
     public let lightRed: Color = Color(red: 232 / 255, green: 93 / 255, blue: 97 / 255)
-    public let months = ["Janur","Februar","März","April","Mai","Juni","Juli","August","Septemper","Oktober","November","Dezember"]
+    public let months = ["Januar","Feb","März","April","Mai","Juni","Juli","August","Sep","Okt","Nov","Dez"]
     public init() {}
 }
 

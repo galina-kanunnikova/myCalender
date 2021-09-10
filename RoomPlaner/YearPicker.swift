@@ -35,12 +35,13 @@ struct yearPicker: View {
 struct year_view: View {
     @Environment(\.colorScheme) var colorScheme
     @StateObject var passyear: PassYear
+    @State var width : CGFloat = 0
     var toPDF : Bool
     var body: some View {
         
       VStack(spacing: 20) {
       
-        Text("Wähle ein Jahr ")
+        Text("Wähle ein Jahr aus ")
              .font(Font.headline.weight(.light))
              .foregroundColor(colorScheme == .dark ? .white : .black)
       
@@ -63,7 +64,13 @@ struct year_view: View {
                  .font(.system(size: 15))
        }
      }
-      .frame(width: style.screenWidth,height: style.screenWidth)
+      .frame(width: width,height: style.screenWidth)
+      .onAppear{
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+            width = style.screenWidth/1.2
+        }else {width = style.screenWidth}
+       
+      }
     }
     
     func calculateYearsRange() -> [Int]{
@@ -81,6 +88,7 @@ struct months_view: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var passyear: PassYear
     @ObservedObject var eventModel : EventModel
+    @State var width : CGFloat = 0
     var toPDF : Bool
     @State var show_pdf_preview : Bool = false
     var body: some View {
@@ -101,6 +109,7 @@ struct months_view: View {
             Text("Wähle einen Monat aus")
              .font(Font.headline.weight(.light))
              .foregroundColor(colorScheme == .dark ? .white : .black)
+            Spacer()
             Spacer()
             
         }
@@ -138,7 +147,13 @@ struct months_view: View {
            }
           }
         }.padding(.bottom, 50)
-    }.frame(width: style.screenWidth,height: style.screenWidth)
+      }.frame(width: width,height: style.screenWidth)
+      .onAppear{
+        if UIDevice.current.userInterfaceIdiom == .pad  {
+            width = style.screenWidth/1.2
+        }else {width = style.screenWidth}
+       
+      }
   }
    
 }

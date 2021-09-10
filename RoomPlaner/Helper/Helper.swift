@@ -146,6 +146,13 @@ extension Date {
         let someDateTime = formatter.string(from: self)
         return someDateTime
     }
+    var mmYYYY: String {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM yyyy"
+        let someDateTime = formatter.string(from: self)
+        return someDateTime
+    }
     
 
     var nextDay: Date {

@@ -9,47 +9,32 @@ import Foundation
 import PDFKit
 
 class PDFCreator{
-    
+    let defaultOffset: CGFloat = 20
+    let defaultOffset_y: CGFloat = 25//40
+    var pageWidth = UIScreen.screenHeight
+    var pageHeight = UIScreen.screenWidth
+    var tabWidth: CGFloat = 0
+    var horizontal_line_width: CGFloat = 0
+    let cellHeight: CGFloat = CGFloat(150)
     let eventModel: EventModel
     init(eventModel: EventModel) {
-      self.eventModel = eventModel
+        self.eventModel = eventModel
+        if eventModel.roomModel.rooms.count >= 5 { //Landscape format
+            pageWidth = UIScreen.screenHeight
+            pageHeight = UIScreen.screenWidth
+        }else {
+            pageWidth = UIScreen.screenWidth
+            pageHeight = UIScreen.screenHeight
+        }
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            pageWidth = pageWidth/1.2
+            pageHeight = pageHeight/0.8
+        }
+        tabWidth = CGFloat((pageWidth - defaultOffset*2 - 50) / CGFloat(eventModel.roomModel.rooms.count))
+        horizontal_line_width = CGFloat(eventModel.roomModel.rooms.count)*tabWidth + 50 + defaultOffset
     }
-    
-    let defaultOffset: CGFloat = 20
-    func addTitle(pageRect: CGRect) -> CGFloat {
-     
-      let titleFont = UIFont.systemFont(ofSize: 18.0, weight: .bold)
-      let titleAttributes: [NSAttributedString.Key: Any] =
-        [NSAttributedString.Key.font: titleFont]
-      let attributedTitle = NSAttributedString(
-        string: eventModel.dayModel.pdfDate.ddMMyy,
-        attributes: titleAttributes
-      )
-      let titleStringSize = attributedTitle.size()
-      // 5
-      let titleStringRect = CGRect(
-        x: (pageRect.width - titleStringSize.width) / 2.0,
-        y: 36,
-        width: titleStringSize.width,
-        height: titleStringSize.height
-      )
-      // 6
-      attributedTitle.draw(in: titleStringRect)
-      // 7
-      return titleStringRect.origin.y + titleStringRect.size.height
-    }
-    
-    
+  
 func createFlyer() -> Data {
-/*  let pdfMetaData = [
-    kCGPDFContextCreator: "Flyer Builder",
-    kCGPDFContextAuthor: "raywenderlich.com"
-  ]*/
-  //  let format = UIGraphicsPDFRendererFormat()
-  //format.documentInfo = pdfMetaData as [String: Any]
-    
-    let pageWidth = UIScreen.screenWidth
-    let pageHeight = UIScreen.screenHeight - 100
     let pageRect = CGRect(x: 0, y: 0, width: pageWidth, height: pageHeight)
     let renderer = UIGraphicsPDFRenderer(bounds: pageRect, format: UIGraphicsPDFRendererFormat())
     let tableDataHeaderTitles =  header(eventModel: eventModel)
@@ -57,11 +42,10 @@ func createFlyer() -> Data {
     let numberOfElementsPerPage = calculateNumberOfElementsPerPage(with: pageRect)
     let tableDataChunked: [[[Any?]]] = tableDataItems.chunkedElements(into: numberOfElementsPerPage)
     let data = renderer.pdfData { context in
-        context.beginPage()
-        let titleBottom = addTitle(pageRect: pageRect)
-        for tableDataChunk in tableDataChunked {
+      for tableDataChunk in tableDataChunked {
             context.beginPage()
             let cgContext = context.cgContext
+            drawDateTitle(drawContext: cgContext, pageRect: pageRect)
             drawTableHeaderRect(drawContext: cgContext, pageRect: pageRect)
             drawTableHeaderTitles(titles: tableDataHeaderTitles, drawContext: cgContext, pageRect: pageRect)
             drawTableContentInnerBordersAndText(drawContext: cgContext, pageRect: pageRect, tableDataItems: tableDataChunk)
@@ -71,8 +55,7 @@ func createFlyer() -> Data {
 }
 
     func calculateNumberOfElementsPerPage(with pageRect: CGRect) -> Int {
-            let rowHeight = (defaultOffset * 3)
-            let number = Int((pageRect.height - rowHeight) / rowHeight)
+        let number = Int((pageRect.height - defaultOffset_y*4) / cellHeight)
             return number
         }
 
@@ -175,29 +158,56 @@ extension PDFCreator {
         
         return sorted_matrix
     }
+    
+    func drawDateTitle(drawContext: CGContext, pageRect: CGRect) {
+        // prepare title attributes
+        let textFont = UIFont.systemFont(ofSize: 16.0, weight: .medium)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        paragraphStyle.lineBreakMode = .byWordWrapping
+        let titleAttributes = [
+            NSAttributedString.Key.paragraphStyle: paragraphStyle,
+            NSAttributedString.Key.font: textFont
+        ]
+
+        // draw titles
+        let attributedTitle = NSAttributedString(string: eventModel.dayModel.pdfDate.mmYYYY.capitalized, attributes: titleAttributes)
+        let textRect = CGRect(x:  defaultOffset,
+                              y: defaultOffset ,
+                              width: 100,
+                              height: defaultOffset * 2)
+        attributedTitle.draw(in: textRect)
+    }
    
     func drawTableHeaderRect(drawContext: CGContext, pageRect: CGRect) {
         drawContext.saveGState()
         drawContext.setLineWidth(3.0)
-
+        
+        let tabX =  50
         // Draw header's 1 top horizontal line
-        drawContext.move(to: CGPoint(x: defaultOffset, y: defaultOffset))
-        drawContext.addLine(to: CGPoint(x: pageRect.width - defaultOffset, y: defaultOffset))
+        drawContext.move(to: CGPoint(x: defaultOffset, y: defaultOffset_y*2))
+        drawContext.addLine(to: CGPoint(x: horizontal_line_width, y: defaultOffset_y*2))
         drawContext.strokePath()
 
         // Draw header's 1 bottom horizontal line
-        drawContext.move(to: CGPoint(x: defaultOffset, y: defaultOffset * 3))
-        drawContext.addLine(to: CGPoint(x: pageRect.width - defaultOffset, y: defaultOffset * 3))
+        drawContext.move(to: CGPoint(x: defaultOffset, y: defaultOffset_y * 4))
+        drawContext.addLine(to: CGPoint(x: horizontal_line_width, y: defaultOffset_y * 4))
         drawContext.strokePath()
 
-        // Draw header's 3 vertical lines
+        // Draw header's  vertical lines
         drawContext.setLineWidth(2.0)
         drawContext.saveGState()
-        let tabWidth = (pageRect.width - defaultOffset * 2) / CGFloat(eventModel.roomModel.rooms.count + 1)
-        for verticalLineIndex in 0..<eventModel.roomModel.rooms.count + 2 {
+       
+        drawContext.move(to: CGPoint(x:  defaultOffset, y: defaultOffset_y*2))
+        drawContext.addLine(to: CGPoint(x: defaultOffset, y: defaultOffset_y * 4))
+        drawContext.strokePath()
+        drawContext.move(to: CGPoint(x: CGFloat(tabX) + defaultOffset, y: defaultOffset_y*2))
+        drawContext.addLine(to: CGPoint(x: CGFloat(tabX) + defaultOffset, y: defaultOffset_y * 4))
+        drawContext.strokePath()
+        for verticalLineIndex in 1..<eventModel.roomModel.rooms.count*2 - 1 {
             let tabX = CGFloat(verticalLineIndex) * tabWidth
-            drawContext.move(to: CGPoint(x: tabX + defaultOffset, y: defaultOffset))
-            drawContext.addLine(to: CGPoint(x: tabX + defaultOffset, y: defaultOffset * 3))
+            drawContext.move(to: CGPoint(x: tabX + defaultOffset + 50, y: defaultOffset_y*2))
+            drawContext.addLine(to: CGPoint(x: tabX + defaultOffset + 50, y: defaultOffset_y * 4))
             drawContext.strokePath()
         }
 
@@ -217,11 +227,28 @@ extension PDFCreator {
 
         // draw titles
         let tabWidth = (pageRect.width - defaultOffset * 2) / CGFloat(eventModel.roomModel.rooms .count + 1)
-        for titleIndex in 0..<titles.count {
+        
+        let tabX =  CGFloat(50)
+        var attributedTitle = NSAttributedString(string: titles[0].capitalized, attributes: titleAttributes)
+        var textRect = CGRect(x:defaultOffset ,
+                              y: defaultOffset_y*2.5,
+                              width: tabX,
+                              height: defaultOffset * 2)
+        attributedTitle.draw(in: textRect)
+
+        attributedTitle = NSAttributedString(string: titles[1].capitalized, attributes: titleAttributes)
+        textRect = CGRect(x: defaultOffset + 50,
+                              y: defaultOffset_y*2.5,
+                              width: tabWidth  ,
+                              height: defaultOffset * 2)
+        attributedTitle.draw(in: textRect)
+       
+        
+        for titleIndex in 2..<titles.count {
             let attributedTitle = NSAttributedString(string: titles[titleIndex].capitalized, attributes: titleAttributes)
             let tabX = CGFloat(titleIndex) * tabWidth
-            let textRect = CGRect(x: tabX + defaultOffset,
-                                  y: defaultOffset * CGFloat(eventModel.roomModel.rooms.count + 1) / 2,
+            let textRect = CGRect(x: defaultOffset + tabX  ,
+                                  y: defaultOffset_y*2.5,
                                   width: tabWidth,
                                   height: defaultOffset * 2)
             attributedTitle.draw(in: textRect)
@@ -232,12 +259,13 @@ extension PDFCreator {
         drawContext.setLineWidth(1.0)
         drawContext.saveGState()
 
-        let defaultStartY = defaultOffset * CGFloat(eventModel.roomModel.rooms.count)
+        let defaultStartY = defaultOffset_y * 4
         
         for day in 0..<tableDataItems.count {
-            let yPosition = CGFloat(day) * defaultStartY + defaultStartY
+            let yPosition = CGFloat(day) * cellHeight + defaultStartY
             // Draw content's elements texts
-            let textFont = UIFont.systemFont(ofSize: 13.0, weight: .regular)
+            let textFont = UIFont.systemFont(ofSize: 11.0, weight: .regular)
+            let textFont_name = UIFont.systemFont(ofSize: 13.0, weight: .medium)
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
             paragraphStyle.lineBreakMode = .byWordWrapping
@@ -245,41 +273,94 @@ extension PDFCreator {
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
                 NSAttributedString.Key.font: textFont
             ]
-            let tabWidth = (pageRect.width - defaultOffset * 2) / CGFloat(eventModel.roomModel.rooms.count + 1)
+            let textAttributes_name = [
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font: textFont_name
+            ]
+          
             var attributedText = NSAttributedString(string: "", attributes: textAttributes)
             for objIndex in 0..<tableDataItems[day].count {
                 if objIndex == 0 { // Month Day
                     attributedText = NSAttributedString(string:  String(((tableDataItems[day][objIndex] as? Int) ?? 0)),
                                                         attributes: textAttributes)
+                    let textRect = CGRect(x: defaultOffset,
+                                          y: yPosition + 20 ,
+                                          width: 50,
+                                          height: cellHeight)
+                    attributedText.draw(in: textRect)
                 }else {
-                    let text = """
+                    let text_name = """
                         \((tableDataItems[day][objIndex] as? Event)?.title ?? "none")
-                        \((tableDataItems[day][objIndex] as? Event)?.date_start!.hhMM ?? "")  - \((tableDataItems[day][objIndex] as? Event)?.date_end!.hhMM ?? "")
-                        \((tableDataItems[day][objIndex] as? Event)?.description ?? "")
                         """
-                    attributedText = NSAttributedString(string: text, attributes: textAttributes)
-                   
+                    attributedText = NSAttributedString(string: text_name, attributes: textAttributes_name)
+                    var textRect = CGRect(x: CGFloat(objIndex - 1) * CGFloat(tabWidth) + defaultOffset  + 50,
+                                          y: yPosition ,
+                                          width: tabWidth,
+                                          height: 60)
+                    if objIndex == 1 {
+                        textRect = CGRect(x:  defaultOffset  + 50 ,
+                                              y: yPosition ,
+                                              width: CGFloat(tabWidth),
+                                              height: 60)
+                    }
+                    attributedText.draw(in: textRect)
+                    
+                    let text_time = """
+                        \((tableDataItems[day][objIndex] as? Event)?.date_start!.hhMM ?? "")  - \((tableDataItems[day][objIndex] as? Event)?.date_end!.hhMM ?? "")
+                        """
+                    attributedText = NSAttributedString(string: text_time, attributes: textAttributes)
+                     textRect = CGRect(x: CGFloat(objIndex - 1) * CGFloat(tabWidth) + defaultOffset  + 50,
+                                          y: yPosition + 45,
+                                          width: tabWidth,
+                                          height: 20)
+                    if objIndex == 1 {
+                        textRect = CGRect(x:  defaultOffset  + 50 ,
+                                              y: yPosition + 45 ,
+                                              width: CGFloat(tabWidth),
+                                              height: 20)
+                    }
+                    attributedText.draw(in: textRect)
+                    
+                    let text_desc = """
+                        Notiz : \((tableDataItems[day][objIndex] as? Event)?.desc ?? "")
+                        """
+                    attributedText = NSAttributedString(string: text_desc, attributes: textAttributes)
+                     textRect = CGRect(x: CGFloat(objIndex - 1) * CGFloat(tabWidth) + defaultOffset  + 50,
+                                          y: yPosition + 60,
+                                          width: tabWidth,
+                                          height: 80)
+                    if objIndex == 1 {
+                        textRect = CGRect(x:  defaultOffset  + 50 ,
+                                              y: yPosition + 60 ,
+                                              width: CGFloat(tabWidth),
+                                              height: 90)
+                    }
+                    attributedText.draw(in: textRect)
                 }
-                let textRect = CGRect(x: CGFloat(objIndex) * tabWidth + defaultOffset,
-                                      y: yPosition + defaultOffset  ,
-                                      width: tabWidth,
-                                      height: defaultOffset * 3)
-                attributedText.draw(in: textRect)
             }
-
-            // Draw content's 3 vertical lines
-            for verticalLineIndex in 0..<4 {
-                let tabX = CGFloat(verticalLineIndex) * tabWidth
-                drawContext.move(to: CGPoint(x: tabX + defaultOffset, y: yPosition))
-                drawContext.addLine(to: CGPoint(x: tabX + defaultOffset, y: yPosition + defaultStartY))
+            // Draw content's vertical lines
+            for verticalLineIndex in 0..<eventModel.roomModel.rooms.count*2 + 1 {
+                var tabX = CGFloat(verticalLineIndex - 1) * tabWidth
+                if verticalLineIndex == 0 {
+                    tabX = 0 - 50
+                }
+                if verticalLineIndex == 1 {
+                    tabX = 50 - 50
+                }
+                drawContext.move(to: CGPoint(x: tabX + defaultOffset + 50, y: yPosition))
+                drawContext.addLine(to: CGPoint(x: tabX + defaultOffset + 50, y: yPosition + cellHeight))
                 drawContext.strokePath()
             }
-
             // Draw content's element bottom horizontal line
-            drawContext.move(to: CGPoint(x: defaultOffset, y: yPosition + defaultStartY))
-            drawContext.addLine(to: CGPoint(x: pageRect.width - defaultOffset, y: yPosition + defaultStartY))
+            drawContext.move(to: CGPoint(x: defaultOffset, y: yPosition ))
+            drawContext.addLine(to: CGPoint(x: horizontal_line_width, y: yPosition ))
             drawContext.strokePath()
         }
+        let yPosition = CGFloat(tableDataItems.count) * cellHeight + defaultStartY
+        drawContext.move(to: CGPoint(x: defaultOffset, y: yPosition ))
+        drawContext.addLine(to: CGPoint(x: horizontal_line_width, y: yPosition ))
+        drawContext.strokePath()
+        
         drawContext.restoreGState()
     }
 }

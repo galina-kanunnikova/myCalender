@@ -68,7 +68,7 @@ extension popUp{
                               "title": title,
                               "date_start": fullDate(date: dpModel.dateVon.zeroSeconds, min:dpModel.startMinute).dateToString
                               ,"date_end":fullDate(date: dpModel.dateBis.zeroSeconds, min:dpModel.endMinute).dateToString]
-    eventModel.cancellationToken = try? APIdb.postEvent(event: js)
+     eventModel.cancellationToken = try? APIdb.postEvent(event: js)
          .mapError({ (error) -> Error in
              print(error)
              return error
@@ -126,6 +126,7 @@ extension popUp{
          newEvent.rooms = roomsIds
          newEvent.id = Int16(Int(UInt.random(in: 0 ... 1000)))
          newEvent.title = title
+         newEvent.desc = description
        //  newEvent.cito_user_id = Int64(Int(UInt.random(in: 0 ... 1000)))
          
          do {
@@ -209,8 +210,8 @@ extension popUp{
              event?.date_start = dpModel.dateVon
           //  event?.date_end = fullDate(date: dpModel.dateBis.zeroSeconds, min: dpModel.endMinute)
             event?.date_end = dpModel.dateBis
-           
             event?.rooms = roomsIds
+            event?.desc = description
             try context.save()
             eventModel.updateEvents()
             eventModel.showLogIn = false

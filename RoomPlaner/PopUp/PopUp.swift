@@ -91,12 +91,14 @@ struct popUp: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .foregroundColor(colorScheme == .dark ? .white : .black)
                
-                Text("Beschriebung:") .foregroundColor(colorScheme == .dark ? .white : .black)
+                Text("Notiz:") .foregroundColor(colorScheme == .dark ? .white : .black)
              
-                TextField("Text", text: $description)
+                TextEditor( text: $description)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .foregroundColor(colorScheme == .dark ? .white : .black)
-                    .frame(height: 50)
+                    .frame(height: 100)
+                    .lineLimit(5) //.textFieldStyle(MyTextFieldStyle())
+                    .border(Color.blue)
                 }
                 Spacer()
                 HStack{
@@ -116,9 +118,7 @@ struct popUp: View {
                                     .allowsTightening(true)
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.gray.opacity(0.2)))
                             }
-                            
                         }
-                        
                     }.font(.system(size: 23))
                   }.frame(height: 250)
                 }
@@ -174,3 +174,13 @@ struct popUp: View {
 
 }
 
+struct MyTextFieldStyle: TextFieldStyle {
+    func _body(configuration: TextField<Self._Label>) -> some View {
+        configuration
+        .padding(30)
+        .background(
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .stroke(Color.blue, lineWidth: 3)
+        ).padding()
+    }
+}

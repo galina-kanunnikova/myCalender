@@ -18,12 +18,20 @@ struct newEventBtn: View {
                         Text("reservieren")
                     }
         .sheet(isPresented: $showPopUp){
-            popUp(selectedRooms: [false,false,false], title: "", description: "", eventModel: eventModel,roomModel: eventModel.roomModel,toUpdateStartTime: nil ,bis:Date())
+            popUp(selectedRooms: selectedRooms(), title: "", description: "", eventModel: eventModel,roomModel: eventModel.roomModel,toUpdateStartTime: nil ,bis:Date())
                 }
         .foregroundColor(.white)
         .frame(width: style.screenWidth/4, height: 40)
         .background(Color.green)
         .cornerRadius(10)
+    }
+    
+    func selectedRooms() -> [Bool] {
+        var selectedRooms: [Bool] = []
+        for _ in eventModel.roomModel.rooms{
+            selectedRooms.append(false)
+        }
+        return selectedRooms
     }
 }
 
@@ -40,8 +48,8 @@ struct editObjectsButton: View {
             editView_view(eventModel: eventModel, new_objects: eventModel.roomModel.rooms)
                 }
         .foregroundColor(.white)
-        .frame(width: style.screenWidth/4, height: 40)
-       // .frame( height: 40)
+      //  .frame(width: style.screenWidth/4, height: 40)
+        .frame( height: 40)
         .background(Color.green)
         .cornerRadius(10)
     }
@@ -68,8 +76,8 @@ struct pdfButton: View {
             yearPicker(eventModel: eventModel, toPDF: true)
                 }
         .foregroundColor(.white)
-        .frame(width: 40, height: 40)
-       // .frame( height: 40)
+       // .frame(width: 40, height: 40)
+        .frame( height: 40)
         .background(Color.green)
         .cornerRadius(10)
     }

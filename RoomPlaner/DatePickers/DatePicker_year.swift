@@ -31,6 +31,7 @@ struct datePicker_year_from: View{
 struct datePicker_year_till: View{
     @ObservedObject  var eventModel : EventModel
     @ObservedObject var dpModel : DatePickerModel
+    @Environment(\.colorScheme) var colorScheme
     var to : Date
     var body: some View {
         DatePicker(
@@ -40,7 +41,7 @@ struct datePicker_year_till: View{
             displayedComponents: [.date,.hourAndMinute]
         ).onAppear{
             dpModel.dateBis = to
-        }
+        }.foregroundColor(colorScheme == .dark ? .white : .black)
     }
     
 }

@@ -16,7 +16,7 @@ struct editView_view: View {
     @State  var dissabled = true
     @State var new_objects: [Room]
     @State private var deleted_objects: [Int16] = []
-    
+    @ObservedObject var keyboardResponder = KeyboardResponder()
     var body: some View {
         
         VStack(spacing: 0) {
@@ -29,7 +29,9 @@ struct editView_view: View {
               TextField("Objekt Name", text: $title)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .fixedSize()
-                
+                    .foregroundColor(colorScheme == .dark ? .white : .black)
+                Spacer()
+           ScrollView {
                 ForEach(0..<new_objects.count,id: \.self) { i in
                  HStack {
                      Text(new_objects[i].name ?? "" )
@@ -54,8 +56,8 @@ struct editView_view: View {
                    }
                  
              // Spacer()
-             }
-                if eventModel.roomModel.rooms.count < 10 {
+             } }.padding([], 10).frame(height : style.screenHeight/2)
+                if new_objects.count < 10 {
                     Button("+") {
                         let new_obj = eventModel.roomModel.create_Room_core_data(title: title, id: new_objects.count)
                         new_objects.append(new_obj)
@@ -71,8 +73,7 @@ struct editView_view: View {
                 }
               
               Spacer()
-            }.padding(.leading, 100).padding(.trailing, 100)
-           
+            }
             Button("Speichern") {
                 var idx = -1
                 for idx in deleted_objects {
@@ -100,7 +101,7 @@ struct editView_view: View {
             .font(.system(size: 20))
             .frame(width:300, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             .onAppear{dissabled = true }
-        }
+        }.offset(y: keyboardResponder.currentHeight*0.5)
 
         
         

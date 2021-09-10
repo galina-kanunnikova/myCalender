@@ -17,7 +17,7 @@ struct datePickerTill: View {
     
     var body: some View {
         HStack{
-            Text("Bis") .foregroundColor(colorScheme == .dark ? .white : .black)
+            Text("till") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
             myDatePickerTill( dpModel: dpModel, eventModel: eventModel ,from:  dpModel.dateVon, to:dpModel.dateVon.dayEnd)
             

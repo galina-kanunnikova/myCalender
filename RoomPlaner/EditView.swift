@@ -22,7 +22,7 @@ struct editView_view: View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
               Spacer()
-              Text("Neues Objekt erstellen").font(.system(size: 20))
+              Text("add new object").font(.system(size: 20))
                 .foregroundColor(colorScheme == .dark ? .white : .black)
               Spacer()
           
@@ -74,7 +74,7 @@ struct editView_view: View {
               
               Spacer()
             }
-            Button("Speichern") {
+            Button("save") {
                 var idx = -1
                 for idx in deleted_objects {
                     eventModel.deleteEvents_for_room(index : Int(idx) )

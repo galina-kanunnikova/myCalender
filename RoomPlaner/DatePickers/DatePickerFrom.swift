@@ -17,7 +17,7 @@ struct datePickerFrom: View {
     var body: some View {
         
         HStack{
-            Text("Von").foregroundColor(colorScheme == .dark ? .white : .black)
+            Text(" from ").foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
                 myDatePickerFrom ( dpModel: dpModel, eventModel: eventModel ,from:  start, to: dpModel.dateVon.dateTo30)
         }

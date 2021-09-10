@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="RoomPlaner/en.lproj/InfoPlist.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.5.1" build-num="12E507"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve">
+        <source>Reservation Planer</source>
+        <target>Reservation Planer</target>
+        <note>Bundle display name</note>
+      </trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>RoomPlaner</source>
+        <target>RoomPlaner</target>
+        <note>Bundle name</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="RoomPlaner/en.lproj/Localizable.strings" source-language="en" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.5.1" build-num="12E507"/>
+    </header>
+    <body>
+      <trans-unit id=" " xml:space="preserve">
+        <source> </source>
+        <target> </target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id=" - " xml:space="preserve">
+        <source> - </source>
+        <target> - </target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id=" Ansicht bearbeiten " xml:space="preserve">
+        <source> Ansicht bearbeiten </source>
+        <target> Ansicht bearbeiten </target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id=" PDF " xml:space="preserve">
+        <source> PDF </source>
+        <target> PDF </target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@" xml:space="preserve">
+        <source>%@</source>
+        <target>%@</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Abbrechen" xml:space="preserve">
+        <source>Abbrechen</source>
+        <target>Abbrechen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Anmeldung" xml:space="preserve">
+        <source>Anmeldung</source>
+        <target>Anmeldung</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Änderungen speichern" xml:space="preserve">
+        <source>Änderungen speichern</source>
+        <target>Änderungen speichern</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Bearbeiten" xml:space="preserve">
+        <source>Bearbeiten</source>
+        <target>Bearbeiten</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Bis" xml:space="preserve">
+        <source>Bis</source>
+        <target>Bis</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Bitte den Name des Reservierenden eingeben" xml:space="preserve">
+        <source>Bitte den Name des Reservierenden eingeben</source>
+        <target>Bitte den Name des Reservierenden eingeben</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Bitte überprüfen Sie Ihre Eingaben" xml:space="preserve">
+        <source>Bitte überprüfen Sie Ihre Eingaben</source>
+        <target>Bitte überprüfen Sie Ihre Eingaben</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Bitte wählen Sie mindestens einen Raum aus" xml:space="preserve">
+        <source>Bitte wählen Sie mindestens einen Raum aus</source>
+        <target>Bitte wählen Sie mindestens einen Raum aus</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Die von Ihnen ausgewählten Räume sind im diesem Zeitfenster leider besetzt" xml:space="preserve">
+        <source>Die von Ihnen ausgewählten Räume sind im diesem Zeitfenster leider besetzt</source>
+        <target>Die von Ihnen ausgewählten Räume sind im diesem Zeitfenster leider besetzt</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Email" xml:space="preserve">
+        <source>Email</source>
+        <target>Email</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Ereignis" xml:space="preserve">
+        <source>Ereignis</source>
+        <target>Ereignis</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Fehler" xml:space="preserve">
+        <source>Fehler</source>
+        <target>Fehler</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Geben Sie die Namen für Objekte die reserviert werden (mindestens 1)" xml:space="preserve">
+        <source>Geben Sie die Namen für Objekte die reserviert werden (mindestens 1)</source>
+        <target>Geben Sie die Namen für Objekte die reserviert werden (mindestens 1)</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Herzlich Wilkommen zu deinem Reservation Kalender !" xml:space="preserve">
+        <source>Herzlich Wilkommen zu deinem Reservation Kalender !</source>
+        <target>Herzlich Wilkommen zu deinem Reservation Kalender !</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Ja" xml:space="preserve">
+        <source>Ja</source>
+        <target>Ja</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Kein Raum ausgewählt" xml:space="preserve">
+        <source>Kein Raum ausgewählt</source>
+        <target>Kein Raum ausgewählt</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Löschen" xml:space="preserve">
+        <source>Löschen</source>
+        <target>Löschen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Made with ❤" xml:space="preserve">
+        <source>Made with ❤</source>
+        <target>Made with ❤</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Menü" xml:space="preserve">
+        <source>Menü</source>
+        <target>Menü</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Name" xml:space="preserve">
+        <source>Name</source>
+        <target>Name</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Name leer" xml:space="preserve">
+        <source>Name leer</source>
+        <target>Name leer</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Nein" xml:space="preserve">
+        <source>Nein</source>
+        <target>Nein</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Neues Objekt erstellen" xml:space="preserve">
+        <source>Neues Objekt erstellen</source>
+        <target>Neues Objekt erstellen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Notiz:" xml:space="preserve">
+        <source>Notiz:</source>
+        <target>Notiz:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK" xml:space="preserve">
+        <source>OK</source>
+        <target>OK</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Objekt Name" xml:space="preserve">
+        <source>Objekt Name</source>
+        <target>Objekt Name</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Ok" xml:space="preserve">
+        <source>Ok</source>
+        <target>Ok</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Raum auswählen" xml:space="preserve">
+        <source>Raum auswählen</source>
+        <target>Raum auswählen</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Räume" xml:space="preserve">
+        <source>Räume</source>
+        <target>Räume</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Reserviert von:" xml:space="preserve">
+        <source>Reserviert von:</source>
+        <target>Reserviert von:</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Von" xml:space="preserve">
+        <source>Von</source>
+        <target>Von</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Wähle ein Jahr aus " xml:space="preserve">
+        <source>Wähle ein Jahr aus </source>
+        <target>Wähle ein Jahr aus </target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Wähle einen Monat aus" xml:space="preserve">
+        <source>Wähle einen Monat aus</source>
+        <target>Wähle einen Monat aus</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Wollen Sie den Termin wirklich löschen ?" xml:space="preserve">
+        <source>Wollen Sie den Termin wirklich löschen ?</source>
+        <target>Wollen Sie den Termin wirklich löschen ?</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="appointments for room" xml:space="preserve">
+        <source>appointments for room</source>
+        <target>appointments for room</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="authentication" xml:space="preserve">
+        <source>authentication</source>
+        <target>authentication</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="available Rooms" xml:space="preserve">
+        <source>available Rooms</source>
+        <target>available Rooms</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="base Url" xml:space="preserve">
+        <source>base Url</source>
+        <target>base Url</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="create appointment" xml:space="preserve">
+        <source>create appointment</source>
+        <target>create appointment</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="delete appointment" xml:space="preserve">
+        <source>delete appointment</source>
+        <target>delete appointment</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="details for room" xml:space="preserve">
+        <source>details for room</source>
+        <target>details for room</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="reservieren" xml:space="preserve">
+        <source>reservieren</source>
+        <target>reservieren</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="share_pdf" xml:space="preserve">
+        <source>share_pdf</source>
+        <target>share_pdf</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="update appointment" xml:space="preserve">
+        <source>update appointment</source>
+        <target>update appointment</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="url" xml:space="preserve">
+        <source>url</source>
+        <target>url</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

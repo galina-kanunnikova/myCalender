@@ -41,7 +41,7 @@ struct year_view: View {
         
       VStack(spacing: 20) {
       
-        Text("Wähle ein Jahr aus ")
+        Text("Select a year")
              .font(Font.headline.weight(.light))
              .foregroundColor(colorScheme == .dark ? .white : .black)
       
@@ -106,7 +106,7 @@ struct months_view: View {
                   .foregroundColor(.black)
                   .frame(width: 50, height: 50)
             Spacer()
-            Text("Wähle einen Monat aus")
+            Text("Select a month")
              .font(Font.headline.weight(.light))
              .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
@@ -125,8 +125,7 @@ struct months_view: View {
                        eventModel.dayModel.startDay = Date.from(year: passyear.year, month: month, day: 1)
                        eventModel.dayModel.selectedDay = eventModel.dayModel.startDay
                        self.presentationMode.wrappedValue.dismiss()
-                        
-                        // TO DO update events
+                        eventModel.updateEvents()
                    }else {
                        eventModel.dayModel.pdfDate =  Date.from(year: passyear.year, month: month, day: 1)
                     show_pdf_preview = true

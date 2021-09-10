@@ -217,7 +217,7 @@ struct toShowRooms: View {
     var body: some View {
        
     HStack{
-        Text("Räume") .foregroundColor(colorScheme == .dark ? .white : .black)
+        Text("Objects") .foregroundColor(colorScheme == .dark ? .white : .black)
         Spacer()
         VStack{
             ForEach(0..<roomModel.rooms.count,id: \.self) { i in

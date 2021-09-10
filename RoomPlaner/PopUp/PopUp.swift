@@ -32,13 +32,13 @@ struct popUp: View {
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Text("Abbrechen")
+                        Text("cancel")
                     })
                     .frame(alignment: .leading)
                     .foregroundColor(.red)
                     
                     Spacer()
-                    Text("Ereignis") .frame(alignment: .center).foregroundColor(colorScheme == .dark ? .white : .black)
+                    Text("Placement") .frame(alignment: .center).foregroundColor(colorScheme == .dark ? .white : .black)
                     Spacer()
                     
                     if eventModel.isAdmin == true {
@@ -59,7 +59,7 @@ struct popUp: View {
                         checkRools(idToEdit: nil)
                         
                     }, label: {
-                        Text("Reservieren")
+                        Text("reserve")
                     })
                    
                     .frame(alignment: .trailing)
@@ -72,7 +72,7 @@ struct popUp: View {
                     Button(action: {
                         checkRools(idToEdit: toEditEventId)
                     }, label: {
-                        Text("Änderungen speichern")
+                        Text("save changes")
                     })
                     .frame(alignment: .trailing)
                     .foregroundColor(.red)
@@ -86,12 +86,12 @@ struct popUp: View {
                 
                 Spacer()
                 VStack {
-                Text("Reserviert von:") .foregroundColor(colorScheme == .dark ? .white : .black)
+                Text("reserved by:") .foregroundColor(colorScheme == .dark ? .white : .black)
                 TextField("Name", text: $title)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .foregroundColor(colorScheme == .dark ? .white : .black)
                
-                Text("Notiz:") .foregroundColor(colorScheme == .dark ? .white : .black)
+                Text("note:") .foregroundColor(colorScheme == .dark ? .white : .black)
              
                 TextEditor( text: $description)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -102,7 +102,7 @@ struct popUp: View {
                 }
                 Spacer()
                 HStack{
-                    Text("Raum auswählen") .foregroundColor(colorScheme == .dark ? .white : .black)
+                    Text("select object") .foregroundColor(colorScheme == .dark ? .white : .black)
                     Spacer()
                     ScrollView {
                     VStack{

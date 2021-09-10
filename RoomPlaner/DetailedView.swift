@@ -25,7 +25,7 @@ struct detailedView: View {
                    // action = .delete
                    
                             }) {
-                                Text("Löschen")
+                                Text("Delete")
                 } .foregroundColor(.white)
                // .frame(width: 230, height: 40)
                 .frame(width: UIScreen.screenWidth/2.5, height: 40)
@@ -37,7 +37,7 @@ struct detailedView: View {
                      showPopUp.toggle()
                   
                             }) {
-                                Text("Bearbeiten")
+                                Text("Edit")
                 } .foregroundColor(.white)
                // .frame(width: 230, height: 40)
                 .frame(width: UIScreen.screenWidth/2.5, height: 40)
@@ -118,7 +118,7 @@ struct dV : View{
     }
         Group {
         HStack{
-            Text("Räume") .foregroundColor(colorScheme == .dark ? .white : .black)
+            Text("Objects") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
             VStack{
                 let sroomsID = event.rooms
@@ -139,7 +139,7 @@ struct dV : View{
         }
         Spacer()
         HStack{
-            Text("Von") .foregroundColor(colorScheme == .dark ? .white : .black)
+            Text(" from ") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
             Text(event.date_start!.toString) .foregroundColor(colorScheme == .dark ? .white : .black)
                 //.frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -149,7 +149,7 @@ struct dV : View{
         }.frame( height: 40)
         Spacer()
         HStack{
-            Text("Bis") .foregroundColor(colorScheme == .dark ? .white : .black)
+            Text("till") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
             Text(event.date_end!.toString) .foregroundColor(colorScheme == .dark ? .white : .black)
                // .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -160,7 +160,7 @@ struct dV : View{
         }.frame( height: 40)
         Spacer()
         HStack{
-            Text("Notiz:") .foregroundColor(colorScheme == .dark ? .white : .black)
+            Text("note:") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
             Text(event.desc ?? "").foregroundColor(colorScheme == .dark ? .white : .black)
               //  .frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)

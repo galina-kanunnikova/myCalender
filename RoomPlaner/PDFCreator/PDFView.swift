@@ -16,30 +16,29 @@ struct pdf_view: View {
     @ObservedObject var eventModel: EventModel
     @Environment(\.colorScheme) var colorScheme
     @State  var title: String = ""
-  //  let  documentData: Data
 
        var body: some View {
-        /*   VStack(alignment: .leading) {
-               Text("PSPDFKit SwiftUI")
-                   .font(.largeTitle)
-               HStack(alignment: .top) {
-                   Text("Made with ❤ at WWDC19")
+           VStack(alignment: .leading) {
+            Button(action: {
+                           self.showShareSheet = true
+            }) { Text(LocalizedStringKey("share_pdf"))
+              }
+            .frame(alignment: .leading)
+            .foregroundColor(.white)
+            .background(Color.green)
+            .cornerRadius(7)
+            .padding([.top,.leading],5)
+            PDFKitRepresentedView(PDFCreator(eventModel: eventModel).createFlyer())
                        .font(.title)
-                Button(action: {
-                               self.showShareSheet = true
-                           }) {
-                               Text("Share Me").bold()
-                           }
-                }
              }
              //  PSPDFKitView(url: documentURL, configuration: configuration)
            .sheet(isPresented: $showShareSheet) {
-            ShareSheet(activityItems: ["Hello World"])
-           }*/
+            ShareSheet(activityItems: [PDFCreator(eventModel: eventModel).createFlyer()])
+           }
         
-        PDFKitRepresentedView(PDFCreator(eventModel: eventModel).createFlyer())
-           
        }
+           
+       
 }
 
 struct PDFKitRepresentedView: UIViewRepresentable {

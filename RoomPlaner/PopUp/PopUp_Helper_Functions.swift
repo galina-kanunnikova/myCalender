@@ -49,12 +49,12 @@ extension popUp{
      func alert() -> Alert{
         switch activeAlert {
             case .first:
-               return Alert(title: Text("Name leer"), message: Text("Bitte den Name des Reservierenden eingeben"), dismissButton: .default(Text("OK")))
+               return Alert(title: Text("name is empty"), message: Text("please fill a name"), dismissButton: .default(Text("OK")))
             case .second:
-              return Alert(title: Text("Kein Raum ausgewählt"), message: Text("Bitte wählen Sie mindestens einen Raum aus"), dismissButton: .default(Text("OK")))
+              return Alert(title: Text("Kein Raum ausgewählt"), message: Text("please select at least one object"), dismissButton: .default(Text("OK")))
                     
              case .third:
-                return Alert(title: Text("Bitte überprüfen Sie Ihre Eingaben"), message: Text("Die von Ihnen ausgewählten Räume sind im diesem Zeitfenster leider besetzt"), dismissButton: .default(Text("OK")))
+                return Alert(title: Text("please check your input"), message: Text("unfortunately selected objects are not available at this time"), dismissButton: .default(Text("OK")))
         }
     }
     

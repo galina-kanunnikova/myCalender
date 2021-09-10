@@ -72,7 +72,7 @@ extension Array {
 extension PDFCreator {
     func header(eventModel: EventModel) -> [String]{
         var names : [String] = []
-        names.append("Tag")
+        names.append("day")
         for room in eventModel.roomModel.rooms{
             names.append(room.name!)
         }

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="RoomPlaner/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="en-GB">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.5.1" build-num="12E507"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName" xml:space="preserve">
+        <source>Reservation Planer</source>
+        <note>Bundle display name</note>
+      </trans-unit>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>RoomPlaner</source>
+        <note>Bundle name</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="RoomPlaner/en.lproj/Localizable.strings" datatype="plaintext" source-language="en" target-language="en-GB">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="12.5.1" build-num="12E507"/>
+    </header>
+    <body>
+      <trans-unit id=" " xml:space="preserve">
+        <source> </source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id=" - " xml:space="preserve">
+        <source> - </source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id=" Ansicht bearbeiten " xml:space="preserve">
+        <source> Ansicht bearbeiten </source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id=" PDF " xml:space="preserve">
+        <source> PDF </source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@" xml:space="preserve">
+        <source>%@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Abbrechen" xml:space="preserve">
+        <source>Abbrechen</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Anmeldung" xml:space="preserve">
+        <source>Anmeldung</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Änderungen speichern" xml:space="preserve">
+        <source>Änderungen speichern</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Bearbeiten" xml:space="preserve">
+        <source>Bearbeiten</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Bis" xml:space="preserve">
+        <source>Bis</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Bitte den Name des Reservierenden eingeben" xml:space="preserve">
+        <source>Bitte den Name des Reservierenden eingeben</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Bitte überprüfen Sie Ihre Eingaben" xml:space="preserve">
+        <source>Bitte überprüfen Sie Ihre Eingaben</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Bitte wählen Sie mindestens einen Raum aus" xml:space="preserve">
+        <source>Bitte wählen Sie mindestens einen Raum aus</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Die von Ihnen ausgewählten Räume sind im diesem Zeitfenster leider besetzt" xml:space="preserve">
+        <source>Die von Ihnen ausgewählten Räume sind im diesem Zeitfenster leider besetzt</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Email" xml:space="preserve">
+        <source>Email</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Ereignis" xml:space="preserve">
+        <source>Ereignis</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Fehler" xml:space="preserve">
+        <source>Fehler</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Geben Sie die Namen für Objekte die reserviert werden (mindestens 1)" xml:space="preserve">
+        <source>Geben Sie die Namen für Objekte die reserviert werden (mindestens 1)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Herzlich Wilkommen zu deinem Reservation Kalender !" xml:space="preserve">
+        <source>Herzlich Wilkommen zu deinem Reservation Kalender !</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Ja" xml:space="preserve">
+        <source>Ja</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Kein Raum ausgewählt" xml:space="preserve">
+        <source>Kein Raum ausgewählt</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Löschen" xml:space="preserve">
+        <source>Löschen</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Made with ❤" xml:space="preserve">
+        <source>Made with ❤</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Menü" xml:space="preserve">
+        <source>Menü</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Name" xml:space="preserve">
+        <source>Name</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Name leer" xml:space="preserve">
+        <source>Name leer</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Nein" xml:space="preserve">
+        <source>Nein</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Neues Objekt erstellen" xml:space="preserve">
+        <source>Neues Objekt erstellen</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Notiz:" xml:space="preserve">
+        <source>Notiz:</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK" xml:space="preserve">
+        <source>OK</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Objekt Name" xml:space="preserve">
+        <source>Objekt Name</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Ok" xml:space="preserve">
+        <source>Ok</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Raum auswählen" xml:space="preserve">
+        <source>Raum auswählen</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Räume" xml:space="preserve">
+        <source>Räume</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Reserviert von:" xml:space="preserve">
+        <source>Reserviert von:</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Von" xml:space="preserve">
+        <source>Von</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Wähle ein Jahr aus " xml:space="preserve">
+        <source>Wähle ein Jahr aus </source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Wähle einen Monat aus" xml:space="preserve">
+        <source>Wähle einen Monat aus</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Wollen Sie den Termin wirklich löschen ?" xml:space="preserve">
+        <source>Wollen Sie den Termin wirklich löschen ?</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="appointments for room" xml:space="preserve">
+        <source>appointments for room</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="authentication" xml:space="preserve">
+        <source>authentication</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="available Rooms" xml:space="preserve">
+        <source>available Rooms</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="base Url" xml:space="preserve">
+        <source>base Url</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="create appointment" xml:space="preserve">
+        <source>create appointment</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="delete appointment" xml:space="preserve">
+        <source>delete appointment</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="details for room" xml:space="preserve">
+        <source>details for room</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="reservieren" xml:space="preserve">
+        <source>reservieren</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="share_pdf" xml:space="preserve">
+        <source>share_pdf</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="update appointment" xml:space="preserve">
+        <source>update appointment</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="url" xml:space="preserve">
+        <source>url</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

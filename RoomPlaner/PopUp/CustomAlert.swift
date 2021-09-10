@@ -17,7 +17,7 @@ struct custom_alert: View {
         
         VStack{
             Spacer()
-            Text("Wollen Sie den Termin wirklich löschen ?")
+            Text("Do you really want to delete the reservation?")
                 .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
             HStack{
@@ -28,7 +28,7 @@ struct custom_alert: View {
                     eventModel.displayDetailView.display.toggle()
                 
                 }, label: {
-                    Text("Ja")
+                    Text("Yes")
                 })
                     .foregroundColor(.white)
                     .frame(width: 130, height: 40)
@@ -39,7 +39,7 @@ struct custom_alert: View {
                 Button(action: {
                     eventModel.showLogIn = false
                 }, label: {
-                    Text("Nein")
+                    Text("No")
                 })
                     .foregroundColor(.white)
                     .frame(width: 130, height: 40)

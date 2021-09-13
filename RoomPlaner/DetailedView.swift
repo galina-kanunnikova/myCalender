@@ -139,7 +139,7 @@ struct dV : View{
         }
         Spacer()
         HStack{
-            Text(" from ") .foregroundColor(colorScheme == .dark ? .white : .black)
+            Text("from") .foregroundColor(colorScheme == .dark ? .white : .black)
             Spacer()
             Text(event.date_start!.toString) .foregroundColor(colorScheme == .dark ? .white : .black)
                 //.frame(width: 250, height: 35, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)

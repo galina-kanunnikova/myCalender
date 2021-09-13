@@ -56,7 +56,9 @@ struct editView_view: View {
                    }
                  
              // Spacer()
-             } }.padding([], 10).frame(height : style.screenHeight/2)
+             }
+            
+           }.padding([], 10).frame(height : style.screenHeight/2.5)
                 if new_objects.count < 10 {
                     Button("+") {
                         let new_obj = eventModel.roomModel.create_Room_core_data(title: title, id: new_objects.count)

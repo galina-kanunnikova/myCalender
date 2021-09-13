@@ -39,7 +39,7 @@ struct first_view: View {
             Spacer()
             Text("Welcome to your Reservations Calendar !")
                 .font(Font.system(size: 45, weight: .bold, design: .rounded))
-                .frame(width: style.screenWidth/1.5)
+                .frame(width: style.screenWidth/1.2)
                 .modifier(FlowTextModifier(image:  Image("calender-100")))
             Spacer()
             Text("Made with ❤")
@@ -54,17 +54,19 @@ struct w_view: View {
     @State  var objects: [String] = []
     @Binding var signInSuccess: Bool
     @Environment(\.colorScheme) var colorScheme
+    @ObservedObject var keyboardResponder = KeyboardResponder()
     var body: some View {
         VStack(spacing: 0) {
             VStack(spacing: 0) {
               Spacer()
-              Text("Please enter objects that you want to rent (at least 1) :")
+              Text("Please enter objects that you want to reserve (at least 1) :")
+                .frame(width: style.screenWidth/1.3)
               Spacer()
           
               TextField("Objekt Name", text: $title)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .fixedSize()
-                
+          ScrollView {
               ForEach(0..<objects.count,id: \.self) { i in
 
                  HStack {
@@ -83,6 +85,8 @@ struct w_view: View {
                  
              // Spacer()
              }
+            
+          }.padding([], 10).frame(height : style.screenHeight/2.5)
                 if objects.count < 10 {
                     Button("+") {
                       objects.append(title)
@@ -99,7 +103,7 @@ struct w_view: View {
               Spacer()
             }.padding(.leading, 100).padding(.trailing, 100)
            
-            Button("Weiter zum Kalender  >") {
+            Button("continue > ") {
                 self.signInSuccess = true
                 for i in 0 ..< objects.count{
                     eventModel.roomModel.saveRoomToLocalStorage(title: objects[i], id: i)
@@ -117,7 +121,7 @@ struct w_view: View {
             .font(.system(size: 25))
             .frame(width:300, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
-        }
+        }.offset(y: keyboardResponder.currentHeight*0.5)
     }
 }
 

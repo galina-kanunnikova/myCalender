@@ -41,8 +41,6 @@
 		FE95CFBF25C9A9370049D8FC /* LogInScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE95CFBE25C9A9360049D8FC /* LogInScreen.swift */; };
 		FE95CFC225D40EEF0049D8FC /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE95CFC125D40EEF0049D8FC /* UserModel.swift */; };
 		FEC098DF26EC08F000A47FC9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FEC098E126EC08F000A47FC9 /* Localizable.strings */; };
-		FEC098E626EC0E3900A47FC9 /* Localizable_eng.strings in Resources */ = {isa = PBXBuildFile; fileRef = FEC098E826EC0E3900A47FC9 /* Localizable_eng.strings */; };
-		FEC098EA26EC0F4500A47FC9 /* Localizable_ru.strings in Resources */ = {isa = PBXBuildFile; fileRef = FEC098EC26EC0F4500A47FC9 /* Localizable_ru.strings */; };
 		FED6110D26E2994600DCBD70 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED6110C26E2994600DCBD70 /* Buttons.swift */; };
 		FED6111026E2A01400DCBD70 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED6110F26E2A01400DCBD70 /* EditView.swift */; };
 		FEDCB3EF25AC9E780034AA4E /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDCB3EE25AC9E780034AA4E /* RoomModel.swift */; };
@@ -79,6 +77,8 @@
 		FE6A584826E112FD001DA03E /* icons8-event-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-event-100.png"; sourceTree = "<group>"; };
 		FE6A584D26E121C8001DA03E /* YearPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearPicker.swift; sourceTree = "<group>"; };
 		FE6BC0CC25EAD3E500D9BC4A /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
+		FE6DE8A826ED7107006E72CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FE6DE8A926ED7109006E72CF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FE79710325825911001289A5 /* RoomPlaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomPlaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE79710625825911001289A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE79710825825911001289A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,9 +94,7 @@
 		FE95CFC125D40EEF0049D8FC /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		FEC098DC26EC062900A47FC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FEC098E026EC08F000A47FC9 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		FEC098E726EC0E3900A47FC9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable_eng.strings; sourceTree = "<group>"; };
 		FEC098E926EC0F3F00A47FC9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		FEC098EB26EC0F4500A47FC9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable_ru.strings; sourceTree = "<group>"; };
 		FED6110C26E2994600DCBD70 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		FED6110F26E2A01400DCBD70 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		FEDCB3EE25AC9E780034AA4E /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
@@ -184,6 +182,14 @@
 			path = CalenderUI;
 			sourceTree = "<group>";
 		};
+		FE6DE8A626ED6F87006E72CF /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				FEC098E126EC08F000A47FC9 /* Localizable.strings */,
+			);
+			path = Localizable;
+			sourceTree = "<group>";
+		};
 		FE7970FA25825910001289A5 = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +209,7 @@
 		FE79710525825911001289A5 /* RoomPlaner */ = {
 			isa = PBXGroup;
 			children = (
+				FE6DE8A626ED6F87006E72CF /* Localizable */,
 				FE55723926E637BB008167F7 /* PDFCreator */,
 				FE5D240526E5510300A47557 /* CalenderUI */,
 				FE5D240226E550D400A47557 /* AppDelegates */,
@@ -227,9 +234,6 @@
 				FE6A583F26DD871C001DA03E /* AppContentView.swift */,
 				FE6A584D26E121C8001DA03E /* YearPicker.swift */,
 				FED6110F26E2A01400DCBD70 /* EditView.swift */,
-				FEC098E126EC08F000A47FC9 /* Localizable.strings */,
-				FEC098E826EC0E3900A47FC9 /* Localizable_eng.strings */,
-				FEC098EC26EC0F4500A47FC9 /* Localizable_ru.strings */,
 			);
 			path = RoomPlaner;
 			sourceTree = "<group>";
@@ -325,10 +329,8 @@
 			files = (
 				FEC098DF26EC08F000A47FC9 /* Localizable.strings in Resources */,
 				FE6A584926E112FE001DA03E /* icons8-event-100.png in Resources */,
-				FEC098E626EC0E3900A47FC9 /* Localizable_eng.strings in Resources */,
 				FE79711625825914001289A5 /* LaunchScreen.storyboard in Resources */,
 				FE79711325825914001289A5 /* Preview Assets.xcassets in Resources */,
-				FEC098EA26EC0F4500A47FC9 /* Localizable_ru.strings in Resources */,
 				FE79711025825914001289A5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,24 +403,10 @@
 			isa = PBXVariantGroup;
 			children = (
 				FEC098E026EC08F000A47FC9 /* de */,
+				FE6DE8A826ED7107006E72CF /* en */,
+				FE6DE8A926ED7109006E72CF /* ru */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		FEC098E826EC0E3900A47FC9 /* Localizable_eng.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FEC098E726EC0E3900A47FC9 /* en */,
-			);
-			name = Localizable_eng.strings;
-			sourceTree = "<group>";
-		};
-		FEC098EC26EC0F4500A47FC9 /* Localizable_ru.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FEC098EB26EC0F4500A47FC9 /* ru */,
-			);
-			name = Localizable_ru.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

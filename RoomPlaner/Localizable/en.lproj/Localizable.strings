@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  RoomPlaner
+
+  Created by Galina Kanunnikova on 10.09.21.
+  
+*/
+"share_pdf" =  " share PDF  ";
+"continue > " = "continue > ";
+"day" = "day";
+"reserve" = " reserve ";
+"edit view" = " edit view ";
+"save" = " save ";
+"from" = "from";
+"till" = "till";
+"cancel" = " cancel ";
+"Placement" = "Placement";
+"save changes" = " save changes ";
+"reserved by:" = "reserved by:";
+"note:" = "note:";
+"select object" = "select object";
+"name is empty" = "name is empty";
+"please fill a name" = "please fill a name";
+"no object selected" = "no object selected";
+"please select at least one object" = "please select at least one object";
+"please check your input" = "please check your input";
+"unfortunately selected objects are not available at this time" = "unfortunately selected objects are not available at this time";
+"Do you really want to delete the reservation?" = "Do you really want to delete the reservation?";
+"Yes" = "Yes";
+"No" = "No";
+"Delete" = "Delete";
+"Edit" = "Edit";
+"Objects" = "Objects";
+"Welcome to your Reservations Calendar !" = "Welcome to your Reservations Calendar !";
+"Please enter objects that you want to reserve (at least 1) :" = "Please enter objects that you want to reserve (at least 1) :";
+"Select a year" = "Select a year";
+"Select a month" = "Select a month";
+"add new object" = "add new object";
